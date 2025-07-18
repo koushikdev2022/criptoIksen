@@ -1,0 +1,852 @@
+@font-face {
+  font-family: "MyCalibriBold";
+  src: url("../fonts/calibri-bold.ttf") format("truetype");
+}
+
+h1,
+h2,
+h3 {
+  font-family: "MyCalibriBold", sans-serif;
+}
+
+body {
+  background: #ffffff;
+  font-family: "Poppins", sans-serif;
+}
+
+/*  */
+
+.main_menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main_menu nav {
+  background: none;
+}
+
+.main_menu ul li {
+  position: relative;
+  padding: 0 15px;
+  margin: 0;
+}
+
+.main_menu ul li a {
+  font-size: 16px;
+  line-height: 30px;
+  font-weight: 500;
+  color: #000000;
+  font-family: "Poppins", sans-serif;
+}
+
+.main_menu ul li a:hover,
+.main_menu ul li a.active {
+  color: #054285;
+}
+
+/*  */
+
+.main_menu ul li.get_started a:hover {
+  color: #ffffff;
+}
+
+.main_menu ul ul {
+  display: none;
+  position: absolute;
+  left: 0;
+  background: #ffffff;
+  width: 300px;
+  padding: 10px;
+}
+
+.main_menu ul li:hover ul {
+  display: block;
+}
+
+.main_menu ul ul li a {
+  color: #231000 !important;
+  font-size: 13px;
+  line-height: 30px;
+  font-weight: 400;
+}
+
+.main_menu ul ul li a:hover {
+  color: #305eff !important;
+}
+
+/* add css for login start here */
+
+.login_area {
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_box {
+  border: #ded7cf 1px solid;
+  border-radius: 10px;
+  padding: 40px 60px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.login_box input[type="text"],
+.login_box input[type="email"],
+.login_box input[type="password"] {
+  font-size: 14px;
+  line-height: 16px;
+  color: #231000;
+  border: none;
+  width: 100%;
+}
+
+.login_box input[type="text"]:focus,
+.login_box input[type="email"]:focus,
+.login_box input[type="password"]:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* add css for login ends here */
+
+/*
+ *  STYLE 3
+ */
+
+#style-3::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+}
+
+#style-3::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f5f5f5;
+}
+
+#style-3::-webkit-scrollbar-thumb {
+  background-color: #a1a1a2;
+}
+
+/*  */
+
+/* Home banner css start here */
+
+/* .home_banner_area {
+  background: url(../imagesource/banner_bg.png) no-repeat 0 0;
+  background-size: cover;
+  padding: 60px 0;
+} */
+/* 
+.why_choose_us_section {
+  background: url(../imagesource/why_choose_bg.png) no-repeat 0 0;
+  background-size: cover;
+  padding: 60px 0;
+}
+
+.courses_learning_section {
+  background: url(../imagesource/Courses_Learning.png) no-repeat 0 0;
+  background-size: cover;
+  padding: 60px 0;
+}
+
+.level_up_process_section {
+  background: url(../imagesource/level_up_process_section_bg.png) no-repeat
+    center center;
+  background-size: cover;
+  padding: 60px 0;
+}
+.level_up_process_cont_section {
+  background: url(../imagesource/level_up_process_section_cont_bg.png) no-repeat
+    0 0;
+  padding-bottom: 30px;
+  margin-left: -138px;
+} */
+
+.level_up_process_cont_section ul li {
+  padding-left: 250px;
+  margin-bottom: 90px;
+}
+.level_up_process_cont_section ul li:nth-child(2n) {
+  padding-left: 320px;
+  margin-bottom: 90px;
+}
+.level_up_process_cont_section ul li:last-child {
+  padding-left: 260px;
+  margin-bottom: 60px;
+  padding-top: 15px;
+}
+
+/* .play_one_section {
+  background: url(../imagesource/play_one_bg.png) no-repeat 0 0;
+  background-size: cover;
+  padding: 80px 0;
+}
+
+.chese_dark_section {
+  background: url(../imagesource/chess_bg_dark_full.png) no-repeat 0 0;
+  background-size: cover;
+  padding: 140px 0;
+}
+
+.our_coaches_section {
+  background: url(../imagesource/Courses_Learning.png) no-repeat 0 0;
+  background-size: cover;
+  padding: 80px 0;
+} */
+
+.trial_class_section {
+  background: #232b37;
+  padding: 80px 0;
+}
+
+.plans_pricing_section {
+  background: #ffffff;
+  padding: 80px 0;
+}
+
+/* .testi_section {
+  background: url(../imagesource/Courses_Learning.png) no-repeat 0 0;
+  background-size: cover;
+  padding: 60px 0;
+}
+
+.testi_box {
+  background: url(../imagesource/testi_box_bg.png) no-repeat 0 0;
+  background-size: contain;
+  width: 97% !important;
+} */
+
+/* Home banner css ends here */
+
+.our_coaches_slider_section .slick-slide img {
+  display: inline-block !important;
+}
+.our_coaches_slider_section .slick-dots li.slick-active button:before {
+  opacity: 0.75;
+  color: #b5e48c;
+}
+.our_coaches_slider_section .slick-dots li button:before {
+  color: #fff;
+}
+.our_coaches_slider_section .slick-arrow.slick-next {
+  position: absolute;
+  top: 104%;
+  right: 46%;
+  z-index: 1;
+}
+.our_coaches_slider_section .slick-arrow.slick-prev {
+  position: absolute;
+  top: 104%;
+  left: 46%;
+  z-index: 1;
+}
+
+.our_coaches_slider_section.testimonial_slider .slick-arrow.slick-next {
+  position: absolute;
+  top: 104%;
+  right: 40%;
+  z-index: 1;
+}
+.our_coaches_slider_section.testimonial_slider .slick-arrow.slick-prev {
+  position: absolute;
+  top: 104%;
+  left: 40%;
+  z-index: 1;
+}
+
+.our_coaches_slider_section .slick-list {
+  padding: 20px 0;
+}
+
+.about_section {
+  padding: 60px 0;
+}
+
+.courses_section_top {
+  padding: 60px 0;
+}
+.certificate_completion_sec {
+  padding: 60px 0;
+}
+
+.banner_area_section {
+  position: relative;
+}
+.banner_area_section img {
+  width: 100%;
+}
+.banner_area_section h1 {
+  position: absolute;
+  left: 10%;
+  top: 40%;
+}
+
+.form_area label {
+  color: #000000;
+}
+.form_area input[type="text"],
+.form_area input[type="email"],
+.form_area input[type="password"] {
+  background: #ffffff !important;
+  border: #8e8e8e 1px solid !important;
+  color: #000000;
+  font-size: 14px;
+}
+.form_area select {
+  background-color: #ffffff;
+  border: #8e8e8e 1px solid;
+  color: #000000;
+}
+.form_area textarea {
+  background: #ffffff;
+  border: #cacaca 1px solid;
+  resize: none;
+}
+.form_area button {
+  background: #046d78 !important;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 0 !important;
+  padding: 25px 0;
+  font-size: 16px;
+  border-radius: 8px !important;
+}
+.form_area button:hover {
+  background: #000000 !important;
+}
+
+.form_area.form_details button {
+  display: flow;
+  width: auto;
+  padding: 10px 30px;
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 8px !important;
+}
+
+.form_area label {
+  color: #263a43;
+  font-size: 14px;
+  line-height: 26px;
+}
+.form_area input[type="email"] {
+  background: #ffffff;
+  border: #8e8e8e 1px solid;
+}
+
+.sidebar_menu nav ul li a:hover {
+  background: #023f9b;
+  color: #ffffff;
+}
+
+/* .checkmate_section {
+  background: url(../imagesource/checkmate_section_bg.png) no-repeat 0 0;
+  background-size: contain;
+  padding: 20px 30px 216px;
+  margin-bottom: 20px;
+} */
+
+.month_select select {
+  background-color: #f8f4f4;
+  color: #514f4f;
+  border: none;
+  border-radius: 20px;
+  width: 90px;
+  height: 40px;
+}
+.my_courses_box.disable_my_courses_box {
+  position: relative;
+}
+.my_courses_box.disable_my_courses_box:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* .tab_cont_area {
+  border-top: #e6e6e6 1px solid;
+  padding: 20px 0;
+}
+.tab_btn_area button {
+  background: none;
+  color: #969696;
+  font-size: 16px;
+  padding: 5px 10px;
+} */
+
+.tab_cont_area {
+  border-top: #e6e6e6 1px solid;
+  padding: 20px 0;
+}
+.tab_btn_area button {
+  cursor: pointer;
+  padding: 10px 20px;
+}
+.tab_btn_area .bg-primary-600 {
+  background-color: #52b69a;
+}
+
+.accordian_section .bg-gray-900 {
+  background-color: #ffffff;
+}
+
+.banner_content_area h1 span {
+  background: #10828e;
+  background: linear-gradient(to right, #10828e 0%, #069960 50%, #01a745 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.getmobile_area {
+  background: #ffffff;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(248, 245, 253, 1) 50%,
+    rgba(248, 245, 253, 1) 100%
+  );
+  padding: 80px 0;
+}
+.getmobile_area h2 span {
+  background: #fa0102;
+  background: linear-gradient(to right, #fa0102 0%, #ff00c9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pricing_area {
+  padding: 0 0;
+}
+.pricing_area h2 span {
+  background: #fa0102;
+  background: linear-gradient(to right, #fa0102 0%, #ff00c9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.menu_btn {
+  z-index: 99999;
+  cursor: pointer;
+  position: absolute;
+  top: 40px;
+  background: red;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.price_box {
+  box-shadow: 2px 0px 16px 0px rgba(232, 232, 232, 0.75);
+  -webkit-box-shadow: 2px 0px 16px 0px rgba(232, 232, 232, 0.75);
+  -moz-box-shadow: 2px 0px 16px 0px rgba(232, 232, 232, 0.75);
+}
+
+.why_choose_section {
+  background: #f7f5ed;
+  padding: 80px 0;
+}
+
+.why_choose_section h2 {
+  padding-bottom: 50px;
+}
+.why_choose_section h2 span {
+  background: #fa0102;
+  background: linear-gradient(to right, #fa0102 0%, #ff00c9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about_us_area {
+  background: #ffffff;
+  padding: 100px 0;
+}
+.about_us_area h2 {
+  padding-bottom: 20px;
+}
+.about_us_area h2 span {
+  background: #fa0102;
+  background: linear-gradient(to right, #fa0102 0%, #ff00c9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main_btn {
+  background: #fa0102;
+  background: linear-gradient(to right, #fa0102 0%, #ff00c9 100%);
+  padding: 6px;
+  height: 47px;
+  position: relative;
+  z-index: 2;
+}
+.main_btn a {
+  margin-right: -10px;
+}
+
+.banner_pic_section {
+  position: absolute;
+  right: 0;
+  bottom: -70px;
+}
+
+.small_text {
+  margin-bottom: 30px;
+}
+.small_text p {
+  background: #fa0102;
+  background: linear-gradient(to right, #fa0102 0%, #ff00c9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  padding-left: 0;
+  display: inline-block;
+}
+.small_text p:before {
+  position: absolute;
+  left: -60px;
+  top: 11px;
+  content: "";
+  width: 50px;
+  height: 2px;
+  background: #fa0102;
+  background: linear-gradient(to right, #fa0102 0%, #ff00c9 100%);
+}
+.small_text p:after {
+  position: absolute;
+  right: -60px;
+  top: 11px;
+  content: "";
+  width: 50px;
+  height: 2px;
+  background: #fa0102;
+  background: linear-gradient(to right, #fa0102 0%, #ff00c9 100%);
+}
+
+.offer_section {
+  padding: 120px 0 80px;
+}
+.offer_image_box {
+  position: absolute;
+  left: -150px;
+  top: -250px;
+  z-index: 1;
+}
+
+/*  */
+
+.how_it_works_section h2 span {
+  color: #083991;
+}
+
+.purchase_section {
+  background: url(../imagesource/subscribe_bg.png) no-repeat 0 bottom;
+}
+
+.purchase_section h2 span {
+  color: #083991;
+}
+
+.testimonials_section {
+  background: #fefff0;
+}
+.testimonials_section h2 span {
+  color: #083991;
+}
+
+.subscription_tab_section .react-tabs ul {
+  display: flex;
+  justify-content: center;
+  background: #ebeff0;
+  border: none;
+  padding: 5px 5px 7px;
+  border-radius: 50px;
+  margin: 0 auto 60px;
+  width: 325px;
+}
+
+.subscription_tab_section
+  .react-tabs
+  ul
+  .react-tabs__tab.react-tabs__tab--selected {
+  background: #023f9b;
+  color: #ffffff;
+  border-radius: 50px;
+}
+.subscription_tab_section
+  .react-tabs
+  ul
+  .react-tabs__tab.react-tabs__tab--selected:after {
+  display: none;
+}
+
+.subscription_tab_section .react-tabs ul .react-tabs__tab {
+  color: #023f9b;
+  width: 150px;
+  font-size: 16px;
+  line-height: 34px;
+  text-align: center;
+}
+
+.most_popular_bg {
+  background: #0a49a0;
+  background: linear-gradient(
+    0deg,
+    rgba(10, 73, 160, 1) 0%,
+    rgba(9, 110, 138, 1) 50%,
+    rgba(9, 121, 131, 1) 100%
+  );
+}
+
+.banner_search_area input[type="text"] {
+  background: none;
+  border: none;
+  color: #727272;
+  height: 45px;
+}
+.banner_search_area select {
+  background-color: #ffffff;
+  color: #727272;
+  height: 45px;
+  border: #c2c2c2 1px solid;
+}
+.banner_search_area input[type="text"]:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.prediction_section {
+  background: #ffffff url(../imagesource/prediction_bg.png) no-repeat center top;
+  background-size: cover;
+  padding: 360px 0 20px;
+  margin-top: -250px;
+}
+
+.prediction_section table tr th {
+  background: #ffffff;
+}
+.prediction_section table tr {
+  background: #ffffff;
+  border-bottom: none;
+}
+.prediction_section table tr:hover {
+  background: #f1f1f1;
+}
+
+.key_benefits_section h2 span {
+  color: #083991;
+}
+
+.dashboard_search_section input[type="text"] {
+  background: none;
+  border: none;
+  color: #727272;
+  height: 45px;
+  font-weight: 400;
+  padding: 0 20px;
+}
+
+/*  */
+
+@media only screen and (max-width: 767px) {
+  .menu_btn {
+    display: inline-flex;
+  }
+
+  .main_menu nav div > div {
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+    position: absolute;
+    right: 0;
+    top: -12px;
+  }
+
+  .main_menu {
+    position: absolute;
+    right: 6px;
+    top: 24px;
+  }
+
+  /* .main_menu ul {
+    position: absolute;
+    margin: 0;
+    right: -10px !important;
+    top: -25px;
+    width: 250px;
+    z-index: 100;
+    background: #000000;
+    text-align: center;
+    padding: 15px 0 0 15px;
+    border-radius: 0;
+    box-shadow: -1px 2px 12px 4px rgba(209, 209, 209, 0.59);
+    -webkit-box-shadow: -1px 2px 12px 4px rgba(209, 209, 209, 0.59);
+    -moz-box-shadow: -1px 2px 12px 4px rgba(209, 209, 209, 0.59);
+    text-align: left;
+    height: 100vh;
+  } */
+
+  .main_menu ul {
+    position: absolute;
+    margin: 0;
+    right: 70px !important;
+    top: -25px;
+    width: 250px;
+    z-index: 100;
+    background: #000000;
+    text-align: center;
+    padding: 15px 0 0 15px;
+    border-radius: 0;
+    box-shadow: -1px 2px 12px 4px rgba(209, 209, 209, 0.59);
+    -webkit-box-shadow: -1px 2px 12px 4px rgba(209, 209, 209, 0.59);
+    -moz-box-shadow: -1px 2px 12px 4px rgba(209, 209, 209, 0.59);
+    text-align: left;
+    height: 100vh;
+  }
+
+  .main_menu ul li a {
+    font-size: 14px;
+    line-height: 24px;
+    padding: 5px 0;
+    display: block;
+    font-weight: 400;
+    color: #fe7889;
+  }
+
+  .plans_pricing_section {
+    padding: 40px 0;
+  }
+  .play_one_section {
+    padding: 40px 0;
+  }
+  .trial_class_section {
+    padding: 40px 0;
+  }
+  .testi_section {
+    padding: 40px 0;
+  }
+  .our_coaches_section {
+    padding: 40px 0;
+  }
+  .chese_dark_section {
+    padding: 60px 0;
+  }
+  .level_up_process_cont_section {
+    background: #ffffff;
+    margin-left: 0;
+  }
+  .level_up_process_cont_section ul li {
+    margin-bottom: 20px;
+    padding-left: 0;
+    width: 100%;
+  }
+  .level_up_process_cont_section ul li:nth-child(2n) {
+    margin-bottom: 20px;
+    padding-left: 0;
+    width: 100%;
+  }
+  .level_up_process_cont_section ul li:last-child {
+    margin-bottom: 20px;
+    padding-top: 15px;
+    padding-left: 0;
+    width: 100%;
+  }
+  .level_up_process_section {
+    padding: 40px 0;
+    background: none;
+  }
+  .why_choose_us_section {
+    background: none;
+    padding: 40px 0;
+  }
+  .home_banner_area {
+    padding: 0 0;
+    background: #f6e7e9;
+  }
+
+  .toggle_point button svg {
+    fill: #fe7889;
+  }
+
+  .about_section,
+  .courses_section_top,
+  .certificate_completion_sec {
+    padding: 25px 0;
+  }
+
+  .getmobile_area {
+    background: #fff;
+    padding: 40px 0;
+  }
+
+  .why_choose_section {
+    background: #f7f5ed;
+    padding: 40px 0;
+  }
+
+  .about_us_area {
+    padding: 40px 0;
+  }
+
+  .about_service_box {
+    background: none;
+  }
+
+  .offer_image_box {
+    position: inherit;
+    left: 0;
+    top: 0;
+    z-index: 1;
+  }
+  .offer_section {
+    padding: 30px 0 40px;
+  }
+  .banner_pic_section {
+    position: relative;
+    width: 50%;
+    bottom: -215px;
+    right: -188px;
+    z-index: 1;
+  }
+  .main_btn {
+    height: 31px;
+  }
+
+  .small_text {
+    margin-bottom: 10px;
+  }
+  .small_text p:before {
+    top: 7px;
+  }
+  .small_text p:after {
+    top: 7px;
+  }
+}
+
+@media screen and (min-width: 360px) and (max-width: 767px) {
+  .main_menu ul {
+    right: 125px !important;
+  }
+}
+
+@media screen and (min-width: 412px) and (max-width: 767px) {
+  .main_menu ul {
+    right: 175px !important;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+}
+
+@media screen and (min-width: 1600px) and (max-width: 1999px) {
+}
