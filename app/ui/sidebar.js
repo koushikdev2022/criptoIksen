@@ -118,6 +118,16 @@ const Sidebar = () => {
                   My Account
                 </Link>
               </li>
+              <li onClick={closeNavbar}>
+                <Link href="/plans"
+                  className={`group relative flex items-center gap-2 rounded-sm py-3 px-4 font-normal text-sm text-white duration-300 ease-in-out hover:bg-graydark ${pathname.includes('plans') &&
+                    'bg-graydark dark:bg-meta-4'
+                    }`}
+                  passHref>
+                  <FaUser className='text-xl' />
+                  Plans
+                </Link>
+              </li>
               {/* <!-- Menu Item Dashboard --> */}
 
 
