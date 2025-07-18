@@ -7,10 +7,11 @@ import logo from '../assets/imagesource/logo.png';
 import Image from 'next/image';
 
 import { useState } from "react";
-import LoginModal from '../modal/loginModal';
-import RegistrationModal from '../modal/registrationModal';
+
 import { ToastContainer } from 'react-toastify';
 import VerifyOtpModal from '../modal/verifyOtpModal';
+import LoginModal from '../modal/LoginModal';
+import RegistrationModal from '../modal/RegistrationModal';
 
 
 const Header = () => {
@@ -136,6 +137,7 @@ const Header = () => {
                 setOpenRegisterModal={setOpenRegisterModal}
                 openVerifyOtpModal={openVerifyOtpModal}
                 setOpenVerifyOtpModal={setOpenVerifyOtpModal}
+                setOpenLoginModal={setOpenLoginModal}
               />
             }
           </>

@@ -8,18 +8,19 @@ import VerifyOtpModal from "./verifyOtpModal";
 import { useDispatch, useSelector } from "react-redux";
 import { registerCustomer } from "../reducers/AuthSlice";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
-const RegistrationModal = ({ openRegisterModal, setOpenRegisterModal, setOpenVerifyOtpModal }) => {
+const RegistrationModal = ({ openRegisterModal, setOpenRegisterModal, setOpenVerifyOtpModal, setOpenLoginModal }) => {
     const dispatch = useDispatch();
     const { loading } = useSelector((state) => state?.auth);
-
+    const [error, setError] = useState()
     const {
         register,
         handleSubmit,
         watch,
         formState: { errors },
     } = useForm();
-
+    const password = watch("password");
     const onSubmit = (data) => {
         console.log("registration data", data)
         dispatch(registerCustomer(data)).then((res) => {
@@ -34,16 +35,12 @@ const RegistrationModal = ({ openRegisterModal, setOpenRegisterModal, setOpenVer
                     theme: "light",
                 });
                 setOpenRegisterModal(false);
-                setOpenVerifyOtpModal(true);
-            } else {
-                toast.error(res?.payload?.response?.data?.data?.[0]?.message, {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    progress: undefined,
-                    theme: "dark",
-                });
+                setOpenLoginModal(true);
+            } else if (res?.payload?.response?.data?.status_code === 422) {
+                const validationErrors = res?.payload?.response?.data?.data || []
+                console.log("validationErrors", validationErrors);
+                const combinedMessages = validationErrors.map((e) => e.message).join(' | ');
+                setError(combinedMessages);
             }
         })
     };
@@ -140,7 +137,7 @@ const RegistrationModal = ({ openRegisterModal, setOpenRegisterModal, setOpenVer
                                             <div className="mb-1 block">
                                                 <Label>Confirm your Password</Label>
                                             </div>
-                                            <TextInput type="password" placeholder='Type your password'
+                                            {/* <TextInput type="password" placeholder='Type your password'
                                                 {...register("confirm_password", {
                                                     required: "Password is required",
                                                 })}
@@ -149,9 +146,28 @@ const RegistrationModal = ({ openRegisterModal, setOpenRegisterModal, setOpenVer
                                                 <span className="text-red-500">
                                                     {errors?.confirm_password?.message}
                                                 </span>
+                                            )} */}
+                                            <TextInput
+                                                type="password"
+                                                placeholder="Type your password"
+                                                {...register("confirm_password", {
+                                                    required: "Confirm Password is required",
+                                                    validate: (value) =>
+                                                        value === password || "Password do not Match",
+                                                })}
+                                            />
+                                            {errors.confirm_password && (
+                                                <span className="text-red-500">
+                                                    {errors.confirm_password.message}
+                                                </span>
                                             )}
                                         </div>
                                         <Button type="submit" className='mt-2'>{loading ? "Wait..." : "Submit"}</Button>
+                                        {
+                                            error && (
+                                                <div className="text-center text-sm text-red-600 mt-3">{error}</div>
+                                            )
+                                        }
                                     </form>
                                 </div>
                             </div>

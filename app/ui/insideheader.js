@@ -10,6 +10,8 @@ import { Poppins } from 'next/font/google';
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { logout } from '../reducers/AuthSlice';
+import { useRouter } from 'next/navigation';
+
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -19,9 +21,28 @@ const poppins = Poppins({
 
 const Insideheader = () => {
   const dispatch = useDispatch();
-
+  const router = useRouter();
   const handleLogout = () => {
-    dispatch(logout())
+    // dispatch(logout())
+
+    try {
+
+      // Dispatch logout action
+      dispatch(logout());
+
+      // Navigate to home page
+      router.push("/");
+
+      // Force reload to ensure clean state
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 100);
+    } catch (error) {
+      console.error("Logout error:", error);
+      // Fallback: still navigate to home
+      router.push("/");
+    }
+
   };
 
   return (

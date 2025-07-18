@@ -32,13 +32,13 @@ export default function RootLayout({ children }) {
         className={`${poppins.variable} antialiased`}
       >
 
-        {/* <Providers>
+        <Providers>
           <ClientLayoutWrapper>
             {children}
           </ClientLayoutWrapper>
-        </Providers> */}
+        </Providers>
 
-        <Providers>
+        {/* <Providers>
           <main>
             <div className="lg:flex gap-10 bg-[#F3F3F3] p-5">
               <div className="sidebar_area w-2/12">
@@ -49,8 +49,8 @@ export default function RootLayout({ children }) {
                 {children}
               </div>
             </div>
-          </main> 
-        </Providers> 
+          </main>
+        </Providers> */}
 
       </body>
     </html>

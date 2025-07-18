@@ -1,5 +1,4 @@
 'use client';
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from './api';
 
@@ -7,7 +6,7 @@ export const registerCustomer = createAsyncThunk(
     'registerCustomer',
     async (userInput, { rejectWithValue }) => {
         try {
-            const response = await api.post('/api/v1/customer/auth/register', userInput);
+            const response = await api.post('/user/user-auth/sign-up', userInput);
             if (response?.data?.status_code === 201) {
                 return response.data;
             } else {
@@ -64,7 +63,7 @@ export const loginCustomer = createAsyncThunk(
     'loginCustomer',
     async (userInput, { rejectWithValue }) => {
         try {
-            const response = await api.post('/api/v1/customer/auth/login', userInput);
+            const response = await api.post('/user/user-auth/sign-in', userInput);
             if (response?.data?.status_code === 200) {
                 return response.data;
             } else {
@@ -115,7 +114,7 @@ const authSlice = createSlice({
         },
         logout: (state) => {
             state.isLoggedIn = false;
-            sessionStorage.removeItem('getMobileToken');
+            sessionStorage.removeItem('cryptoToken');
             sessionStorage.removeItem('user_id');
         },
     },
@@ -173,7 +172,7 @@ const authSlice = createSlice({
                 state.error = false;
             })
             .addCase(loginCustomer.fulfilled, (state, { payload }) => {
-                const { token, data, refresh_token } = payload;
+                const { access_token, data, refresh_token } = payload;
                 state.loading = false;
                 state.isLoggedIn = true;
                 sessionStorage.setItem(
@@ -181,8 +180,8 @@ const authSlice = createSlice({
                     JSON.stringify({ user_id: data?.id })
                 );
                 sessionStorage.setItem(
-                    'getMobileToken',
-                    JSON.stringify({ token: token })
+                    'cryptoToken',
+                    JSON.stringify({ token: access_token })
                 );
             })
             .addCase(loginCustomer.rejected, (state, { payload }) => {

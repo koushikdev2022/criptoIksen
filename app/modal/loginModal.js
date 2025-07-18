@@ -9,12 +9,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginCustomer } from "../reducers/AuthSlice";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 const LoginModal = ({ openLoginModal, setOpenLoginModal }) => {
     const dispatch = useDispatch();
     const router = useRouter();
     const { loading } = useSelector((state) => state?.auth);
-
+    const [error, setError] = useState()
     const {
         register,
         handleSubmit,
@@ -36,15 +37,16 @@ const LoginModal = ({ openLoginModal, setOpenLoginModal }) => {
                 });
                 setOpenLoginModal(false);
                 router.push('/dashboard');
-            } else {
-                toast.error(res?.payload?.response?.data?.data?.[0]?.message, {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    progress: undefined,
-                    theme: "dark",
-                });
+            } else if (res?.payload?.response?.data?.status_code === 401) {
+                setError(res?.payload?.response?.data?.message)
+                // toast.error(res?.payload?.response?.data?.message, {
+                //     position: "top-right",
+                //     autoClose: 5000,
+                //     hideProgressBar: false,
+                //     closeOnClick: true,
+                //     progress: undefined,
+                //     theme: "dark",
+                // });
             }
         })
     };
@@ -100,6 +102,11 @@ const LoginModal = ({ openLoginModal, setOpenLoginModal }) => {
                                             </div>
                                         </div>
                                         <Button type="submit">{loading ? "Wait..." : "Submit"}</Button>
+                                        {
+                                            error && (
+                                                <div className="text-center text-sm text-red-600 mt-3">{error}</div>
+                                            )
+                                        }
                                     </form>
                                 </div>
                             </div>

@@ -34,7 +34,7 @@ apiPwgBlue.interceptors.response.use(
     (error) => {
         if (error.response && [401, 403].includes(error.response.status)) {
             sessionStorage.removeItem('getMobileToken');
-            toast.error("You have been logout, Please login again");
+            // toast.error("You have been logout, Please login again");
         }
         return Promise.reject(error);
     }
