@@ -12,6 +12,7 @@ const PaymentModal = ({
   sPublishKey,
   subsId,
   customerId,
+  planId,
 }) => {
   const [stripePromise, setStripePromise] = useState(null);
   const [options, setOptions] = useState(null);
@@ -35,7 +36,14 @@ const PaymentModal = ({
         <ModalHeader className="border-none pb-0 bg-white">&nbsp;</ModalHeader>
         <ModalBody className="bg-white p-5">
           <Elements stripe={stripePromise} options={options}>
-            <CheckoutForm setErrorMessage={setErrorMessage} />
+            <CheckoutForm
+              setErrorMessage={setErrorMessage}
+              cSecrateKey={cSecrateKey}
+              sPublishKey={sPublishKey}
+              subsId={subsId}
+              customerId={customerId}
+              planId={planId}
+            />
           </Elements>
         </ModalBody>
       </Modal>

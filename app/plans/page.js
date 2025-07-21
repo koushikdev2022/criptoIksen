@@ -13,10 +13,12 @@ const page = () => {
     const [openPaymentModal, setOpenPaymentModal] = useState()
     const [subsId, setSubsId] = useState()
     const [customerId, setCustomerid] = useState()
+    const [planId, setPlanId] = useState()
     useEffect(() => {
         disptach(getPlans())
     }, [])
     const handleCreateSubscription = (id) => {
+        setPlanId(id)
         disptach(createSubscriptions({ plan_id: id })).then((res) => {
             console.log("resStripe", res)
             if (res?.payload?.status_code === 201) {
@@ -213,6 +215,7 @@ const page = () => {
                             sPublishKey={sPublishKey}
                             subsId={subsId}
                             customerId={customerId}
+                            planId={planId}
                         />
                     )
                 }
