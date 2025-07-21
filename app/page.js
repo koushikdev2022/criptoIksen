@@ -36,9 +36,11 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { Button, Select, TextInput } from "flowbite-react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getPlans } from "./reducers/PlanSlice";
 import { features } from "process";
+import { getCoins } from "./reducers/CoinSlice";
+import { useRouter } from "next/navigation";
 
 
 const poppins = Poppins({
@@ -50,12 +52,55 @@ const poppins = Poppins({
 
 export default function Home() {
    const { plans } = useSelector((state) => state?.planst)
-   const disptach = useDispatch()
+   const { coins } = useSelector((state) => state?.coinData)
+   const dispatch = useDispatch()
+   const [searchTerm, setSearchTerm] = useState("");
+   const [selectedCurrency, setSelectedCurrency] = useState('USD');
+   const [selectedCoin, setSelectedCoin] = useState('');
+   const [selectedCoinSymbol, setSelectedCoinSymbol] = useState('');
+   const [showDropdown, setShowDropdown] = useState(false);
+   const router = useRouter();
+
    useEffect(() => {
-      disptach(getPlans())
+      dispatch(getPlans())
    }, [])
    console.log("plan", plans);
+   useEffect(() => {
+      dispatch(getCoins())
+   }, [])
+   console.log("coinsd", coins)
+   // const coinItems = coins?.coins?.map((coin) => coin.item) || [];
 
+   // // Your filtering logic looks correct
+   // const filteredCoins = coinItems.filter((coin) =>
+   //    coin.name.toLowerCase().includes(searchTerm.toLowerCase())
+   // );
+
+   const coinItems = Array.isArray(coins?.coins)
+      ? coins.coins.map((coin) => coin.item).filter(Boolean)
+      : [];
+
+   // Filter coins based on search term
+   const filteredCoins = coinItems.filter((coin) =>
+      coin?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      coin?.symbol?.toLowerCase().includes(searchTerm.toLowerCase())
+   );
+
+
+   const handleCoinSelect = (coin) => {
+      setSelectedCoin(coin.name);
+      setSelectedCoinSymbol(coin.symbol.toLowerCase());
+      // setSearchTerm(''); // Clear search after selection
+      setSearchTerm(coin.name);
+      setShowDropdown(false);
+
+   };
+   const handleTryForFree = async () => {
+      console.log("select currency", selectedCoinSymbol);
+      console.log("select coin symbol", selectedCoinSymbol);
+
+
+   };
    return (
       <div className={`${poppins.variable} antialiased home_wrapper_arera`}>
 
@@ -72,19 +117,37 @@ export default function Home() {
                      <div className="banner_search_area mb-6 flex gap-4 w-10/12">
                         <div className="bg-white border border-[#C2C2C2] rounded-md p-0 flex gap-4 items-center w-10/12">
                            <IoSearchOutline className="text-xl ml-4 text-[#727272s]" />
-                           <TextInput placeholder="Search token or asset" id="base" type="text" sizing="md" />
+                           <TextInput placeholder="Search token or asset" id="base" type="text" sizing="md" value={searchTerm}
+                              onChange={(e) => { setSearchTerm(e.target.value); setShowDropdown(true); }} />
                         </div>
                         <div className="w-2/12">
-                           <Select required>
-                              <option>USD</option>
-                              <option>EURO</option>
+                           <Select required value={selectedCurrency}
+                              onChange={(e) => setSelectedCurrency(e.target.value)}>
+                              <option value="USD">USD</option>
+                              <option value="EURO">EURO</option>
                            </Select>
                         </div>
                      </div>
+                     {(showDropdown && searchTerm.trim() !== "") && (
+                        <ul className="bg-white rounded-md shadow p-4">
+                           {filteredCoins.length > 0 ? (
+                              filteredCoins.map((coin) => (
+                                 <li key={coin.coin_id} className="border-b py-2 last:border-0" onClick={() => handleCoinSelect(coin)}>
+                                    <div className="font-semibold">{coin.name}</div>
+                                    <div className="text-sm text-gray-500">Symbol: {coin.symbol}</div>
+                                 </li>
+                              ))
+                           ) : (
+                              <li className="text-gray-500">No tokens found.</li>
+                           )}
+                        </ul>
+                     )}
                      <div className="inline-block rounded-[5px]">
-                        <Link className="text-white hover:text-[#04cf6b] bg-[#046D78] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-base rounded-[5px] px-3 py-1.5 lg:px-8 lg:py-3 shadow-md" href="/pricing" passHref>
+                        <button className="text-white hover:text-[#04cf6b] bg-[#046D78] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-base rounded-[5px] px-3 py-1.5 lg:px-8 lg:py-3 shadow-md"
+                           onClick={handleTryForFree}
+                        >
                            Try for Free <FaArrowRightLong />
-                        </Link>
+                        </button>
                      </div>
                   </div>
                   <div className="lg:w-6/12">

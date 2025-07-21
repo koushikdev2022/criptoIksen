@@ -5,6 +5,7 @@ import AuthSlice from '../reducers/AuthSlice';
 import PwgnsSlice from '../reducers/PwgnsSlice';
 import BlueConnectsSlice from '../reducers/BlueConnectsSlice';
 import PlanSlice from '../reducers/PlanSlice'
+import CoinSlice from '../reducers/CoinSlice'
 
 const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
         pwg: PwgnsSlice,
         blueConnects: BlueConnectsSlice,
         planst: PlanSlice,
+        coinData: CoinSlice
     },
     devTools: process.env.NODE_ENV,
 });
