@@ -32,9 +32,9 @@ const page = () => {
     }
     return (
         <>
-            <div className="key_benefits_section pt-20 pb-10">
+            <div className="key_benefits_section pt-10 lg:pt-20 pb-10">
                 <div className='max-w-6xl mx-auto'>
-                    <div className="grid grid-cols-4 gap-4 bg-white rounded-4xl p-5">
+                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 bg-white rounded-4xl p-5">
                         {
                             plans?.data?.map((plansDatas, index) => {
                                 return (

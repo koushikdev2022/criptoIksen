@@ -133,34 +133,38 @@ export default function Home() {
                      <p className="text-[#4C4B4B] text-sm lg:text-[16px] leading-[24px] mb-5 lg:mb-4">
                         Get real-time crypto analysis, buy/sell recommendations, and track market confidence — all from one intuitive dashboard.
                      </p>
-                     <div className="banner_search_area mb-6 flex gap-4 lg:w-10/12">
-                        <div className="bg-white border border-[#C2C2C2] rounded-md p-0 flex gap-4 items-center w-9/12 lg:w-10/12">
-                           <IoSearchOutline className="text-xl ml-4 text-[#727272s]" />
-                           <TextInput placeholder="Search token or asset" id="base" type="text" sizing="md" value={searchTerm}
-                              onChange={(e) => { setSearchTerm(e.target.value); setShowDropdown(true); }} />
+                     <div className="relative">
+                        <div className="banner_search_area mb-6 flex gap-4 lg:w-10/12">
+                           <div className="bg-white border border-[#C2C2C2] rounded-md p-0 flex gap-4 items-center w-9/12 lg:w-10/12">
+                              <IoSearchOutline className="text-xl ml-4 text-[#727272s]" />
+                              <TextInput placeholder="Search token or asset" id="base" type="text" sizing="md" value={searchTerm}
+                                 onChange={(e) => { setSearchTerm(e.target.value); setShowDropdown(true); }} />
+                           </div>
+                           <div className="w-3/12 lg:w-2/12">
+                              <Select required value={selectedCurrency}
+                                 onChange={(e) => setSelectedCurrency(e.target.value)}>
+                                 <option value="USD">USD</option>
+                                 <option value="EURO">EURO</option>
+                              </Select>
+                           </div>
                         </div>
-                        <div className="w-3/12 lg:w-2/12">
-                           <Select required value={selectedCurrency}
-                              onChange={(e) => setSelectedCurrency(e.target.value)}>
-                              <option value="USD">USD</option>
-                              <option value="EURO">EURO</option>
-                           </Select>
+                        <div className="absolute left-0 top-[48px] w-[245px] lg:w-[365px]">
+                           {(showDropdown && searchTerm.trim() !== "") && (
+                              <ul className="bg-white rounded-md shadow p-0">
+                                 {filteredCoins.length > 0 ? (
+                                    filteredCoins.map((coin) => (
+                                       <li key={coin.coin_id} className="border-b border-[#dfdfdf] py-2 last:border-0 cursor-pointer px-4" onClick={() => handleCoinSelect(coin)}>
+                                          <div className="text-[#046d78] text-sm leading-[30px] font-semibold">{coin.name}</div>
+                                          <div className="text-xs text-gray-500">Symbol: {coin.symbol}</div>
+                                       </li>
+                                    ))
+                                 ) : (
+                                    <li className="text-gray-500">No tokens found.</li>
+                                 )}
+                              </ul>
+                           )}
                         </div>
                      </div>
-                     {(showDropdown && searchTerm.trim() !== "") && (
-                        <ul className="bg-white rounded-md shadow p-4">
-                           {filteredCoins.length > 0 ? (
-                              filteredCoins.map((coin) => (
-                                 <li key={coin.coin_id} className="border-b py-2 last:border-0" onClick={() => handleCoinSelect(coin)}>
-                                    <div className="font-semibold">{coin.name}</div>
-                                    <div className="text-sm text-gray-500">Symbol: {coin.symbol}</div>
-                                 </li>
-                              ))
-                           ) : (
-                              <li className="text-gray-500">No tokens found.</li>
-                           )}
-                        </ul>
-                     )}
                      <div className="inline-block rounded-[5px]">
                         <Link className="text-white hover:text-[#04cf6b] bg-[#046D78] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-base rounded-[5px] px-5 py-2 lg:px-8 lg:py-3 shadow-md"
                            href={{ pathname: 'details', query: { currency: selectedCurrency, symbol: selectedCoinSymbol, name: selectedCoin } }}
