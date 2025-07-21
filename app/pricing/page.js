@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import aboutBanner from "../assets/imagesource/about_banner.png";
 import bannerImg from "../assets/imagesource/banner_img.png";
@@ -8,10 +8,16 @@ import Image from 'next/image';
 import { IoIosCheckmarkCircle } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPlans } from '../reducers/PlanSlice';
+import LoginModal from '../modal/LoginModal';
 
 const page = () => {
    const { plans } = useSelector((state) => state?.planst)
    const disptach = useDispatch()
+   const [openLoginModal, setOpenLoginModal] = useState(false);
+   const hanleloginModal = () => {
+      setOpenLoginModal(true)
+   }
+
    useEffect(() => {
       disptach(getPlans())
    }, [])
@@ -70,7 +76,7 @@ const page = () => {
                                                 </div>
                                              </div>
                                              <div className="mt-[120px]">
-                                                <button className="bg-[#EBFFFC] hover:bg-[#055346] text-[#055346] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
+                                                <button onClick={() => { hanleloginModal() }} className="bg-[#EBFFFC] hover:bg-[#055346] text-[#055346] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
                                              </div>
                                           </div>
                                        </div>
@@ -111,7 +117,7 @@ const page = () => {
                                                    </div>
                                                 </div>
                                                 <div>
-                                                   <button className="bg-[#013859] hover:bg-[#52A8CD] text-[#F3F3F3] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
+                                                   <button onClick={() => { hanleloginModal() }} className="bg-[#013859] hover:bg-[#52A8CD] text-[#F3F3F3] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
                                                 </div>
                                              </div>
                                           </div>
@@ -214,6 +220,12 @@ const page = () => {
          {/* how in works section ends here */}
 
          {/* Why Choose Us section ends here */}
+         {openLoginModal &&
+            <LoginModal
+               openLoginModal={openLoginModal}
+               setOpenLoginModal={setOpenLoginModal}
+            />
+         }
       </div>
    )
 }

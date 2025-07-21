@@ -41,6 +41,7 @@ import { getPlans } from "./reducers/PlanSlice";
 import { features } from "process";
 import { getCoins } from "./reducers/CoinSlice";
 import { useRouter } from "next/navigation";
+import LoginModal from "./modal/LoginModal";
 
 
 
@@ -62,6 +63,10 @@ export default function Home() {
    const [selectedCoinSymbol, setSelectedCoinSymbol] = useState('');
    const [showDropdown, setShowDropdown] = useState(false);
    const router = useRouter();
+   const [openLoginModal, setOpenLoginModal] = useState(false);
+   const hanleloginModal = () => {
+      setOpenLoginModal(true)
+   }
 
    useEffect(() => {
       dispatch(getPlans())
@@ -525,7 +530,7 @@ export default function Home() {
                                                          </div>
                                                       </div>
                                                       <div className="mt-[120px]">
-                                                         <button className="bg-[#EBFFFC] hover:bg-[#055346] text-[#055346] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
+                                                         <button onClick={() => { hanleloginModal() }} className="bg-[#EBFFFC] hover:bg-[#055346] text-[#055346] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -565,7 +570,7 @@ export default function Home() {
                                                             </div>
                                                          </div>
                                                          <div>
-                                                            <button className="bg-[#013859] hover:bg-[#52A8CD] text-[#F3F3F3] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
+                                                            <button onClick={() => { hanleloginModal() }} className="bg-[#013859] hover:bg-[#52A8CD] text-[#F3F3F3] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
                                                          </div>
                                                       </div>
                                                    </div>
@@ -762,7 +767,12 @@ export default function Home() {
          </div>
          {/* Testimonials section ends here */}
 
-
+         {openLoginModal &&
+            <LoginModal
+               openLoginModal={openLoginModal}
+               setOpenLoginModal={setOpenLoginModal}
+            />
+         }
       </div>
 
    );
