@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 
 import aboutBanner from "../assets/imagesource/about_banner.png";
+import bannerImg from "../assets/imagesource/banner_img.png";
 
 import howItWorksImg from "../assets/imagesource/how_it_works_img.png";
 import hw01 from "../assets/imagesource/hw01.png";
@@ -18,11 +19,12 @@ const page = () => {
       <div className='banner_area p-4 lg:p-0'>
         {/* home banner section start here */}
         <div className="home_banner_area relative">
-          <Image src={aboutBanner} alt='aboutBanner' className="" />
+          <Image src={aboutBanner} alt='aboutBanner' className="hidden lg:block" />
+          <Image src={bannerImg} alt='bannerImg' className="block lg:hidden" />
           <div className="banner_content_area absolute w-full h-full left-0 top-0">
            <div className='max-w-6xl mx-auto flex justify-center items-center h-full'>
-               <div className="w-full px-4 pt-24 text-center">
-                  <h1 className="text-xl leading-[24px] lg:text-[60px] lg:leading-[60px] text-black font-bold mb-2 lg:mb-4">How It <span>Works</span></h1>
+               <div className="w-full px-0 pt-14 lg:pt-24 text-center">
+                  <h1 className="text-xl leading-[24px] lg:text-[60px] lg:leading-[60px] text-black font-bold mb-0 lg:mb-4">How It <span>Works</span></h1>
                   <p className="text-[#4C4B4B] text-sm lg:text-[18px] leading-[24px] mb-5 lg:mb-4">From Coin Search to Confidence — in Seconds</p>
                </div>
            </div>
@@ -31,13 +33,13 @@ const page = () => {
       </div>
       {/* Why Choose Us section start here */}
       {/* how in works section start here */}
-      <div className="how_it_works_section py-24">
+      <div className="how_it_works_section py-4 px-4 lg:px-0 lg:py-24">
          <div className='max-w-6xl mx-auto flex justify-center items-center h-full'>
-            <div className="flex gap-20">
-               <div className="w-6/12">
+            <div className="lg:flex gap-20">
+               <div className="lg:w-6/12">
                  <Image src={How_it_works} alt='How_it_works' className='' />
                </div>
-               <div className="w-6/12 flex justify-center items-center">
+               <div className="lg:w-6/12 flex justify-center items-center">
                  <div>
                      <div className="my-7">
                         <div className="flex gap-4 mb-6">

@@ -125,9 +125,9 @@ export default function Home() {
 
          {/* home banner section start here */}
          <div className="home_banner_area relative">
-            <Image src={bannerImg} alt='bannerImg' className='w-full' />
-            <div className="banner_content_area absolute w-full h-full left-0 top-0">
-               <div className='max-w-6xl mx-auto flex justify-center items-center h-full'>
+            <Image src={bannerImg} alt='bannerImg' className='w-full hidden lg:block' />
+            <div className="banner_content_area lg:absolute w-full h-full left-0 top-0">
+               <div className='max-w-6xl mx-auto lg:flex justify-center items-center h-full'>
                   <div className="lg:w-6/12 px-4 pt-24">
                      <h1 className="text-xl leading-[24px] lg:text-[60px] lg:leading-[60px] text-black font-bold mb-2 lg:mb-4">Smarter <span>Crypto</span> Decisions, Powered by <span>AI</span>.</h1>
                      <p className="text-[#4C4B4B] text-sm lg:text-[16px] leading-[24px] mb-5 lg:mb-4">
@@ -178,10 +178,10 @@ export default function Home() {
          {/* home banner section ends here */}
 
          {/* Key benefits section start here */}
-         <div className="key_benefits_section pt-20 pb-10">
+         <div className="key_benefits_section px-4 pt-20 lg:pb-10">
             <div className='max-w-6xl mx-auto'>
                <h2 className="lg:text-[60px] lg:leading-[70px] text-black font-bold mb-2 lg:mb-6 text-center">Key <span>Benefits</span></h2>
-               <div className="grid grid-cols-3 gap-6">
+               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                   <div className="bg-[#fbfafa] shadow-xl rounded-[10px] px-5 py-8 text-center">
                      <div className="flex justify-center items-center mb-3">
                         <IoSearchOutline className="text-5xl" />
@@ -209,24 +209,24 @@ export default function Home() {
          {/* Key benefits section ends here */}
 
          {/* how in works section start here */}
-         <div className="how_it_works_section py-24">
+         <div className="how_it_works_section px-4 lg:px-0 py-10 lg:py-24">
             <div className='max-w-6xl mx-auto flex justify-center items-center h-full'>
-               <div className="flex gap-20">
-                  <div className="w-6/12">
+               <div className="lg:flex gap-20">
+                  <div className="lg:w-6/12">
                      <Image src={howItWorksImg} alt='howItWorksImg' className='' />
                   </div>
-                  <div className="w-6/12 flex justify-center items-center">
+                  <div className="lg:w-6/12 flex justify-center items-center">
                      <div>
-                        <h2 className="lg:text-[60px] lg:leading-[70px] text-black font-bold mb-2 lg:mb-6">How It <span>Works</span></h2>
-                        <p className="text-[#4C4B4B] text-[18px]">We analyze live crypto data using AI to predict market trends and deliver clear, actionable signals—so you can trade smarter and faster.</p>
+                        <h2 className="text-2xl lg:text-[60px] lg:leading-[70px] text-black font-bold mb-2 lg:mb-6">How It <span>Works</span></h2>
+                        <p className="text-[#4C4B4B] text-sm lg:text-[18px]">We analyze live crypto data using AI to predict market trends and deliver clear, actionable signals—so you can trade smarter and faster.</p>
                         <div className="my-7">
                            <div className="flex gap-4 mb-6">
                               <div className="w-[48px]">
                                  <Image src={hw01} alt='hw01' className='' />
                               </div>
                               <div>
-                                 <p className="text-[18px] leading-[30px] text-black font-medium mb-0">Search any coin</p>
-                                 <p className="text-base leading-[20px] text-[#4C4B4B] mb-0">Type in the coin symbol (e.g., BTC) and hit search.</p>
+                                 <p className="text-base leading-[20px] lg:text-[18px] lg:leading-[30px] text-black font-medium mb-0">Search any coin</p>
+                                 <p className="text-sm lg:text-base leading-[20px] text-[#4C4B4B] mb-0">Type in the coin symbol (e.g., BTC) and hit search.</p>
                               </div>
                            </div>
                            <div className="flex gap-4 mb-6">
@@ -234,8 +234,8 @@ export default function Home() {
                                  <Image src={hw02} alt='hw02' className='' />
                               </div>
                               <div>
-                                 <p className="text-[18px] leading-[30px] text-black font-medium mb-0">Let AI analyze it</p>
-                                 <p className="text-base leading-[20px] text-[#4C4B4B] mb-0">Our backend fetches data, runs technical models, and generates insights.</p>
+                                 <p className="text-base leading-[20px] lg:text-[18px] lg:leading-[30px] text-black font-medium mb-0">Let AI analyze it</p>
+                                 <p className="text-sm lg:text-base leading-[20px] text-[#4C4B4B] mb-0">Our backend fetches data, runs technical models, and generates insights.</p>
                               </div>
                            </div>
                            <div className="flex gap-4 mb-6">
@@ -243,8 +243,8 @@ export default function Home() {
                                  <Image src={hw03} alt='hw03' className='' />
                               </div>
                               <div>
-                                 <p className="text-[18px] leading-[30px] text-black font-medium mb-0">View results</p>
-                                 <p className="text-base leading-[20px] text-[#4C4B4B] mb-0">Get price, buy/sell recommendations, and market confidence levels.</p>
+                                 <p className="text-base leading-[20px] lg:text-[18px] lg:leading-[30px] text-black font-medium mb-0">View results</p>
+                                 <p className="text-sm lg:text-base leading-[20px] text-[#4C4B4B] mb-0">Get price, buy/sell recommendations, and market confidence levels.</p>
                               </div>
                            </div>
                            <div className="flex gap-4 mb-6">
@@ -252,12 +252,12 @@ export default function Home() {
                                  <Image src={hw04} alt='hw04' className='' />
                               </div>
                               <div>
-                                 <p className="text-[18px] leading-[30px] text-black font-medium mb-0">Make informed decisions</p>
-                                 <p className="text-base leading-[20px] text-[#4C4B4B] mb-0">See what you&apos;sve searched and how each coin performed later.</p>
+                                 <p className="text-base leading-[20px] lg:text-[18px] lg:leading-[30px] text-black font-medium mb-0">Make informed decisions</p>
+                                 <p className="text-sm lg:text-base leading-[20px] text-[#4C4B4B] mb-0">See what you&apos;sve searched and how each coin performed later.</p>
                               </div>
                            </div>
                            <div className="inline-block rounded-[5px] mt-6">
-                              <Link className="text-white hover:text-[#04cf6b] bg-[#046D78] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-sm rounded-[5px] px-3 py-1.5 lg:px-7 lg:py-3 shadow-md" href="/how-it-works" passHref>
+                              <Link className="text-white hover:text-[#04cf6b] bg-[#046D78] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-sm rounded-[5px] px-5 py-2 lg:px-7 lg:py-3 shadow-md" href="/how-it-works" passHref>
                                  Learn More
                               </Link>
                            </div>
@@ -274,10 +274,10 @@ export default function Home() {
          {/* prediction section start here */}
 
          <div className="prediction_section">
-            <div className='max-w-6xl mx-auto'>
-               <h2 className="lg:text-[60px] lg:leading-[70px] text-white font-bold mb-2 lg:mb-6">Cryptocurrency Price Predictions</h2>
-               <p className="text-[#ffffff] text-[18px] leading-[30px] font-normal mb-12">At <strong>CryptoIntiuit</strong> we provide daily, monthly and yearly predictions for over 8 000 cryptocurrencies. All predictions on the website represent a possible price development of cryptocurrencies, but they are just predictions, not trading signals or any recommendations. Always do your due diligence before investing.</p>
-               <div className="bg-white shadow-xl rounded-[20px] px-15 py-10">
+            <div className='max-w-6xl mx-auto px-4 lg:px-0'>
+               <h2 className="text-2xl lg:text-[60px] lg:leading-[70px] text-white font-bold mb-2 lg:mb-6">Cryptocurrency Price Predictions</h2>
+               <p className="text-[#ffffff] text-sm lg:text-[18px] lg:leading-[30px] font-normal mb-8 lg:mb-12">At <strong>CryptoIntiuit</strong> we provide daily, monthly and yearly predictions for over 8 000 cryptocurrencies. All predictions on the website represent a possible price development of cryptocurrencies, but they are just predictions, not trading signals or any recommendations. Always do your due diligence before investing.</p>
+               <div className="bg-white shadow-xl rounded-[20px] lg:px-15 lg:py-10 px-5 py-5">
                   <h3 className="text-[#023F9B] text-xl leading-[30px] font-medium mb-5">Cryptointiuit Predictions</h3>
                   <div>
                      <div className="overflow-x-auto">
@@ -474,11 +474,11 @@ export default function Home() {
 
 
          {/* Purchase section start here */}
-         <div className="purchase_section py-20">
+         <div className="purchase_section py-8 lg:py-20">
             <div className='max-w-6xl mx-auto'>
-               <div className="text-center mb-14">
-                  <h2 className="lg:text-[60px] lg:leading-[70px] text-black font-bold mb-2 lg:mb-6">Purchase a <span>subscription</span></h2>
-                  <p className="text-[#4C4B4B] text-[18px] leading-[30px] px-32">Simple, Transparent Pricing</p>
+               <div className="text-center mb-10 lg:mb-14">
+                  <h2 className="text-2xl lg:text-[60px] lg:leading-[70px] text-black font-bold mb-2 lg:mb-6">Purchase a <span>subscription</span></h2>
+                  <p className="text-[#4C4B4B] text-base lg:text-[18px] leading-[30px] lg:px-32">Simple, Transparent Pricing</p>
                </div>
                <div className="subscription_tab_section">
                   <Tabs>
@@ -488,7 +488,7 @@ export default function Home() {
                      </TabList>
 
                      <TabPanel>
-                        <div className="grid grid-cols-4 gap-4 bg-white rounded-4xl p-5">
+                        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 bg-white rounded-4xl p-5 mx-4 lg:mx-0">
                            {
                               plans?.data?.map((planDatas, index) => {
                                  return (
@@ -657,7 +657,7 @@ export default function Home() {
                         </div>
                      </TabPanel>
                      <TabPanel>
-                        <div className="grid grid-cols-4 gap-4 bg-white rounded-4xl p-5">
+                        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 bg-white rounded-4xl p-5 mx-4 lg:mx-0">
                            <div className="pt-5">
                               <div className="py-8 px-6">
                                  <h3 className="text-[19px] text-[#1D2127] pb-6 font-medium">Free</h3>
@@ -748,10 +748,10 @@ export default function Home() {
 
 
          {/* Testimonials section start here */}
-         <div className="testimonials_section pt-20 pb-15">
+         <div className="testimonials_section lg:pt-20 lg:pb-15 pt-10 pb-5 px-4 lg:px-0">
             <div className='max-w-[1400px] mx-auto'>
                <div className="text-center mb-4">
-                  <h2 className="lg:text-[60px] lg:leading-[70px] text-black font-bold mb-2 lg:mb-10">What the people Say <span>about us</span></h2>
+                  <h2 className="text-2xl lg:text-[60px] lg:leading-[70px] text-black font-bold mb-2 lg:mb-10">What the people Say <span>about us</span></h2>
                   <Testimonial />
                </div>
             </div>

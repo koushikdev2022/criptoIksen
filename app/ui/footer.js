@@ -36,7 +36,7 @@ const Footer = () => {
   return (
     <div className='bg-[#002F27]'>
       
-      <div className='footer_top lg:pt-16 lg:pb-0 pt-10 pb-10 px-6 lg:px-0'>
+      <div className='footer_top lg:pt-16 lg:pb-0 pt-10 pb-0 px-6 lg:px-0'>
         <div className='max-w-6xl mx-auto'>
            <div className='footer_top_container lg:flex gap-20'>
               <div className='lg:w-4/12 mb-6 lg:mb-0 text-center lg:text-left'>
@@ -59,7 +59,7 @@ const Footer = () => {
                  <div className='lg:w-6/12 text-center lg:text-left mb-6 lg:mb-0'>
                     <h3 className='text-xl text-white font-semibold pb-5'>Social media</h3>
                     <div className='footer_top_menu_sec'>
-                      <ul className='flex gap-3'>
+                      <ul className='flex lg:justify-start justify-center gap-3'>
                         <li className='mb-1'><Link className='text-white hover:text-[#0866ff] text-2xl' href="#" passHref><FaFacebook /></Link></li>
                         <li className='mb-1'><Link className='text-white hover:text-[#000000] text-2xl' href="#" passHref><BsTwitterX /></Link></li>
                         <li className='mb-1'><Link className='text-white hover:text-[#007ab5] text-3xl' href="#" passHref><BiLogoLinkedin/></Link></li>
@@ -71,7 +71,7 @@ const Footer = () => {
               </div>
            </div>
         </div>
-        <div className='text-center py-6 mt-20 border-t border-[#005354]'>
+        <div className='text-center py-6 lg:mt-20 border-t border-[#005354]'>
           <p className='text-sm text-white'>Copyright © CryptoIntuit 2025</p>
         </div>
       </div>

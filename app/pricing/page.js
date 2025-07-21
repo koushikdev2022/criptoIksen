@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React, { useEffect } from 'react'
 
 import aboutBanner from "../assets/imagesource/about_banner.png";
+import bannerImg from "../assets/imagesource/banner_img.png";
 import Image from 'next/image';
 import { IoIosCheckmarkCircle } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,10 +20,11 @@ const page = () => {
          <div className='banner_area p-4 lg:p-0'>
             {/* home banner section start here */}
             <div className="home_banner_area relative">
-               <Image src={aboutBanner} alt='aboutBanner' className="" />
+               <Image src={aboutBanner} alt='aboutBanner' className="hidden lg:block" />
+               <Image src={bannerImg} alt='bannerImg' className="block lg:hidden" />
                <div className="banner_content_area absolute w-full h-full left-0 top-0">
                   <div className='max-w-6xl mx-auto flex justify-center items-center h-full'>
-                     <div className="w-full px-4 pt-24 text-center">
+                     <div className="w-full px-4 pt-14 lg:pt-24 text-center">
                         <h1 className="text-xl leading-[24px] lg:text-[60px] lg:leading-[60px] text-black font-bold mb-2 lg:mb-4">Pricing</h1>
                         <p className="text-[#4C4B4B] text-sm lg:text-[18px] leading-[24px] mb-5 lg:mb-4">Simple, Transparent Pricing</p>
                      </div>
@@ -33,9 +35,9 @@ const page = () => {
          {/* Why Choose Us section start here */}
          {/* how in works section start here */}
          {/* Key benefits section start here */}
-         <div className="key_benefits_section pt-20 pb-10">
+         <div className="key_benefits_section py-4 px-4 lg:px-0 lg:py-24">
             <div className='max-w-6xl mx-auto'>
-               <div className="grid grid-cols-4 gap-4 bg-white rounded-4xl p-5">
+               <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 bg-white rounded-4xl p-5">
                   {
                      plans?.data?.map((plansDatas, index) => {
                         return (
