@@ -44,6 +44,8 @@ export const getCoinsDetails = createAsyncThunk(
         }
     }
 );
+
+
 const initialState = {
     loading: false,
     error: false,

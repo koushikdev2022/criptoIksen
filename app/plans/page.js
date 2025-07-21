@@ -1,15 +1,33 @@
 'use client';
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { IoIosCheckmarkCircle } from "react-icons/io"
 import { useDispatch, useSelector } from "react-redux"
-import { getPlans } from "../reducers/PlanSlice"
+import { createSubscriptions, getPlans } from "../reducers/PlanSlice"
+import PaymentModal from "../modal/PaymentModal";
 
 const page = () => {
     const { plans } = useSelector((state) => state?.planst)
     const disptach = useDispatch()
+    const [cSecrateKey, setCsecrateKey] = useState()
+    const [sPublishKey, setSPublishKey] = useState()
+    const [openPaymentModal, setOpenPaymentModal] = useState()
+    const [subsId, setSubsId] = useState()
+    const [customerId, setCustomerid] = useState()
     useEffect(() => {
         disptach(getPlans())
     }, [])
+    const handleCreateSubscription = (id) => {
+        disptach(createSubscriptions({ plan_id: id })).then((res) => {
+            console.log("resStripe", res)
+            if (res?.payload?.status_code === 201) {
+                setCsecrateKey(res?.payload?.clientSecret)
+                setSPublishKey(res?.payload?.stripe_publish)
+                setSubsId(res?.payload?.subscriptionId)
+                setCustomerid(res?.payload?.customer_id)
+                setOpenPaymentModal(true)
+            }
+        })
+    }
     return (
         <>
             <div className="key_benefits_section pt-20 pb-10">
@@ -47,7 +65,7 @@ const page = () => {
                                                                 </div>
                                                             </div>
                                                             <div className="mt-[120px]">
-                                                                <button className="bg-[#EBFFFC] hover:bg-[#055346] text-[#055346] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
+                                                                <button onClick={() => handleCreateSubscription(plansDatas?.id)} className="bg-[#EBFFFC] hover:bg-[#055346] text-[#055346] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -88,7 +106,7 @@ const page = () => {
                                                                     </div>
                                                                 </div>
                                                                 <div>
-                                                                    <button className="bg-[#013859] hover:bg-[#52A8CD] text-[#F3F3F3] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
+                                                                    <button onClick={() => handleCreateSubscription(plansDatas?.id)} className="bg-[#013859] hover:bg-[#52A8CD] text-[#F3F3F3] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -186,6 +204,18 @@ const page = () => {
                         </div>
                     </div>
                 </div>
+                {
+                    openPaymentModal && (
+                        <PaymentModal
+                            openPaymentModal={openPaymentModal}
+                            setOpenPaymentModal={setOpenPaymentModal}
+                            cSecrateKey={cSecrateKey}
+                            sPublishKey={sPublishKey}
+                            subsId={subsId}
+                            customerId={customerId}
+                        />
+                    )
+                }
             </div>
         </>
     )

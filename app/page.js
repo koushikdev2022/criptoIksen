@@ -43,6 +43,8 @@ import { getCoins } from "./reducers/CoinSlice";
 import { useRouter } from "next/navigation";
 
 
+
+
 const poppins = Poppins({
    subsets: ['latin'],
    weight: ['400', '500', '600', '700'], // specify desired weights
@@ -88,6 +90,8 @@ export default function Home() {
 
 
    const handleCoinSelect = (coin) => {
+      console.log(coin, "coin");
+
       setSelectedCoin(coin.name);
       setSelectedCoinSymbol(coin.symbol.toLowerCase());
       // setSearchTerm(''); // Clear search after selection
@@ -95,12 +99,27 @@ export default function Home() {
       setShowDropdown(false);
 
    };
-   const handleTryForFree = async () => {
-      console.log("select currency", selectedCoinSymbol);
-      console.log("select coin symbol", selectedCoinSymbol);
+   // const handleTryForFree = async () => {
+   //    console.log("select currency", selectedCoinSymbol);
+   //    console.log("select coin symbol", selectedCoinSymbol);
+   //    // router.push("/details")
+
+   //    router.push({
+   //       pathname: '/details',
+   //       query: {
+   //          coin: selectedCoinSymbol,
+   //          currency: selectedCurrency
+   //       }
+   //    });
 
 
-   };
+
+   // };
+   useEffect(() => {
+      console.log("currency", selectedCurrency);
+   }, [selectedCurrency])
+
+
    return (
       <div className={`${poppins.variable} antialiased home_wrapper_arera`}>
 
@@ -143,11 +162,11 @@ export default function Home() {
                         </ul>
                      )}
                      <div className="inline-block rounded-[5px]">
-                        <button className="text-white hover:text-[#04cf6b] bg-[#046D78] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-base rounded-[5px] px-3 py-1.5 lg:px-8 lg:py-3 shadow-md"
-                           onClick={handleTryForFree}
+                        <Link className="text-white hover:text-[#04cf6b] bg-[#046D78] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-base rounded-[5px] px-3 py-1.5 lg:px-8 lg:py-3 shadow-md"
+                           href={{ pathname: 'details', query: { currency: selectedCurrency, symbol: selectedCoinSymbol, name: selectedCoin } }}
                         >
                            Try for Free <FaArrowRightLong />
-                        </button>
+                        </Link>
                      </div>
                   </div>
                   <div className="lg:w-6/12">
