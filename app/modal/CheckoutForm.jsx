@@ -1,13 +1,33 @@
+"use client";
 import {
   PaymentElement,
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({
+  setErrorMessage,
+  cSecrateKey,
+  sPublishKey,
+  subsId,
+  customerId,
+  planId,
+}) => {
   const stripe = useStripe();
   const elements = useElements();
-  const returnUrl = `${process.env.NEXT_FRONT_BASE_URL}/payment-redirect`;
+  // const returnUrl = `${process.env.NEXT_FRONT_BASE_URL}/payment-redirect/`;
+  const returnUrl = `${
+    process.env.NEXT_PUBLIC_FRONT_BASE_URL
+  }/payment-redirect?subsId=${encodeURIComponent(
+    subsId
+  )}&customerId=${encodeURIComponent(
+    customerId
+  )}&sPublishKey=${encodeURIComponent(
+    sPublishKey
+  )}&cSecrateKey=${encodeURIComponent(cSecrateKey)}&planId=${encodeURIComponent(
+    planId
+  )}`;
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!stripe || !elements) {

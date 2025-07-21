@@ -42,11 +42,33 @@ export const createSubscriptions = createAsyncThunk(
     }
 
 )
+
+export const completeSubscriptions = createAsyncThunk(
+    'completeSubscriptions',
+    async (user_input, { rejectWithValue }) => {
+        try {
+            const response = await api.post('/user/payment/complete-payment', user_input);
+            if (response?.data?.status_code === 201) {
+                return response.data;
+            } else {
+                if (response?.data?.errors) {
+                    return rejectWithValue(response.data.errors);
+                } else {
+                    return rejectWithValue('Something went wrong.');
+                }
+            }
+        } catch (err) {
+            return rejectWithValue(err);
+        }
+    }
+
+)
 const initialState = {
     loading: false,
     plans: [],
     error: false,
-    subs: []
+    subs: [],
+    comSubs: []
 }
 
 const PlanSlice = createSlice({
@@ -76,6 +98,18 @@ const PlanSlice = createSlice({
                 state.error = false
             })
             .addCase(createSubscriptions.rejected, (state, { payload }) => {
+                state.loading = false
+                state.error = payload
+            })
+            .addCase(completeSubscriptions.pending, (state) => {
+                state.loading = true
+            })
+            .addCase(completeSubscriptions.fulfilled, (state, { payload }) => {
+                state.loading = false
+                state.comSubs = payload
+                state.error = false
+            })
+            .addCase(completeSubscriptions.rejected, (state, { payload }) => {
                 state.loading = false
                 state.error = payload
             })
