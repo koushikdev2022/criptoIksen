@@ -129,17 +129,17 @@ export default function Home() {
             <div className="banner_content_area lg:absolute w-full h-full left-0 top-0">
                <div className='max-w-6xl mx-auto lg:flex justify-center items-center h-full'>
                   <div className="lg:w-6/12 px-4 pt-24">
-                     <h1 className="text-xl leading-[24px] lg:text-[60px] lg:leading-[60px] text-black font-bold mb-2 lg:mb-4">Smarter <span>Crypto</span> Decisions, Powered by <span>AI</span>.</h1>
+                     <h1 className="text-2xl leading-[30px] lg:text-[60px] lg:leading-[60px] text-black font-bold mb-2 lg:mb-4">Smarter <span>Crypto</span> Decisions, Powered by <span>AI</span>.</h1>
                      <p className="text-[#4C4B4B] text-sm lg:text-[16px] leading-[24px] mb-5 lg:mb-4">
                         Get real-time crypto analysis, buy/sell recommendations, and track market confidence — all from one intuitive dashboard.
                      </p>
-                     <div className="banner_search_area mb-6 flex gap-4 w-10/12">
-                        <div className="bg-white border border-[#C2C2C2] rounded-md p-0 flex gap-4 items-center w-10/12">
+                     <div className="banner_search_area mb-6 flex gap-4 lg:w-10/12">
+                        <div className="bg-white border border-[#C2C2C2] rounded-md p-0 flex gap-4 items-center w-9/12 lg:w-10/12">
                            <IoSearchOutline className="text-xl ml-4 text-[#727272s]" />
                            <TextInput placeholder="Search token or asset" id="base" type="text" sizing="md" value={searchTerm}
                               onChange={(e) => { setSearchTerm(e.target.value); setShowDropdown(true); }} />
                         </div>
-                        <div className="w-2/12">
+                        <div className="w-3/12 lg:w-2/12">
                            <Select required value={selectedCurrency}
                               onChange={(e) => setSelectedCurrency(e.target.value)}>
                               <option value="USD">USD</option>
@@ -162,7 +162,7 @@ export default function Home() {
                         </ul>
                      )}
                      <div className="inline-block rounded-[5px]">
-                        <Link className="text-white hover:text-[#04cf6b] bg-[#046D78] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-base rounded-[5px] px-3 py-1.5 lg:px-8 lg:py-3 shadow-md"
+                        <Link className="text-white hover:text-[#04cf6b] bg-[#046D78] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-base rounded-[5px] px-5 py-2 lg:px-8 lg:py-3 shadow-md"
                            href={{ pathname: 'details', query: { currency: selectedCurrency, symbol: selectedCoinSymbol, name: selectedCoin } }}
                         >
                            Try for Free <FaArrowRightLong />
@@ -170,7 +170,7 @@ export default function Home() {
                      </div>
                   </div>
                   <div className="lg:w-6/12">
-                     <Image src={banner01} alt='banner01' className='mb-[-129px]' />
+                     <Image src={banner01} alt='banner01' className='lg:mb-[-129px]' />
                   </div>
                </div>
             </div>
@@ -178,9 +178,9 @@ export default function Home() {
          {/* home banner section ends here */}
 
          {/* Key benefits section start here */}
-         <div className="key_benefits_section px-4 pt-20 lg:pb-10">
+         <div className="key_benefits_section px-4 pt-10 lg:pt-20 lg:pb-10">
             <div className='max-w-6xl mx-auto'>
-               <h2 className="lg:text-[60px] lg:leading-[70px] text-black font-bold mb-2 lg:mb-6 text-center">Key <span>Benefits</span></h2>
+               <h2 className="text-2xl lg:text-[60px] lg:leading-[70px] text-black font-bold mb-2 lg:mb-6 text-center">Key <span>Benefits</span></h2>
                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                   <div className="bg-[#fbfafa] shadow-xl rounded-[10px] px-5 py-8 text-center">
                      <div className="flex justify-center items-center mb-3">

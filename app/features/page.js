@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 
 import aboutBanner from "../assets/imagesource/about_banner.png";
+import bannerImg from "../assets/imagesource/banner_img.png";
 
 import howItWorksImg from "../assets/imagesource/how_it_works_img.png";
 import hw01 from "../assets/imagesource/hw01.png";
@@ -20,10 +21,11 @@ const page = () => {
       <div className='banner_area p-4 lg:p-0'>
         {/* home banner section start here */}
         <div className="home_banner_area relative">
-          <Image src={aboutBanner} alt='aboutBanner' className="" />
+         <Image src={aboutBanner} alt='aboutBanner' className="hidden lg:block" />
+         <Image src={bannerImg} alt='bannerImg' className="block lg:hidden" />
           <div className="banner_content_area absolute w-full h-full left-0 top-0">
            <div className='max-w-6xl mx-auto flex justify-center items-center h-full'>
-               <div className="w-full px-4 pt-24 text-center">
+               <div className="w-full lg:px-4 pt-14 lg:pt-24 text-center">
                   <h1 className="text-xl leading-[24px] lg:text-[60px] lg:leading-[60px] text-black font-bold mb-2 lg:mb-4">Features</h1>
                   <p className="text-[#4C4B4B] text-sm lg:text-[18px] leading-[24px] mb-5 lg:mb-4">Everything You Need for Smarter Crypto Analysis</p>
                </div>
@@ -34,9 +36,9 @@ const page = () => {
       {/* Why Choose Us section start here */}
       {/* how in works section start here */}
             {/* Key benefits section start here */}
-            <div className="key_benefits_section pt-20 pb-10">
+            <div className="key_benefits_section pt-10 lg:pt-20 lg:pb-10 px-4 lg:px-0">
                <div className='max-w-6xl mx-auto'>
-                  <div className="grid grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                      <div className="bg-[#fbfafa] shadow-xl rounded-[10px] px-5 py-8 text-center">
                         <div className="flex justify-center items-center mb-3">
                            <IoSearchOutline className="text-5xl" />

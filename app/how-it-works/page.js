@@ -47,8 +47,8 @@ const page = () => {
                               <Image src={hw01} alt='hw01' className='' />
                            </div>
                            <div>
-                              <p className="text-[18px] leading-[30px] text-black font-medium mb-0">Search a Coin</p>
-                              <p className="text-base leading-[20px] text-[#4C4B4B] mb-0">Type in the coin symbol (e.g., BTC) and hit search.</p>
+                              <p className="text-base leading-[20px] lg:text-[18px] lg:leading-[30px] text-black font-medium mb-0">Search a Coin</p>
+                              <p className="text-sm lg:text-base leading-[20px] text-[#4C4B4B] mb-0">Type in the coin symbol (e.g., BTC) and hit search.</p>
                            </div>
                         </div>
                         <div className="flex gap-4 mb-6">
@@ -56,8 +56,8 @@ const page = () => {
                               <Image src={hw02} alt='hw02' className='' />
                            </div>
                            <div>
-                              <p className="text-[18px] leading-[30px] text-black font-medium mb-0">Let Our AI Analyze</p>
-                              <p className="text-base leading-[20px] text-[#4C4B4B] mb-0">Our backend fetches data, runs technical models, and generates insights.</p>
+                              <p className="text-base leading-[20px] lg:text-[18px] lg:leading-[30px] text-black font-medium mb-0">Let Our AI Analyze</p>
+                              <p className="text-sm lg:text-base leading-[20px] text-[#4C4B4B] mb-0">Our backend fetches data, runs technical models, and generates insights.</p>
                            </div>
                         </div>
                         <div className="flex gap-4 mb-6">
@@ -65,8 +65,8 @@ const page = () => {
                               <Image src={hw03} alt='hw03' className='' />
                            </div>
                            <div>
-                              <p className="text-[18px] leading-[30px] text-black font-medium mb-0">View Results</p>
-                              <p className="text-base leading-[20px] text-[#4C4B4B] mb-0">Get price, buy/sell recommendations, and market confidence levels.</p>
+                              <p className="text-base leading-[20px] lg:text-[18px] lg:leading-[30px] text-black font-medium mb-0">View Results</p>
+                              <p className="text-sm lg:text-base leading-[20px] text-[#4C4B4B] mb-0">Get price, buy/sell recommendations, and market confidence levels.</p>
                            </div>
                         </div>
                         <div className="flex gap-4 mb-6">
@@ -74,8 +74,8 @@ const page = () => {
                               <Image src={hw04} alt='hw04' className='' />
                            </div>
                            <div>
-                              <p className="text-[18px] leading-[30px] text-black font-medium mb-0">Track Your History</p>
-                              <p className="text-base leading-[20px] text-[#4C4B4B] mb-0">See what you&apos;ve searched and how each coin performed later.</p>
+                              <p className="text-base leading-[20px] lg:text-[18px] lg:leading-[30px] text-black font-medium mb-0">Track Your History</p>
+                              <p className="text-sm lg:text-base leading-[20px] text-[#4C4B4B] mb-0">See what you&apos;ve searched and how each coin performed later.</p>
                            </div>
                         </div>
                         
