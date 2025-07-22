@@ -501,11 +501,11 @@ export default function Home() {
                            {
                               plans?.data?.map((planDatas, index) => {
                                  return (
-                                    <>
+                                    <div key={index}>
                                        {
                                           index % 2 == 0 ? (
                                              <>
-                                                <div className="pt-5" key={index}>
+                                                <div className="pt-5" >
                                                    <div className="py-8 px-1">
                                                       <h3 className="text-[19px] text-[#1D2127] pb-6 font-medium">{planDatas?.plan_name}</h3>
                                                       <div className="flex items-center gap-2 mb-8">
@@ -537,7 +537,7 @@ export default function Home() {
                                              </>
                                           ) : (
                                              <>
-                                                <div className="most_popular_bg border-[10px] border-[#8ac6b1] rounded-4xl p-4" key={index}>
+                                                <div className="most_popular_bg border-[10px] border-[#8ac6b1] rounded-4xl p-4" >
                                                    <div className="">
                                                       <div className="pt-2 px-1">
                                                          <div className="flex justify-between items-center pb-6">
@@ -578,7 +578,7 @@ export default function Home() {
                                              </>
                                           )
                                        }
-                                    </>
+                                    </div>
                                  )
                               })
                            }
