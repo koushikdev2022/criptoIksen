@@ -531,9 +531,14 @@ export default function Home() {
                                                             {/* <div className="flex gap-1 text-[#393d42] text-[14px] mb-2"><IoIosCheckmarkCircle className="text-[#bfc4c7] text-xl" /> real-time analysis</div> */}
                                                          </div>
                                                       </div>
-                                                      <div className="mt-[120px]">
-                                                         <button onClick={() => { hanleloginModal() }} className="bg-[#EBFFFC] hover:bg-[#055346] text-[#055346] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
-                                                      </div>
+                                                      {
+                                                         planDatas?.price !== 0 && (
+                                                            <div className="mt-[120px]">
+                                                               <button onClick={() => { hanleloginModal() }} className="bg-[#EBFFFC] hover:bg-[#055346] text-[#055346] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
+                                                            </div>
+                                                         )
+                                                      }
+
                                                    </div>
                                                 </div>
                                              </>

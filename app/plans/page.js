@@ -94,9 +94,16 @@ const page = () => {
 
                                                                     </>
                                                                 ) : (
-                                                                    <div className="mt-[120px]">
-                                                                        <button onClick={() => handleCreateSubscription(plansDatas?.id)} className="bg-[#EBFFFC] hover:bg-[#055346] text-[#055346] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
-                                                                    </div>
+                                                                    <>
+                                                                        {
+                                                                            plansDatas?.price !== 0 && (
+                                                                                <div className="mt-[120px]">
+                                                                                    <button onClick={() => handleCreateSubscription(plansDatas?.id)} className="bg-[#EBFFFC] hover:bg-[#055346] text-[#055346] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
+                                                                                </div>
+                                                                            )
+                                                                        }
+                                                                    </>
+
                                                                 )
                                                             }
 
