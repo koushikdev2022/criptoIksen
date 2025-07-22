@@ -657,6 +657,10 @@ body {
 
 /*  */
 
+.tradingview-widget-container iframe {
+  height: 500px !important;
+}
+
 @media only screen and (max-width: 767px) {
   .menu_btn {
     display: inline-flex;

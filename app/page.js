@@ -42,6 +42,7 @@ import { features } from "process";
 import { getCoins } from "./reducers/CoinSlice";
 import { useRouter } from "next/navigation";
 import LoginModal from "./modal/LoginModal";
+import TradingCoinList from "./TradingCoinList";
 
 
 
@@ -290,7 +291,7 @@ export default function Home() {
                   <h3 className="text-[#023F9B] text-xl leading-[30px] font-medium mb-5">Cryptointiuit Predictions</h3>
                   <div>
                      <div className="overflow-x-auto">
-                        <Table>
+                        {/* <Table>
                            <TableHead>
                               <TableRow>
                                  <TableHeadCell className="text-[#1660D0] text-[12px] leading-[18px] font-medium bg-white">#</TableHeadCell>
@@ -472,7 +473,8 @@ export default function Home() {
                                  <TableCell className="text-[#42AE29] text-[12px] leading-[18px] font-medium">1.92%</TableCell>
                               </TableRow>
                            </TableBody>
-                        </Table>
+                        </Table> */}
+                        <TradingCoinList />
                      </div>
                   </div>
                </div>
@@ -517,11 +519,11 @@ export default function Home() {
                                                       <div className="mb-16">
                                                          <div>
                                                             {
-                                                               planDatas?.plan_features?.map((features) => {
+                                                               planDatas?.plan_features?.map((features, index) => {
                                                                   return (
-                                                                     <>
+                                                                     <div key={index}>
                                                                         <div className="flex gap-1 text-[#393d42] text-[14px] mb-2"><IoIosCheckmarkCircle className="text-[#bfc4c7] text-xl" /> {features}</div>
-                                                                     </>
+                                                                     </div>
                                                                   )
                                                                })
                                                             }
@@ -555,11 +557,11 @@ export default function Home() {
                                                          <div className="mb-16">
                                                             <div>
                                                                {
-                                                                  planDatas?.plan_features?.map((fet) => {
+                                                                  planDatas?.plan_features?.map((fet, index) => {
                                                                      return (
-                                                                        <>
+                                                                        <div key={index}>
                                                                            <div className="flex gap-1 text-[#F3F3F3] text-[14px] mb-2"><IoIosCheckmarkCircle className="text-[#52A8CD] text-xl" /> {fet}</div>
-                                                                        </>
+                                                                        </div>
                                                                      )
                                                                   })
                                                                }
