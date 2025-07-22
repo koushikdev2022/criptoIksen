@@ -1,4 +1,3 @@
-
 import { Poppins } from 'next/font/google';
 import { League_Spartan } from 'next/font/google';
 import "./globals.css";

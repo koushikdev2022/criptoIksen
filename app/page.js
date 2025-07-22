@@ -495,7 +495,7 @@ export default function Home() {
                   <Tabs>
                      <TabList>
                         <Tab>Monthly</Tab>
-                        <Tab>Yearly </Tab>
+                        {/* <Tab>Yearly </Tab> */}
                      </TabList>
 
                      <TabPanel>
@@ -667,7 +667,7 @@ export default function Home() {
                            </div>
                         </div>
                      </TabPanel>
-                     <TabPanel>
+                     {/* <TabPanel>
                         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 bg-white rounded-4xl p-5 mx-4 lg:mx-0">
                            <div className="pt-5">
                               <div className="py-8 px-6">
@@ -750,7 +750,7 @@ export default function Home() {
                               </div>
                            </div>
                         </div>
-                     </TabPanel>
+                     </TabPanel> */}
                   </Tabs>
                </div>
             </div>

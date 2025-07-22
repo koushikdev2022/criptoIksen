@@ -47,7 +47,7 @@ const page = () => {
                   {
                      plans?.data?.map((plansDatas, index) => {
                         return (
-                           <>
+                           <div key={index}>
                               {
                                  index % 2 == 0 ? (
                                     <>
@@ -63,11 +63,11 @@ const page = () => {
                                              <div className="mb-16">
                                                 <div>
                                                    {
-                                                      plansDatas?.plan_features?.map((fets) => {
+                                                      plansDatas?.plan_features?.map((fets, index) => {
                                                          return (
-                                                            <>
+                                                            <div key={index}>
                                                                <div className="flex gap-1 text-[#393d42] text-[14px] mb-2"><IoIosCheckmarkCircle className="text-[#bfc4c7] text-xl" />{fets}</div>
-                                                            </>
+                                                            </div>
                                                          )
                                                       })
                                                    }
@@ -102,11 +102,11 @@ const page = () => {
                                                 <div className="mb-16">
                                                    <div>
                                                       {
-                                                         plansDatas?.plan_features?.map((ft) => {
+                                                         plansDatas?.plan_features?.map((ft, index) => {
                                                             return (
-                                                               <>
+                                                               <div key={index}>
                                                                   <div className="flex gap-1 text-[#F3F3F3] text-[14px] mb-2"><IoIosCheckmarkCircle className="text-[#52A8CD] text-xl" />{ft}</div>
-                                                               </>
+                                                               </div>
                                                             )
                                                          })
                                                       }
@@ -125,7 +125,7 @@ const page = () => {
                                     </>
                                  )
                               }
-                           </>
+                           </div>
                         )
                      })
                   }
