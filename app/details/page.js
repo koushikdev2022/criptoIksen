@@ -68,8 +68,8 @@ const page = () => {
                                     <div className="flex flex-wrap gap-4 mt-4 text-sm text-gray-600">
 
                                         <div>Action: <span className="text-green-600">{coinsDatas?.spot_recommendations?.short_term?.action}</span></div>
-                                        <div>Entry Price: <span className="text-black">${coinsDatas?.spot_recommendations?.short_term?.entry_price}</span></div>
-                                        <div>Take Profit: <span className="text-black">${coinsDatas?.spot_recommendations?.short_term?.take_profit}</span></div>
+                                        <div>Entry Price: <span className="text-black">{currency == "USD" ? "$" : "€"}  {coinsDatas?.spot_recommendations?.short_term?.entry_price}</span></div>
+                                        <div>Take Profit: <span className="text-black">{currency == "USD" ? "$" : "€"}{coinsDatas?.spot_recommendations?.short_term?.take_profit}</span></div>
                                     </div>
                                     <div>Analysis:<span> {coinsDatas?.spot_recommendations?.short_term?.rationale?.sentiment_analysis}</span></div>
                                     {/* <div className="mt-4 flex gap-4">
@@ -83,8 +83,8 @@ const page = () => {
                                     <div className="flex flex-wrap gap-4 mt-4 text-sm text-gray-600">
 
                                         <div>Action: <span className="text-green-600">{coinsDatas?.spot_recommendations?.long_term?.action}</span></div>
-                                        <div>Entry Price: <span className="text-black">${coinsDatas?.spot_recommendations?.long_term?.entry_price}</span></div>
-                                        <div>Take Profit: <span className="text-black">${coinsDatas?.spot_recommendations?.long_term?.take_profit}</span></div>
+                                        <div>Entry Price: <span className="text-black">{currency == "USD" ? "$" : "€"}{coinsDatas?.spot_recommendations?.long_term?.entry_price}</span></div>
+                                        <div>Take Profit: <span className="text-black">{currency == "USD" ? "$" : "€"}{coinsDatas?.spot_recommendations?.long_term?.take_profit}</span></div>
                                     </div>
                                     <div>Analysis:<span> {coinsDatas?.spot_recommendations?.long_term?.rationale?.sentiment_analysis}</span></div>
                                     {/* <div className="mt-4 flex gap-4">
@@ -97,9 +97,9 @@ const page = () => {
                                     <div className="flex flex-wrap gap-4 mt-4 text-sm text-gray-600">
 
                                         <div>Action: <span className="text-green-600">{coinsDatas?.leveraged_recommendations?.short_term?.position}</span></div>
-                                        <div>Entry Price: <span className="text-black">${coinsDatas?.leveraged_recommendations?.short_term?.entry_price}</span></div>
-                                        <div>Take Profit: <span className="text-black">${coinsDatas?.leveraged_recommendations?.short_term?.take_profit}</span></div>
-                                        <div>Leverage: <span className="text-black">${coinsDatas?.leveraged_recommendations?.short_term?.leverage}</span></div>
+                                        <div>Entry Price: <span className="text-black">{currency == "USD" ? "$" : "€"}{coinsDatas?.leveraged_recommendations?.short_term?.entry_price}</span></div>
+                                        <div>Take Profit: <span className="text-black">{currency == "USD" ? "$" : "€"}{coinsDatas?.leveraged_recommendations?.short_term?.take_profit}</span></div>
+                                        <div>Leverage: <span className="text-black">{coinsDatas?.leveraged_recommendations?.short_term?.leverage}</span></div>
                                     </div>
                                     <div>Analysis:<span> {coinsDatas?.leveraged_recommendations?.short_term?.rationale?.sentiment_macro_analysis}</span></div>
                                     {/* <div className="mt-4 flex gap-4">
@@ -114,8 +114,8 @@ const page = () => {
 
                                         <div>Action: <span className="text-green-600">{coinsDatas?.leveraged_recommendations?.long_term?.position}</span></div>
                                         <div>Entry Price: <span className="text-black">${coinsDatas?.leveraged_recommendations?.long_term?.entry_price}</span></div>
-                                        <div>Take Profit: <span className="text-black">${coinsDatas?.leveraged_recommendations?.long_term?.take_profit}</span></div>
-                                        <div>Leverage: <span className="text-black">${coinsDatas?.leveraged_recommendations?.long_term?.leverage}</span></div>
+                                        <div>Take Profit: <span className="text-black">{currency == "USD" ? "$" : "€"}{coinsDatas?.leveraged_recommendations?.long_term?.take_profit}</span></div>
+                                        <div>Leverage: <span className="text-black">{coinsDatas?.leveraged_recommendations?.long_term?.leverage}</span></div>
                                     </div>
                                     <div>Analysis:<span> {coinsDatas?.leveraged_recommendations?.long_term?.rationale?.sentiment_macro_analysis}</span></div>
                                 </div>
