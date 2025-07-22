@@ -1,16 +1,17 @@
 'use client';
 
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import userFace from "../assets/imagesource/user_face.png";
 
 import { Poppins } from 'next/font/google';
 
 import { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../reducers/AuthSlice';
 import { useRouter } from 'next/navigation';
+import { getProfile } from '../reducers/ProfileSlice';
 
 
 const poppins = Poppins({
@@ -22,6 +23,7 @@ const poppins = Poppins({
 const Insideheader = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const { profileData } = useSelector((state) => state?.profile)
   const handleLogout = () => {
     // dispatch(logout())
 
@@ -44,13 +46,16 @@ const Insideheader = () => {
     }
 
   };
+  useEffect(() => {
+    dispatch(getProfile())
+  }, [])
 
   return (
     <div className='bg-[#FFFFFF] rounded-[10px] py-4 px-6 mb-6'>
       <div className='flex justify-between items-center'>
         <div className='pl-[50px] lg:pl-0'>
           <h1 className='text-2xl font-semibold text-[#313030] ${leagueSpartan.className} mb-1'>Welcome</h1>
-          <p className='text-base text-[#686868] ${leagueSpartan.className}'>John</p>
+          <p className='text-base text-[#686868] ${leagueSpartan.className}'>{profileData?.data?.fullname}</p>
         </div>
         <div>
           <div className='flex'>

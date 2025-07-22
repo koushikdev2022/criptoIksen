@@ -4,9 +4,11 @@ import { IoIosCheckmarkCircle } from "react-icons/io"
 import { useDispatch, useSelector } from "react-redux"
 import { createSubscriptions, getPlans } from "../reducers/PlanSlice"
 import PaymentModal from "../modal/PaymentModal";
+import { checkSubscription } from "../reducers/ProfileSlice";
 
 const page = () => {
     const { plans } = useSelector((state) => state?.planst)
+    const { subscriptionData } = useSelector((state) => state?.profile)
     const disptach = useDispatch()
     const [cSecrateKey, setCsecrateKey] = useState()
     const [sPublishKey, setSPublishKey] = useState()
@@ -17,6 +19,11 @@ const page = () => {
     useEffect(() => {
         disptach(getPlans())
     }, [])
+    useEffect(() => {
+        disptach(checkSubscription())
+    }, [])
+    console.log("subscriptionData", subscriptionData);
+
     const handleCreateSubscription = (id) => {
         setPlanId(id)
         disptach(createSubscriptions({ plan_id: id })).then((res) => {
@@ -34,15 +41,30 @@ const page = () => {
         <>
             <div className="key_benefits_section pt-10 lg:pt-20 pb-10">
                 <div className='max-w-6xl mx-auto'>
+                    {
+                        subscriptionData?.data && (
+                            <div className="bg-white rounded-4xl p-5 mb-2">
+                                <p className="text-2xl text-green-600">Your Active Plan</p>
+                                <div>
+                                    <p className="text-green-600"><strong> Plan Name:</strong> {subscriptionData?.data?.Plan?.plan_name}</p>
+                                    <p className="text-green-600"><strong>Price:</strong> ${subscriptionData?.data?.Plan?.price}/{subscriptionData?.data?.Plan?.billing_cycle}</p>
+                                    <p className="text-green-600"><strong>Start Date:</strong> {new Date(subscriptionData?.data?.stripe_subscription_start_date).toISOString().split('T')[0]}</p>
+                                    <p className="text-green-600"><strong>End Date:</strong> {new Date(subscriptionData?.data?.stripe_subscription_end_date).toISOString().split('T')[0]}</p>
+                                </div>
+
+                            </div>
+                        )
+                    }
+
                     <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 bg-white rounded-4xl p-5">
                         {
                             plans?.data?.map((plansDatas, index) => {
                                 return (
-                                    <>
+                                    <div key={index}>
                                         {
                                             index % 2 == 0 ? (
-                                                <>
-                                                    <div className="pt-5" key={index}>
+                                                <div key={index}>
+                                                    <div className="pt-5" >
                                                         <div className="py-8 px-6">
                                                             <h3 className="text-[19px] text-[#1D2127] pb-6 font-medium">{plansDatas?.plan_name}</h3>
                                                             <div className="flex items-center gap-2 mb-8">
@@ -54,11 +76,11 @@ const page = () => {
                                                             <div className="mb-16">
                                                                 <div>
                                                                     {
-                                                                        plansDatas?.plan_features?.map((fets) => {
+                                                                        plansDatas?.plan_features?.map((fets, index) => {
                                                                             return (
-                                                                                <>
+                                                                                <div key={index}>
                                                                                     <div className="flex gap-1 text-[#393d42] text-[14px] mb-2"><IoIosCheckmarkCircle className="text-[#bfc4c7] text-xl" />{fets}</div>
-                                                                                </>
+                                                                                </div>
                                                                             )
                                                                         })
                                                                     }
@@ -66,16 +88,25 @@ const page = () => {
                                                                     {/* <div className="flex gap-1 text-[#393d42] text-[14px] mb-2"><IoIosCheckmarkCircle className="text-[#bfc4c7] text-xl" /> real-time analysis</div> */}
                                                                 </div>
                                                             </div>
-                                                            <div className="mt-[120px]">
-                                                                <button onClick={() => handleCreateSubscription(plansDatas?.id)} className="bg-[#EBFFFC] hover:bg-[#055346] text-[#055346] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
-                                                            </div>
+                                                            {
+                                                                subscriptionData?.data ? (
+                                                                    <>
+
+                                                                    </>
+                                                                ) : (
+                                                                    <div className="mt-[120px]">
+                                                                        <button onClick={() => handleCreateSubscription(plansDatas?.id)} className="bg-[#EBFFFC] hover:bg-[#055346] text-[#055346] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
+                                                                    </div>
+                                                                )
+                                                            }
+
                                                         </div>
                                                     </div>
 
-                                                </>
+                                                </div>
                                             ) : (
                                                 <>
-                                                    <div className="most_popular_bg border-[10px] border-[#8ac6b1] rounded-4xl p-4" key={index}>
+                                                    <div className="most_popular_bg border-[10px] border-[#8ac6b1] rounded-4xl p-4" >
                                                         <div className="">
                                                             <div className="pt-2 px-1">
                                                                 <div className="flex justify-between items-center pb-6">
@@ -93,11 +124,11 @@ const page = () => {
                                                                 <div className="mb-16">
                                                                     <div>
                                                                         {
-                                                                            plansDatas?.plan_features?.map((ft) => {
+                                                                            plansDatas?.plan_features?.map((ft, index) => {
                                                                                 return (
-                                                                                    <>
+                                                                                    <div key={index}>
                                                                                         <div className="flex gap-1 text-[#F3F3F3] text-[14px] mb-2"><IoIosCheckmarkCircle className="text-[#52A8CD] text-xl" />{ft}</div>
-                                                                                    </>
+                                                                                    </div>
                                                                                 )
                                                                             })
                                                                         }
@@ -107,16 +138,21 @@ const page = () => {
                                                                  <div className="flex gap-1 text-[#F3F3F3] text-[14px] mb-2"><IoIosCheckmarkCircle className="text-[#52A8CD] text-xl" /> 10 searches</div> */}
                                                                     </div>
                                                                 </div>
-                                                                <div>
-                                                                    <button onClick={() => handleCreateSubscription(plansDatas?.id)} className="bg-[#013859] hover:bg-[#52A8CD] text-[#F3F3F3] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
-                                                                </div>
+                                                                {subscriptionData?.data ? (
+                                                                    <></>
+                                                                ) : (
+                                                                    <div>
+                                                                        <button onClick={() => handleCreateSubscription(plansDatas?.id)} className="bg-[#013859] hover:bg-[#52A8CD] text-[#F3F3F3] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
+                                                                    </div>
+                                                                )}
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </>
                                             )
                                         }
-                                    </>
+                                    </div>
                                 )
                             })
                         }

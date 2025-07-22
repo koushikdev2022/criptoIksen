@@ -10,6 +10,7 @@ import { loginCustomer } from "../reducers/AuthSlice";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { checkSubscription } from "../reducers/ProfileSlice";
 
 const LoginModal = ({ openLoginModal, setOpenLoginModal }) => {
     const dispatch = useDispatch();
@@ -27,16 +28,33 @@ const LoginModal = ({ openLoginModal, setOpenLoginModal }) => {
         dispatch(loginCustomer(data)).then((res) => {
             console.log("login res", res)
             if (res?.payload?.status_code === 200) {
-                toast.success(res?.payload?.message, {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-                setOpenLoginModal(false);
-                router.push('/dashboard');
+                dispatch(checkSubscription()).then((res) => {
+                    console.log("res", res);
+                    if (res?.payload?.data) {
+                        toast.success(res?.payload?.message, {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                        setOpenLoginModal(false);
+                        router.push('/dashboard');
+                    } else {
+                        toast.success(res?.payload?.message, {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                        setOpenLoginModal(false);
+                        router.push('/plans');
+                    }
+                })
+
             } else if (res?.payload?.response?.data?.status_code === 401) {
                 setError(res?.payload?.response?.data?.message)
                 // toast.error(res?.payload?.response?.data?.message, {

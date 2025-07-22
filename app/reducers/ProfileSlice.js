@@ -21,9 +21,51 @@ export const getProfile = createAsyncThunk(
         }
     }
 )
+
+export const checkSubscription = createAsyncThunk(
+    'checkSubscription',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await api.get('/user/user-profile/current-subscription');
+            if (response?.data?.status_code === 200) {
+                return response.data;
+            } else {
+                if (response?.data?.errors) {
+                    return rejectWithValue(response.data.errors);
+                } else {
+                    return rejectWithValue('Something went wrong.');
+                }
+            }
+        } catch (err) {
+            return rejectWithValue(err);
+        }
+    }
+)
+
+export const cancelSubscription = createAsyncThunk(
+    'cancelSubscription',
+    async (user_input, { rejectWithValue }) => {
+        try {
+            const response = await api.post('/user/payment/cancel-subscription', user_input);
+            if (response?.data?.status_code === 200) {
+                return response.data;
+            } else {
+                if (response?.data?.errors) {
+                    return rejectWithValue(response.data.errors);
+                } else {
+                    return rejectWithValue('Something went wrong.');
+                }
+            }
+        } catch (err) {
+            return rejectWithValue(err);
+        }
+    }
+)
 const initialState = {
     loading: false,
     profileData: [],
+    subscriptionData: {},
+    cancelSubsData: {},
     error: false
 }
 const ProfileSlice = createSlice(
@@ -42,6 +84,30 @@ const ProfileSlice = createSlice(
                     state.error = false
                 })
                 .addCase(getProfile.rejected, (state, { payload }) => {
+                    state.loading = false
+                    state.error = payload
+                })
+                .addCase(checkSubscription.pending, (state) => {
+                    state.loading = true
+                })
+                .addCase(checkSubscription.fulfilled, (state, { payload }) => {
+                    state.loading = false
+                    state.subscriptionData = payload
+                    state.error = false
+                })
+                .addCase(checkSubscription.rejected, (state, { payload }) => {
+                    state.loading = false
+                    state.error = false
+                })
+                .addCase(cancelSubscription.pending, (state) => {
+                    state.loading = true
+                })
+                .addCase(cancelSubscription.fulfilled, (state, { payload }) => {
+                    state.loading = false
+                    state.cancelSubsData = payload
+                    state.error = false
+                })
+                .addCase(cancelSubscription.rejected, (state, { payload }) => {
                     state.loading = false
                     state.error = payload
                 })
