@@ -46,7 +46,7 @@ const page = () => {
         <div>
 
           <div className="bg-white rounded-2xl p-10 mb-4 flex gap-10">
-            <div className="w-8/12">
+            <div className="w-full lg:w-8/12">
               <div className="account_setting_section">
                 <h2 className="text-3xl font-semibold pb-0">Account Details</h2>
                 <div>
@@ -100,6 +100,7 @@ const page = () => {
                               sizing="md"
                               className="!bg-white !text-black"
                               {...register("first_name")}
+                              readOnly
                             />
                           </div>
                           <div className="w-full lg:w-6/12">
@@ -111,6 +112,7 @@ const page = () => {
                               type="text"
                               sizing="md"
                               {...register("username")}
+                              readOnly
                             />
                           </div>
                         </div>
@@ -127,6 +129,7 @@ const page = () => {
                               sizing="md"
                               required
                               {...register("email")}
+                              readOnly
                             />
                           </div>
                         </div>
@@ -134,7 +137,7 @@ const page = () => {
                         <div className="lg:flex gap-6 mb-3">
                           {
                             profileData?.data?.Subscription?.length > 0 ? (
-                              <div className="mt-6 p-4   bg-gray-50">
+                              <div className="mt-6 p-5 bg-gray-50 shadow-lg rounded-2xl">
                                 <h2 className="text-lg font-semibold mb-2 text-black">Plan Details</h2>
                                 <p><strong className="text-black">Plan Name:</strong> {profileData?.data?.Subscription?.[0]?.Plan?.plan_name}</p>
                                 <p><strong className="text-black">Price:</strong> ${profileData?.data?.Subscription?.[0]?.Plan?.price} / {profileData?.data?.Subscription?.[0]?.Plan?.billing_cycle}</p>
@@ -210,48 +213,6 @@ const page = () => {
                   </form>
                 </div>
               </div>
-            </div>
-            <div className="w-4/12">
-              {/* <div className="account_setting_section">
-              <h2 className="text-3xl font-semibold pb-0">Update password</h2>
-              <div>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className="pt-6">
-                    <div className="common-section-box-content">
-                      <div className="">
-                        <div className="w-full mb-3">
-                          <div className="mb-1 block">
-                            <Label>Old Password</Label>
-                          </div>
-                          <TextInput type="password" sizing="md" />
-                        </div>
-                        <div className="w-full mb-3">
-                          <div className="mb-1 block">
-                            <Label>New Password</Label>
-                          </div>
-                          <TextInput type="password" sizing="md" />
-                        </div>
-                        <div className="w-full mb-3">
-                          <div className="mb-1 block">
-                            <Label>Confirm Password</Label>
-                          </div>
-                          <TextInput type="password" sizing="md" />
-                        </div>
-                      </div>
-                      <div className="gap-4 my-6">
-                        <button
-                          type="submit"
-                          className="bg-[#626adf] text-white hover:bg-[#1a9bd9] px-7 py-2 rounded-md text-base font-medium"
-                        >
-                          Update
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              
-            </div> */}
             </div>
           </div>
         </div>

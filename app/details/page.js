@@ -10,6 +10,9 @@ import { Poppins } from 'next/font/google';
 import Image from 'next/image';
 import { Spinner } from "flowbite-react";
 import TradingViewCandle from "./TradingView";
+import { BiDollarCircle } from "react-icons/bi";
+import { PiTargetBold } from "react-icons/pi";
+import { GrMoney } from "react-icons/gr";
 const poppins = Poppins({
     subsets: ['latin'],
     weight: ['400', '500', '600', '700'], // specify desired weights
@@ -32,24 +35,10 @@ const page = () => {
     return (
 
         <div>
-            <div className='banner_area p-4 lg:p-0'>
-                {/* home banner section start here */}
-                <div className="home_banner_area relative">
-                    <Image src={aboutBanner} alt='aboutBanner' className="hidden lg:block" />
-                    <Image src={bannerImg} alt='bannerImg' className="block lg:hidden" />
-                    <div className="banner_content_area absolute w-full h-full left-0 top-0">
-                        <div className='max-w-6xl mx-auto flex justify-center items-center h-full'>
-                            <div className="w-full px-0 pt-14 lg:pt-24 text-center">
-                                <h1 className="text-xl leading-[24px] lg:text-[60px] lg:leading-[60px] text-black font-bold mb-0 lg:mb-4">Coin <span>Details</span></h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div className="how_it_works_section py-4 px-4 lg:px-0 lg:py-24">
+            <div className="how_it_works_section py-4 px-4 lg:px-0 lg:py-0">
 
-                <div className="max-w-6xl mx-auto">
+                <div className="">
 
                     {
                         loading ?
@@ -59,65 +48,99 @@ const page = () => {
                             :
                             <div className={`${poppins.variable} antialiased home_wrapper_arera`}>
                                 <div className="p-6 bg-white rounded-md mt-0">
-                                    <div className="text-2xl lg:text-3xl font-bold text-gray-800">
+                                    <div className="text-xl lg:text-3xl font-bold text-gray-800 mb-4">
                                         {name}  <span className="text-gray-500 uppercase">({symbol})</span>
                                     </div>
                                     <TradingViewCandle symbol={coinsDatas?.symbol || symbol} />
-                                    <div className="mt-14"> <h5>Spot Recommendations </h5></div>
-                                    <div> <h5>Short Term </h5></div>
-                                    <div className="flex flex-wrap gap-4 mt-4 text-sm text-gray-600">
 
-                                        <div>Action: <span className="text-green-600">{coinsDatas?.spot_recommendations?.short_term?.action}</span></div>
-                                        <div>Entry Price: <span className="text-black">{currency == "USD" ? "$" : "€"}  {coinsDatas?.spot_recommendations?.short_term?.entry_price}</span></div>
-                                        <div>Take Profit: <span className="text-black">{currency == "USD" ? "$" : "€"}{coinsDatas?.spot_recommendations?.short_term?.take_profit}</span></div>
+                                    <div className="mb-10">
+                                        <div className="mt-14 mb-5 lg:mb-10">
+                                            <div className="mb-2 lg:mb-4">
+                                            <h5 className="text-[#202020] text-[20px] lg:text-[28px] leading-[30px] font-semibold">Spot Recommendations</h5>
+                                            </div>
+                                            <div>
+                                                <h5 className="text-[#767676] text-[14px] lg:text-[18px] leading-[20px] font-medium">Short-term and long-term insights based on market sentiment.</h5>
+                                            </div>
+                                        </div>
+
+                                        <div className="lg:flex gap-10">
+                                            <div className="bg-[#F8F9FB] px-8 py-10 rounded-2xl shadow-lg lg:w-6/12 mb-5 lg:mb-0">
+                                                <div className="mb-6 flex justify-between items-center">
+                                                    <h5 className="text-[#055346] text-[20px] leading-[30px] font-semibold">Short Term </h5>
+                                                    <div className="border-2 border-[#E49600] bg-[#FFF3DB] rounded-[25px]"><span className="text-[#E49600] text-[16px] leading-[38px] capitalize px-8">{coinsDatas?.spot_recommendations?.short_term?.action}</span></div>
+                                                </div>
+                                                <div className="flex flex-wrap gap-4 mb-5 text-sm text-gray-600">
+                                                    <div className="text-[#2D2D2D] text-[15px] font-normal"><BiDollarCircle className="text-xl text-[#F28938] float-left mr-1" /> Entry Price: <span className="font-medium">{currency == "USD" ? "$" : "€"}{coinsDatas?.spot_recommendations?.short_term?.entry_price}</span></div>
+                                                    <div className="text-[#2D2D2D] text-[15px] font-normal"><PiTargetBold className="text-xl text-[#E7202A] float-left mr-1" /> Take Profit: <span className="font-medium">{currency == "USD" ? "$" : "€"}{coinsDatas?.spot_recommendations?.short_term?.take_profit}</span></div>
+                                                </div>
+                                                <div className="text-[#2D2D2D] text-[16px] leading-[28px] font-medium">Analysis:<span className="text-[#2D2D2D] text-[16px] leading-[28px] font-normal"> {coinsDatas?.spot_recommendations?.short_term?.rationale?.sentiment_analysis}</span></div>
+                                            </div>
+
+                                            <div className="bg-[#F8F9FB] px-8 py-10 rounded-2xl shadow-lg lg:w-6/12">
+                                                <div className="mb-6 flex justify-between items-center">
+                                                    <h5 className="text-[#055346] text-[20px] leading-[30px] font-semibold">Long Term</h5>
+                                                    <div className="border-2 border-[#E49600] bg-[#FFF3DB] rounded-[25px]"><span className="text-[#E49600] text-[16px] leading-[38px] capitalize px-8">{coinsDatas?.spot_recommendations?.long_term?.action}</span></div>
+                                                </div>
+                                                <div className="flex flex-wrap gap-4 mb-5 text-sm text-gray-600">
+                                                    <div className="text-[#2D2D2D] text-[15px] font-normal"><BiDollarCircle className="text-xl text-[#F28938] float-left mr-1" /> Entry Price: <span className="font-medium">{currency == "USD" ? "$" : "€"}{coinsDatas?.spot_recommendations?.long_term?.entry_price}</span></div>
+                                                    <div className="text-[#2D2D2D] text-[15px] font-normal"><PiTargetBold className="text-xl text-[#E7202A] float-left mr-1" /> Take Profit: <span className="font-medium">{currency == "USD" ? "$" : "€"}{coinsDatas?.spot_recommendations?.long_term?.take_profit}</span></div>
+                                                </div>
+                                                <div className="text-[#2D2D2D] text-[16px] leading-[28px] font-medium">Analysis:<span className="text-[#2D2D2D] text-[16px] leading-[28px] font-normal"> {coinsDatas?.spot_recommendations?.long_term?.rationale?.sentiment_analysis}</span></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div>Analysis:<span> {coinsDatas?.spot_recommendations?.short_term?.rationale?.sentiment_analysis}</span></div>
-                                    {/* <div className="mt-4 flex gap-4">
-                                        <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 cursor-pointer">Buy {symbol}</button>
-                                        <button className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-700 cursor-pointer">Trade now</button>
-                                    </div> */}
 
 
+                                     
+                                    <div className="mb-10"> 
 
-                                    <div className="mt-3"> <h5>Long Term </h5></div>
-                                    <div className="flex flex-wrap gap-4 mt-4 text-sm text-gray-600">
+                                        <div className="mt-14 mb-6">
+                                            <div className="mb-2 lg:mb-4">
+                                            <h5 className="text-[#202020] text-[20px] lg:text-[28px] leading-[30px] font-semibold">Leveraged Recommendations</h5>
+                                            </div>
+                                            <div>
+                                                <h5 className="text-[#767676] text-[14px] lg:text-[18px] font-medium">Recommendations involving margin/leverage strategy.</h5>
+                                            </div>
+                                        </div>
 
-                                        <div>Action: <span className="text-green-600">{coinsDatas?.spot_recommendations?.long_term?.action}</span></div>
-                                        <div>Entry Price: <span className="text-black">{currency == "USD" ? "$" : "€"}{coinsDatas?.spot_recommendations?.long_term?.entry_price}</span></div>
-                                        <div>Take Profit: <span className="text-black">{currency == "USD" ? "$" : "€"}{coinsDatas?.spot_recommendations?.long_term?.take_profit}</span></div>
+                                        <div className="lg:flex gap-10">
+
+                                            <div className="bg-[#F8F9FB] px-8 py-10 rounded-2xl shadow-lg lg:w-6/12 mb-5 lg:mb-0">
+                                                <div className="mb-6 flex justify-between items-center">
+                                                    <h5 className="text-[#055346] text-[20px] leading-[30px] font-semibold">Short Term </h5>
+                                                    <div className="border-2 border-[#E49600] bg-[#FFF3DB] rounded-[25px]">
+                                                        <span className="text-[#E49600] text-[16px] leading-[38px] capitalize px-8">{coinsDatas?.leveraged_recommendations?.short_term?.position}</span>
+                                                    </div>
+                                                </div>
+                                                <div className="flex flex-wrap gap-4 mb-5 text-sm text-gray-600">
+                                                    <div className="text-[#2D2D2D] text-[15px] font-normal"><BiDollarCircle className="text-xl text-[#F28938] float-left mr-1" /> Entry Price: <span className="font-medium">{currency == "USD" ? "$" : "€"}{coinsDatas?.leveraged_recommendations?.short_term?.entry_price}</span></div>
+                                                    <div className="text-[#2D2D2D] text-[15px] font-normal"><PiTargetBold className="text-xl text-[#E7202A] float-left mr-1" /> Take Profit: <span className="font-medium">{currency == "USD" ? "$" : "€"}{coinsDatas?.leveraged_recommendations?.short_term?.take_profit}</span></div>
+                                                    <div className="text-[#2D2D2D] text-[15px] font-normal"><GrMoney className="text-xl text-[#04425D] float-left mr-1" /> Leverage: <span className="font-medium">{coinsDatas?.leveraged_recommendations?.short_term?.leverage}</span></div>
+                                                </div>
+                                                <div className="text-[#2D2D2D] text-[16px] leading-[28px] font-medium">Analysis:<span className="text-[#2D2D2D] text-[16px] leading-[28px] font-normal"> {coinsDatas?.leveraged_recommendations?.short_term?.rationale?.sentiment_macro_analysis}</span></div>
+                                            </div>
+
+
+                                            <div className="bg-[#F8F9FB] px-8 py-10 rounded-2xl shadow-lg lg:w-6/12">
+                                                <div className="mb-6 flex justify-between items-center">
+                                                    <h5 className="text-[#055346] text-[20px] leading-[30px] font-semibold">Long Term </h5>
+                                                    <div className="border-2 border-[#E49600] bg-[#FFF3DB] rounded-[25px]">
+                                                        <span className="text-[#E49600] text-[16px] leading-[38px] capitalize px-8">{coinsDatas?.leveraged_recommendations?.long_term?.position}</span>
+                                                    </div>
+                                                </div>
+                                                <div className="flex flex-wrap gap-4 mb-5 text-sm text-gray-600">
+                                                    <div className="text-[#2D2D2D] text-[15px] font-normal"><BiDollarCircle className="text-xl text-[#F28938] float-left mr-1" /> Entry Price: <span className="font-medium">${coinsDatas?.leveraged_recommendations?.long_term?.entry_price}</span></div>
+                                                    <div className="text-[#2D2D2D] text-[15px] font-normal"><PiTargetBold className="text-xl text-[#E7202A] float-left mr-1" /> Take Profit: <span className="font-medium">{currency == "USD" ? "$" : "€"}{coinsDatas?.leveraged_recommendations?.long_term?.take_profit}</span></div>
+                                                    <div className="text-[#2D2D2D] text-[15px] font-normal"><GrMoney className="text-xl text-[#04425D] float-left mr-1" /> Leverage: <span className="font-medium">{coinsDatas?.leveraged_recommendations?.long_term?.leverage}</span></div>
+                                                </div>
+                                                <div className="text-[#2D2D2D] text-[16px] leading-[28px] font-medium">Analysis:<span className="text-[#2D2D2D] text-[16px] leading-[28px] font-normal"> {coinsDatas?.leveraged_recommendations?.long_term?.rationale?.sentiment_macro_analysis}</span></div>
+                                            </div>
+
+                                        </div>
+
                                     </div>
-                                    <div>Analysis:<span> {coinsDatas?.spot_recommendations?.long_term?.rationale?.sentiment_analysis}</span></div>
-                                    {/* <div className="mt-4 flex gap-4">
-                                        <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 cursor-pointer">Buy {symbol}</button>
-                                        <button className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-700 cursor-pointer">Trade now</button>
-                                    </div> */}
-
-                                    <div> <h5>Leveraged Recommendations </h5></div>
-                                    <div> <h5>Short Term </h5></div>
-                                    <div className="flex flex-wrap gap-4 mt-4 text-sm text-gray-600">
-
-                                        <div>Action: <span className="text-green-600">{coinsDatas?.leveraged_recommendations?.short_term?.position}</span></div>
-                                        <div>Entry Price: <span className="text-black">{currency == "USD" ? "$" : "€"}{coinsDatas?.leveraged_recommendations?.short_term?.entry_price}</span></div>
-                                        <div>Take Profit: <span className="text-black">{currency == "USD" ? "$" : "€"}{coinsDatas?.leveraged_recommendations?.short_term?.take_profit}</span></div>
-                                        <div>Leverage: <span className="text-black">{coinsDatas?.leveraged_recommendations?.short_term?.leverage}</span></div>
-                                    </div>
-                                    <div>Analysis:<span> {coinsDatas?.leveraged_recommendations?.short_term?.rationale?.sentiment_macro_analysis}</span></div>
-                                    {/* <div className="mt-4 flex gap-4">
-                                        <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 cursor-pointer">Buy {symbol}</button>
-                                        <button className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-700 cursor-pointer">Trade now</button>
-                                    </div> */}
 
 
-
-                                    <div className="mt-3"> <h5>Long Term </h5></div>
-                                    <div className="flex flex-wrap gap-4 mt-4 text-sm text-gray-600">
-
-                                        <div>Action: <span className="text-green-600">{coinsDatas?.leveraged_recommendations?.long_term?.position}</span></div>
-                                        <div>Entry Price: <span className="text-black">${coinsDatas?.leveraged_recommendations?.long_term?.entry_price}</span></div>
-                                        <div>Take Profit: <span className="text-black">{currency == "USD" ? "$" : "€"}{coinsDatas?.leveraged_recommendations?.long_term?.take_profit}</span></div>
-                                        <div>Leverage: <span className="text-black">{coinsDatas?.leveraged_recommendations?.long_term?.leverage}</span></div>
-                                    </div>
-                                    <div>Analysis:<span> {coinsDatas?.leveraged_recommendations?.long_term?.rationale?.sentiment_macro_analysis}</span></div>
                                 </div>
                             </div>
                     }

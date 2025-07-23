@@ -665,6 +665,12 @@ body {
   gap: 100px;
 }
 
+.common-section-box-content input[type="text"] {
+  background-color: #ffffff;
+  border: #d4d4d4 1px solid;
+  color: #bdbdbd;
+}
+
 @media only screen and (max-width: 767px) {
   .menu_btn {
     display: inline-flex;

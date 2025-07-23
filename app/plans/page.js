@@ -39,17 +39,17 @@ const page = () => {
     }
     return (
         <>
-            <div className="key_benefits_section pt-10 lg:pt-20 pb-10">
-                <div className='max-w-6xl mx-auto'>
+            <div className="key_benefits_section pt-10 lg:pt-0 pb-10">
+                <div className=''>
                     {
                         subscriptionData?.data && (
-                            <div className="bg-white rounded-4xl p-5 mb-2">
-                                <p className="text-2xl text-green-600">Your Active Plan</p>
+                            <div className="bg-white rounded-4xl p-5 mb-4">
+                                <p className="text-2xl text-black mb-2">Your Active Plan</p>
                                 <div>
-                                    <p className="text-green-600"><strong> Plan Name:</strong> {subscriptionData?.data?.Plan?.plan_name}</p>
-                                    <p className="text-green-600"><strong>Price:</strong> ${subscriptionData?.data?.Plan?.price}/{subscriptionData?.data?.Plan?.billing_cycle}</p>
-                                    <p className="text-green-600"><strong>Start Date:</strong> {new Date(subscriptionData?.data?.stripe_subscription_start_date).toISOString().split('T')[0]}</p>
-                                    <p className="text-green-600"><strong>End Date:</strong> {new Date(subscriptionData?.data?.stripe_subscription_end_date).toISOString().split('T')[0]}</p>
+                                    <p className="text-[#B7B7B7] text-[15px] mb-1"><span className="text-[#000000]">Plan Name:</span> {subscriptionData?.data?.Plan?.plan_name}</p>
+                                    <p className="text-[#B7B7B7] text-[15px] mb-1"><span className="text-[#000000]">Price:</span> ${subscriptionData?.data?.Plan?.price}/{subscriptionData?.data?.Plan?.billing_cycle}</p>
+                                    <p className="text-[#B7B7B7] text-[15px] mb-1"><span className="text-[#000000]">Start Date:</span> {new Date(subscriptionData?.data?.stripe_subscription_start_date).toISOString().split('T')[0]}</p>
+                                    <p className="text-[#B7B7B7] text-[15px] mb-1"><span className="text-[#000000]">End Date:</span> {new Date(subscriptionData?.data?.stripe_subscription_end_date).toISOString().split('T')[0]}</p>
                                 </div>
 
                             </div>

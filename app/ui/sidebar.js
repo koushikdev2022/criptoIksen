@@ -15,6 +15,7 @@ import { BiSolidDashboard } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { usePathname } from 'next/navigation';
+import { FaRectangleList } from "react-icons/fa6";
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -124,7 +125,7 @@ const Sidebar = () => {
                     'bg-graydark dark:bg-meta-4'
                     }`}
                   passHref>
-                  <FaUser className='text-xl' />
+                  <FaRectangleList className='text-xl' />
                   Plans
                 </Link>
               </li>
