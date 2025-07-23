@@ -7,6 +7,7 @@ import BlueConnectsSlice from '../reducers/BlueConnectsSlice';
 import PlanSlice from '../reducers/PlanSlice'
 import CoinSlice from '../reducers/CoinSlice'
 import ProfileSlice from '../reducers/ProfileSlice'
+import SearchHistroySlice from '../reducers/SearchHistroySlice'
 
 const store = configureStore({
     reducer: {
@@ -15,7 +16,8 @@ const store = configureStore({
         blueConnects: BlueConnectsSlice,
         planst: PlanSlice,
         coinData: CoinSlice,
-        profile: ProfileSlice
+        profile: ProfileSlice,
+        his: SearchHistroySlice
     },
     devTools: process.env.NODE_ENV,
 });

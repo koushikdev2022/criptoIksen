@@ -31,8 +31,20 @@ const SearchHistroySlice = createSlice(
         initialState,
         reducers: {},
         extraReducers: (builder) => {
-            builder.addCase()
+            builder.addCase(getSearchHistory.pending, (state) => {
+                state.loading = true
+            })
+                .addCase(getSearchHistory.fulfilled, (state, { payload }) => {
+                    state.loading = false
+                    state.historyData = payload
+                    state.error = false
+                })
+                .addCase(getSearchHistory.rejected, (state, { payload }) => {
+                    state.loading = false
+                    state.error = payload
+                })
         }
 
     }
 )
+export default SearchHistroySlice.reducer;

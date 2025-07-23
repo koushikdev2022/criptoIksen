@@ -1,6 +1,7 @@
 'use client';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import api from './api';
 export const getCoins = createAsyncThunk(
     'getCoins',
     async (_, { rejectWithValue }) => {
@@ -45,12 +46,35 @@ export const getCoinsDetails = createAsyncThunk(
     }
 );
 
+export const toSearchData = createAsyncThunk(
+    'toSearchData',
+    async (user_input, { rejectWithValue }) => {
+        try {
+            const response = await api.post('user/user-search-manage/add', user_input);
+            console.log(response, "response Coins");
+
+            if (response?.data?.status_code === 200) {
+                return response.data;
+            } else {
+                if (response?.data?.errors) {
+                    return rejectWithValue(response.data.errors);
+                } else {
+                    return rejectWithValue('Something went wrong.');
+                }
+            }
+        } catch (err) {
+            return rejectWithValue(err);
+        }
+    }
+)
+
 
 const initialState = {
     loading: false,
     error: false,
     coins: [],
-    coinsDatas: []
+    coinsDatas: [],
+    forSearch: []
 }
 const CoinSlice = createSlice(
     {
@@ -79,6 +103,18 @@ const CoinSlice = createSlice(
                     state.error = false
                 })
                 .addCase(getCoinsDetails.rejected, (state, { payload }) => {
+                    state.loading = false
+                    state.error = payload
+                })
+                .addCase(toSearchData.pending, (state) => {
+                    state.loading = true
+                })
+                .addCase(toSearchData.fulfilled, (state, { payload }) => {
+                    state.loading = false
+                    state.forSearch = payload
+                    state.error = false
+                })
+                .addCase(toSearchData.rejected, (state, { payload }) => {
                     state.loading = false
                     state.error = payload
                 })
