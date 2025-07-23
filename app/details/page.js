@@ -5,7 +5,7 @@ import bannerImg from "../assets/imagesource/banner_img.png";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCoinsDetails } from "../reducers/CoinSlice";
+import { getCoinsDetails, toSearchData } from "../reducers/CoinSlice";
 import { Poppins } from 'next/font/google';
 import Image from 'next/image';
 import { Spinner } from "flowbite-react";
@@ -28,7 +28,12 @@ const page = () => {
     console.log("currency", currency, symbol);
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(getCoinsDetails({ crypto_name: symbol, currency: currency }))
+        dispatch(getCoinsDetails({ crypto_name: symbol, currency: currency })).then((res) => {
+            if (res?.payload?.status !== 400) {
+                dispatch(toSearchData({ search_query: res?.payload?.symbol, json_response: res?.payload }))
+            }
+
+        })
     }, [currency, symbol])
     console.log("coinsDatas", coinsDatas);
 
@@ -56,7 +61,7 @@ const page = () => {
                                     <div className="mb-10">
                                         <div className="mt-14 mb-5 lg:mb-10">
                                             <div className="mb-2 lg:mb-4">
-                                            <h5 className="text-[#202020] text-[20px] lg:text-[28px] leading-[30px] font-semibold">Spot Recommendations</h5>
+                                                <h5 className="text-[#202020] text-[20px] lg:text-[28px] leading-[30px] font-semibold">Spot Recommendations</h5>
                                             </div>
                                             <div>
                                                 <h5 className="text-[#767676] text-[14px] lg:text-[18px] leading-[20px] font-medium">Short-term and long-term insights based on market sentiment.</h5>
@@ -91,12 +96,12 @@ const page = () => {
                                     </div>
 
 
-                                     
-                                    <div className="mb-10"> 
+
+                                    <div className="mb-10">
 
                                         <div className="mt-14 mb-6">
                                             <div className="mb-2 lg:mb-4">
-                                            <h5 className="text-[#202020] text-[20px] lg:text-[28px] leading-[30px] font-semibold">Leveraged Recommendations</h5>
+                                                <h5 className="text-[#202020] text-[20px] lg:text-[28px] leading-[30px] font-semibold">Leveraged Recommendations</h5>
                                             </div>
                                             <div>
                                                 <h5 className="text-[#767676] text-[14px] lg:text-[18px] font-medium">Recommendations involving margin/leverage strategy.</h5>

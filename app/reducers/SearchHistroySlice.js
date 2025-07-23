@@ -6,7 +6,7 @@ export const getSearchHistory = createAsyncThunk(
     async ({ page, limit }, { rejectWithValue }) => {
         try {
             const response = await api.get(`user/user-search-manage/list?page=${page}&limit=${limit}`);
-            if (response?.data?.status_code === 201) {
+            if (response?.data?.status_code === 200) {
                 return response.data;
             } else {
                 if (response?.data?.errors) {

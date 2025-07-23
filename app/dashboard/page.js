@@ -7,11 +7,13 @@ import { League_Spartan } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IoSearchOutline } from 'react-icons/io5';
-import { Select, Table, TextInput, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from 'flowbite-react';
+import { Select, Table, TextInput, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Pagination } from 'flowbite-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
-import { getCoins } from '../reducers/CoinSlice';
+import { checkAvilableSearch, getCoins } from '../reducers/CoinSlice';
 import { FaArrowRightLong } from 'react-icons/fa6';
+import { getSearchHistory } from '../reducers/SearchHistroySlice';
+import { toast, ToastContainer } from 'react-toastify';
 
 
 
@@ -40,7 +42,7 @@ const leagueSpartan = League_Spartan({
 });
 
 const Page = () => {
-  const { coins } = useSelector((state) => state?.coinData)
+  const { coins, avilableData } = useSelector((state) => state?.coinData)
   const { historyData } = useSelector((state) => state?.his)
   const dispatch = useDispatch()
   const [searchTerm, setSearchTerm] = useState("");
@@ -49,6 +51,18 @@ const Page = () => {
   const [selectedCoinSymbol, setSelectedCoinSymbol] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
   const router = useRouter();
+  const [currentPage, setCurrentPage] = useState(1);
+  const limit = 10;
+  useEffect(() => {
+    dispatch(getSearchHistory({ page: currentPage, limit }));
+  }, [dispatch, currentPage]);
+  const list = historyData?.data?.list || [];
+  const totalPage = historyData?.data?.pagination?.pages || 1;
+  const onPageChange = (page) => {
+    setCurrentPage(page);
+  };
+  console.log("historyData", historyData);
+
   useEffect(() => {
     dispatch(getCoins())
   }, [])
@@ -76,6 +90,10 @@ const Page = () => {
     setShowDropdown(false);
 
   };
+  useEffect(() => {
+    dispatch(checkAvilableSearch())
+  }, [])
+  console.log("Avil", avilableData);
 
 
 
@@ -86,6 +104,7 @@ const Page = () => {
           <h2 className='text-3xl'>Dashboard</h2>
         </div>
       </div>
+      <ToastContainer />
       <div className='lg:flex gap-6'>
         <div className='bg-white p-6 rounded-xl lg:w-6/12 mb-4 lg:mb-0'>
           <p className='text-[16px] leading-[26px] text-[#000000] font-medium mb-4'>Search Token</p>
@@ -123,11 +142,28 @@ const Page = () => {
               </div>
             </div>
             <div className="inline-block rounded-[5px]">
-              <Link className="text-white hover:text-[#04cf6b] bg-[#046D78] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-base rounded-[5px] px-5 py-2 lg:px-8 lg:py-3 shadow-md"
-                href={{ pathname: 'details', query: { currency: selectedCurrency, symbol: selectedCoinSymbol, name: selectedCoin } }}
+              {/* <Link className="text-white hover:text-[#04cf6b] bg-[#046D78] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-base rounded-[5px] px-5 py-2 lg:px-8 lg:py-3 shadow-md"
+                href={avilableData?.search_available ? { pathname: 'details', query: { currency: selectedCurrency, symbol: selectedCoinSymbol, name: selectedCoin } } : ""}
               >
                 View Prediction <FaArrowRightLong />
-              </Link>
+              </Link> */}
+              {avilableData?.search_available ? (
+                <Link
+                  className="text-white hover:text-[#04cf6b] bg-[#046D78] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-base rounded-[5px] px-5 py-2 lg:px-8 lg:py-3 shadow-md"
+                  href={{ pathname: 'details', query: { currency: selectedCurrency, symbol: selectedCoinSymbol, name: selectedCoin } }}
+                >
+                  View Prediction <FaArrowRightLong />
+                </Link>
+              ) : (
+                <button
+                  className="text-white hover:text-[#04cf6b] bg-[#046D78] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-base rounded-[5px] px-5 py-2 lg:px-8 lg:py-3 shadow-md"
+                  onClick={() => toast.error(`Your daily quota of ${avilableData?.plan_name} is excced for more search Upgrade plan`, {
+                    autoClose: false
+                  })}
+                >
+                  View Prediction <FaArrowRightLong />
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -136,31 +172,57 @@ const Page = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableHeadCell className="text-[#1660D0] text-[12px] leading-[18px] font-medium !bg-white">#</TableHeadCell>
+                {/* <TableHeadCell className="text-[#1660D0] text-[12px] leading-[18px] font-medium !bg-white">#</TableHeadCell> */}
                 <TableHeadCell className="text-[#1660D0] text-[12px] leading-[18px] font-medium !bg-white">Name</TableHeadCell>
-                <TableHeadCell className="text-[#1660D0] text-[12px] leading-[18px] font-medium !bg-white">Entry Price</TableHeadCell>
-                <TableHeadCell className="text-[#1660D0] text-[12px] leading-[18px] font-medium !bg-white">Take Profit</TableHeadCell>
+                {/* <TableHeadCell className="text-[#1660D0] text-[12px] leading-[18px] font-medium !bg-white">Entry Price</TableHeadCell>
+                <TableHeadCell className="text-[#1660D0] text-[12px] leading-[18px] font-medium !bg-white">Take Profit</TableHeadCell> */}
                 <TableHeadCell className="text-[#1660D0] text-[12px] leading-[18px] font-medium !bg-white">Analysis Date</TableHeadCell>
               </TableRow>
             </TableHead>
             <TableBody className="divide-y">
-              <TableRow className="bg-white">
-                <TableCell className="text-[#263238] text-[12px] leading-[18px] font-medium">1</TableCell>
-                <TableCell>
-                  <div className="flex items-center gap-2">
+              {
+                historyData?.data?.list?.map((hist, index) => {
+                  return (
+                    <>
+                      <TableRow className="bg-white" key={index}>
+                        {/* <TableCell className="text-[#263238] text-[12px] leading-[18px] font-medium">{hist?.id}</TableCell> */}
+                        <TableCell>
+                          <div className="flex items-center gap-2">
 
-                    <div>
-                      <p className="text-[#263238] text-[14px] leading-[18px] font-medium">Bitcoin</p>
-                      <p className="text-[#9D9E9E] text-[11px] leading-[18px] font-medium">BTC</p>
-                    </div>
-                  </div>
-                </TableCell>
-                <TableCell className="text-[#263238] text-[12px] leading-[18px] font-medium">$116,747</TableCell>
-                <TableCell className="text-[#42AE29] text-[12px] leading-[18px] font-medium">$116,747</TableCell>
-                <TableCell className="text-[#263238] text-[12px] leading-[18px] font-medium">10-08-25</TableCell>
-              </TableRow>
+                            <div>
+                              <p className="text-[#263238] text-[14px] leading-[18px] font-medium">{hist?.search_query}</p>
+                              {/* <p className="text-[#9D9E9E] text-[11px] leading-[18px] font-medium">BTC</p> */}
+                            </div>
+                          </div>
+                        </TableCell>
+                        {/* <TableCell className="text-[#263238] text-[12px] leading-[18px] font-medium">$116,747</TableCell> */}
+                        {/* <TableCell className="text-[#42AE29] text-[12px] leading-[18px] font-medium">$116,747</TableCell> */}
+                        <TableCell className="text-[#263238] text-[12px] leading-[18px] font-medium">{new Date(hist?.created_at).toISOString().split('T')[0]}</TableCell>
+                      </TableRow>
+                    </>
+                  )
+                })
+              }
+
             </TableBody>
           </Table>
+          {
+            totalPage > 1 && (
+              <div className="flex justify-center mt-4 pagination_sec">
+                <Pagination
+                  layout="pagination"
+                  currentPage={currentPage}
+                  totalPages={totalPage}
+                  onPageChange={onPageChange}
+                  previousLabel=""
+                  nextLabel=""
+                  showIcons
+                />
+              </div>
+
+            )
+          }
+
         </div>
       </div>
     </div>

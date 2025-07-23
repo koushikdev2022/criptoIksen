@@ -68,13 +68,34 @@ export const toSearchData = createAsyncThunk(
     }
 )
 
+export const checkAvilableSearch = createAsyncThunk(
+    'checkAvilableSearch',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await api.get('user/user/search-available');
+            if (response?.data?.status_code === 200) {
+                return response.data;
+            } else {
+                if (response?.data?.errors) {
+                    return rejectWithValue(response.data.errors);
+                } else {
+                    return rejectWithValue('Something went wrong.');
+                }
+            }
+        } catch (err) {
+            return rejectWithValue(err);
+        }
+    }
+)
+
 
 const initialState = {
     loading: false,
     error: false,
     coins: [],
     coinsDatas: [],
-    forSearch: []
+    forSearch: [],
+    avilableData: []
 }
 const CoinSlice = createSlice(
     {
@@ -115,6 +136,18 @@ const CoinSlice = createSlice(
                     state.error = false
                 })
                 .addCase(toSearchData.rejected, (state, { payload }) => {
+                    state.loading = false
+                    state.error = payload
+                })
+                .addCase(checkAvilableSearch.pending, (state) => {
+                    state.loading = true
+                })
+                .addCase(checkAvilableSearch.fulfilled, (state, { payload }) => {
+                    state.loading = false
+                    state.avilableData = payload
+                    state.error = false
+                })
+                .addCase(checkAvilableSearch.rejected, (state, { payload }) => {
                     state.loading = false
                     state.error = payload
                 })

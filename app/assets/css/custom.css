@@ -26,6 +26,29 @@ body {
   background: none;
 }
 
+/* paginagtion css */
+.pagination_sec li button {
+  border: none;
+  padding: 0 0;
+  background: #032409;
+  color: #ffffff;
+  margin: 0 2px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+  line-height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pagination_sec li[aria-current="page"] button {
+  background: #025e13;
+}
+.pagination_sec li button svg {
+  font-size: 25px;
+}
+/* paginagtion css */
 .main_menu ul li {
   position: relative;
   padding: 0 15px;
