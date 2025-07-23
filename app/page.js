@@ -70,6 +70,7 @@ export default function Home() {
       setOpenLoginModal(true)
    }
 
+
    useEffect(() => {
       dispatch(getPlans())
    }, [])
@@ -173,11 +174,12 @@ export default function Home() {
                         </div>
                      </div>
                      <div className="inline-block rounded-[5px]">
-                        <Link className="text-white hover:text-[#04cf6b] bg-[#046D78] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-base rounded-[5px] px-5 py-2 lg:px-8 lg:py-3 shadow-md"
-                           href={{ pathname: 'details', query: { currency: selectedCurrency, symbol: selectedCoinSymbol, name: selectedCoin } }}
+                        <button className="text-white hover:text-[#04cf6b] bg-[#046D78] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-base rounded-[5px] px-5 py-2 lg:px-8 lg:py-3 shadow-md"
+                           // href={{ pathname: 'details', query: { currency: selectedCurrency, symbol: selectedCoinSymbol, name: selectedCoin } }}
+                           onClick={hanleloginModal}
                         >
                            Try for Free <FaArrowRightLong />
-                        </Link>
+                        </button>
                      </div>
                   </div>
                   <div className="lg:w-6/12">
