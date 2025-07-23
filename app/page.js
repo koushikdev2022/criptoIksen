@@ -144,7 +144,7 @@ export default function Home() {
                         <div className="banner_search_area mb-6 flex gap-4 lg:w-10/12">
                            <div className="bg-white border border-[#C2C2C2] rounded-md p-0 flex gap-4 items-center w-9/12 lg:w-10/12">
                               <IoSearchOutline className="text-xl ml-4 text-[#727272s]" />
-                              <TextInput placeholder="Search token or asset" id="base" type="text" sizing="md" value={searchTerm}
+                              <TextInput className='w-full' placeholder="Search token or asset" id="base" type="text" sizing="md" value={searchTerm}
                                  onChange={(e) => { setSearchTerm(e.target.value); setShowDropdown(true); }} />
                            </div>
                            <div className="w-3/12 lg:w-2/12">
