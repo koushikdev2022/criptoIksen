@@ -65,6 +65,7 @@ export default function Home() {
    const [showDropdown, setShowDropdown] = useState(false);
    const router = useRouter();
    const [openLoginModal, setOpenLoginModal] = useState(false);
+
    const hanleloginModal = () => {
       setOpenLoginModal(true)
    }

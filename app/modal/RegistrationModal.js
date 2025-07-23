@@ -10,10 +10,11 @@ import { registerCustomer } from "../reducers/AuthSlice";
 import { toast } from "react-toastify";
 import { useState } from "react";
 
-const RegistrationModal = ({ openRegisterModal, setOpenRegisterModal, setOpenVerifyOtpModal, setOpenLoginModal }) => {
+const RegistrationModal = ({ openRegisterModal, setOpenRegisterModal, setOpenVerifyOtpModal, setOpenLoginModal, openPricModal, setOpenPriceModal }) => {
     const dispatch = useDispatch();
     const { loading } = useSelector((state) => state?.auth);
     const [error, setError] = useState()
+
     const {
         register,
         handleSubmit,
@@ -35,7 +36,8 @@ const RegistrationModal = ({ openRegisterModal, setOpenRegisterModal, setOpenVer
                     theme: "light",
                 });
                 setOpenRegisterModal(false);
-                setOpenLoginModal(true);
+                //setOpenLoginModal(true);
+                setOpenPriceModal(true)
             } else if (res?.payload?.response?.data?.status_code === 422) {
                 const validationErrors = res?.payload?.response?.data?.data || []
                 console.log("validationErrors", validationErrors);

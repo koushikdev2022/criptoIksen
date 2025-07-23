@@ -12,12 +12,14 @@ import { ToastContainer } from 'react-toastify';
 import VerifyOtpModal from '../modal/verifyOtpModal';
 import LoginModal from '../modal/LoginModal';
 import RegistrationModal from '../modal/RegistrationModal';
+import PriceListModal from '../modal/PriceListModal';
 
 
 const Header = () => {
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
   const [openVerifyOtpModal, setOpenVerifyOtpModal] = useState(false);
+  const [openPricModal, setOpenPriceModal] = useState(false)
 
   // For mobile menu start here
   // Add state to manage navbar collapse
@@ -138,11 +140,20 @@ const Header = () => {
                 openVerifyOtpModal={openVerifyOtpModal}
                 setOpenVerifyOtpModal={setOpenVerifyOtpModal}
                 setOpenLoginModal={setOpenLoginModal}
+                openPricModal={openPricModal}
+                setOpenPriceModal={setOpenPriceModal}
               />
             }
           </>
           {/* register popup ends here */}
-
+          {
+            openPricModal && (
+              <PriceListModal
+                openPricModal={openPricModal}
+                setOpenPriceModal={setOpenPriceModal}
+              />
+            )
+          }
         </div>
       </div>
     </div>

@@ -126,10 +126,18 @@ const authSlice = createSlice({
                 state.error = null;
             })
             .addCase(registerCustomer.fulfilled, (state, { payload }) => {
+                const { access_token, data, refresh_token } = payload;
+
                 state.loading = false;
+                state.isLoggedIn = true;
                 state.message = payload;
+                sessionStorage.setItem(
+                    'cryptoToken',
+                    JSON.stringify({ token: access_token })
+                );
             })
             .addCase(registerCustomer.rejected, (state, { payload }) => {
+
                 state.loading = false;
                 state.error = payload;
             })
