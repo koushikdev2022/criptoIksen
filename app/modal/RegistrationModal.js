@@ -9,9 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerCustomer } from "../reducers/AuthSlice";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { checkSubscription } from "../reducers/ProfileSlice";
+import { useRouter } from "next/navigation";
 
 const RegistrationModal = ({ openRegisterModal, setOpenRegisterModal, setOpenVerifyOtpModal, setOpenLoginModal, openPricModal, setOpenPriceModal }) => {
     const dispatch = useDispatch();
+    const router = useRouter();
     const { loading } = useSelector((state) => state?.auth);
     const [error, setError] = useState()
 
@@ -35,9 +38,21 @@ const RegistrationModal = ({ openRegisterModal, setOpenRegisterModal, setOpenVer
                     progress: undefined,
                     theme: "light",
                 });
-                setOpenRegisterModal(false);
+                //setOpenRegisterModal(false);
                 //setOpenLoginModal(true);
-                setOpenPriceModal(true)
+                // setOpenPriceModal(true)
+                dispatch(checkSubscription()).then((res) => {
+                    console.log("res", res);
+                    if (res?.payload?.data) {
+
+                        setOpenRegisterModal(false);
+                        router.push('/dashboard');
+                    } else {
+
+                        setOpenRegisterModal(false);
+                        router.push('/plans');
+                    }
+                })
             } else if (res?.payload?.response?.data?.status_code === 422) {
                 const validationErrors = res?.payload?.response?.data?.data || []
                 console.log("validationErrors", validationErrors);

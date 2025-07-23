@@ -31,25 +31,11 @@ const LoginModal = ({ openLoginModal, setOpenLoginModal }) => {
                 dispatch(checkSubscription()).then((res) => {
                     console.log("res", res);
                     if (res?.payload?.data) {
-                        toast.success(res?.payload?.message, {
-                            position: "top-right",
-                            autoClose: 5000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            progress: undefined,
-                            theme: "light",
-                        });
+
                         setOpenLoginModal(false);
                         router.push('/dashboard');
                     } else {
-                        toast.success(res?.payload?.message, {
-                            position: "top-right",
-                            autoClose: 5000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            progress: undefined,
-                            theme: "light",
-                        });
+
                         setOpenLoginModal(false);
                         router.push('/plans');
                     }
