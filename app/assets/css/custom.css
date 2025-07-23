@@ -661,6 +661,10 @@ body {
   height: 500px !important;
 }
 
+.dashboard_wrapper {
+  gap: 100px;
+}
+
 @media only screen and (max-width: 767px) {
   .menu_btn {
     display: inline-flex;
@@ -864,4 +868,7 @@ body {
 }
 
 @media screen and (min-width: 1600px) and (max-width: 1999px) {
+  .dashboard_wrapper {
+    gap: 50px;
+  }
 }
