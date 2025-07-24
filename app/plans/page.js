@@ -234,19 +234,19 @@ const page = () => {
                                    </div>
                                 </div>
                              </div> */}
-                        <div className="pt-5">
+                        {/* <div className="pt-5">
                             <div className="py-8 px-6">
                                 <h3 className="text-[19px] text-[#1D2127] pb-6 font-medium">Enterprise</h3>
-                                {/* <div className="mb-16">
+                                <div className="mb-16">
                                          <div>
                                             <div className="flex gap-1 text-[#393d42] text-[14px] mb-2"><IoIosCheckmarkCircle className="text-[#bfc4c7] text-xl" /> </div>
                                          </div>
-                                      </div> */}
+                                      </div>
                                 <div className="mt-[240px]">
                                     <button className="bg-[#EBFFFC] hover:bg-[#055346] text-[#055346] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Discuss with us</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 {
