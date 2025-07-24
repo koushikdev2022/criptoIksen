@@ -40,8 +40,8 @@ const Footer = () => {
         <div className='max-w-6xl mx-auto'>
            <div className='footer_top_container lg:flex gap-20'>
               <div className='lg:w-4/12 mb-6 lg:mb-0 text-center lg:text-left'>
-                <Image src={footerLogo} alt='footerLogo' className='inline-block w-4/12 mb-2' />
-                <p className='text-sm text-white font-medium'>CryptoIntuit was born from the frustration of digging through data and charts. We built a platform that does the heavy lifting for you — so you can make faster, smarter decisions with clarity. </p>
+                <Image src={footerLogo} alt='footerLogo' className='inline-block w-4/12 mb-3' />
+                <p className='text-xs leading-[20px] text-white font-normal'>CryptoIntuit was born from the frustration of digging through data and charts. We built a platform that does the heavy lifting for you — so you can make faster, smarter decisions with clarity. </p>
               </div>
               <div className='lg:w-8/12 lg:flex'>
                  <div className='lg:w-6/12 text-center lg:text-left mb-6 lg:mb-0'>
