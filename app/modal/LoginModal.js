@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import { checkSubscription } from "../reducers/ProfileSlice";
 
-const LoginModal = ({ openLoginModal, setOpenLoginModal }) => {
+const LoginModal = ({ openLoginModal, setOpenLoginModal, setOpenRegisterModal }) => {
     const dispatch = useDispatch();
     const router = useRouter();
     const { loading } = useSelector((state) => state?.auth);
@@ -54,6 +54,10 @@ const LoginModal = ({ openLoginModal, setOpenLoginModal }) => {
             }
         })
     };
+    const handleSignup = () => {
+        setOpenRegisterModal(true)
+        setOpenLoginModal(false)
+    }
 
     return (
         <>
@@ -111,6 +115,7 @@ const LoginModal = ({ openLoginModal, setOpenLoginModal }) => {
                                                 <div className="text-center text-sm text-red-600 mt-3">{error}</div>
                                             )
                                         }
+                                        <p className="text-center mt-2">Already Have an account? <button onClick={handleSignup}>Sign Up</button> </p>
                                     </form>
                                 </div>
                             </div>

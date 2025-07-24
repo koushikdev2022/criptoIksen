@@ -125,6 +125,7 @@ const Header = () => {
               <LoginModal
                 openLoginModal={openLoginModal}
                 setOpenLoginModal={setOpenLoginModal}
+                setOpenRegisterModal={setOpenRegisterModal}
               />
             }
           </>
