@@ -23,7 +23,7 @@ function TradingViewCandle({ symbol }) {
       symbol: `OKX:${symbol}`,
       interval: "D",
       timezone: "Etc/UTC",
-      theme: "light",
+      theme: "dark",
       style: "1",
       locale: "en",
       hide_side_toolbar: false,

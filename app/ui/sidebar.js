@@ -6,6 +6,7 @@ import React from 'react'
 
 import logo from '../assets/imagesource/logo.png';
 import footer_logo from "../assets/imagesource/footer_logo.png";
+import logoAdmin from "../assets/imagesource/logo_admin.png";
 
 import { useState } from "react";
 
@@ -50,7 +51,7 @@ const Sidebar = () => {
   return (
     <aside
       style={{ zIndex: 1 }}
-      className={`absolute left-0 top-0 lg:top-[50px] z-9999 flex h-screen w-72.5 flex-col lg:rounded-[10px] bg-[#002F27] duration-300 ease-linear lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+      className={`absolute left-0 top-0 lg:top-[50px] z-9999 flex h-screen w-72.5 flex-col lg:rounded-[0px] bg-[#2B2A2A] duration-300 ease-linear lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
     >
       <button onClick={openMobileMenu} className={`menu_btn ${sidebarOpen ? 'right-[-24px]' : 'right-[-84px]'}`}>
@@ -59,7 +60,7 @@ const Sidebar = () => {
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="px-6 py-5 lg:py-6">
         <Link className='flex justify-center items-center' href="/" passHref>
-          <Image src={footer_logo} alt="footer_logo" className='w-6/12' />
+          <Image src={logoAdmin} alt="logoAdmin" className='w-6/12' />
         </Link>
 
         <button
@@ -91,11 +92,10 @@ const Sidebar = () => {
           {/* <!-- Menu Group --> */}
           <div>
             <h3 className="mb-2 ml-4 text-sm font-medium text-[#B7B7B7]">
-              MAIN MENU
+              Hitory
             </h3>
 
-            <ul className="mb-6 flex flex-col gap-1.5 mx-4">
-              {/* <!-- Menu Item Dashboard --> */}
+            {/* <ul className="mb-6 flex flex-col gap-1.5 mx-4">
               <li onClick={closeNavbar}>
                 <Link href="/dashboard"
                   className={`group relative flex items-center gap-2 rounded-sm py-3 px-4 font-normal text-sm text-white duration-300 ease-in-out hover:bg-graydark ${pathname.includes('dashboard') &&
@@ -106,9 +106,7 @@ const Sidebar = () => {
                   Dashboard
                 </Link>
               </li>
-              {/* <!-- Menu Item Dashboard --> */}
 
-              {/* <!-- Menu Item Dashboard --> */}
               <li onClick={closeNavbar}>
                 <Link href="/my-account"
                   className={`group relative flex items-center gap-2 rounded-sm py-3 px-4 font-normal text-sm text-white duration-300 ease-in-out hover:bg-graydark ${pathname.includes('my-account') &&
@@ -129,10 +127,8 @@ const Sidebar = () => {
                   Plans
                 </Link>
               </li>
-              {/* <!-- Menu Item Dashboard --> */}
+            </ul> */}
 
-
-            </ul>
           </div>
 
         </nav>

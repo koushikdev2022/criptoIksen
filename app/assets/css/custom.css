@@ -363,8 +363,8 @@ body {
 }
 
 .sidebar_menu nav ul li a:hover {
-  background: #023f9b;
-  color: #ffffff;
+  /* background: #023f9b; */
+  color: #42c4ad;
 }
 
 /* .checkmate_section {
@@ -685,7 +685,7 @@ body {
 }
 
 .dashboard_wrapper {
-  gap: 100px;
+  gap: 0;
 }
 
 .common-section-box-content input[type="text"] {
@@ -708,6 +708,11 @@ body {
 }
 .form_area button.sign_up_btn:hover {
   color: #000000;
+}
+
+.header_menu ul li {
+  float: left;
+  margin-right: 20px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -914,6 +919,6 @@ body {
 
 @media screen and (min-width: 1600px) and (max-width: 1999px) {
   .dashboard_wrapper {
-    gap: 50px;
+    gap: 0;
   }
 }

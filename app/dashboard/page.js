@@ -99,15 +99,10 @@ const Page = () => {
 
   return (
     <div className={`${poppins.className} antialiased`}>
-      <div className='flex justify-between items-center mb-6'>
-        <div>
-          <h2 className='text-3xl'>Dashboard</h2>
-        </div>
-      </div>
       <ToastContainer />
-      <div className='lg:flex gap-6'>
-        <div className='bg-white p-6 rounded-xl lg:w-6/12 mb-4 lg:mb-0'>
-          <p className='text-[16px] leading-[26px] text-[#000000] font-medium mb-4'>Search Token</p>
+      <div className='mt-40'>
+        <div className='p-6 rounded-xl lg:w-6/12 mx-auto mb-4 lg:mb-0 text-center'>
+          <p className='text-[25px] leading-[35px] text-[#ffffff] font-medium mb-4'>Type a coin, Tap predict</p>
           <div className="lg:w-full px-0 pt-0">
             <div className="relative">
               <div className="banner_search_area mb-6 flex gap-4 lg:w-full">
@@ -151,33 +146,30 @@ const Page = () => {
               </Link> */}
               {avilableData?.search_available ? (
                 <Link
-                  className="text-white hover:text-[#04cf6b] bg-[#046D78] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-base rounded-[5px] px-5 py-2 lg:px-8 lg:py-3 shadow-md"
+                  className="text-white hover:text-[#04cf6b] bg-[#0E5D4F] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-sm rounded-[5px] px-5 py-2 lg:px-10 lg:py-2.5 shadow-md"
                   href={{ pathname: 'details', query: { currency: selectedCurrency, symbol: selectedCoinSymbol, name: selectedCoin } }}
                 >
-                  View Prediction <FaArrowRightLong />
+                  Predict
                 </Link>
               ) : (
                 <button
-                  className="text-white hover:text-[#04cf6b] bg-[#046D78] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-base rounded-[5px] px-5 py-2 lg:px-8 lg:py-3 shadow-md"
+                  className="text-white hover:text-[#04cf6b] bg-[#0E5D4F] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-sm rounded-[5px] px-5 py-2 lg:px-10 lg:py-2.5 shadow-md"
                   onClick={() => toast.error(`Your daily quota of ${avilableData?.plan_name} is excced for more search Upgrade plan`, {
                     autoClose: false
                   })}
                 >
-                  View Prediction <FaArrowRightLong />
+                  Predict
                 </button>
               )}
             </div>
           </div>
         </div>
-        <div className='bg-white p-6 rounded-xl lg:w-6/12'>
+        {/* <div className='bg-white p-6 rounded-xl lg:w-6/12'>
           <p className='text-[16px] leading-[26px] text-[#000000] font-medium mb-4'>Search History</p>
           <Table>
             <TableHead>
               <TableRow>
-                {/* <TableHeadCell className="text-[#1660D0] text-[12px] leading-[18px] font-medium !bg-white">#</TableHeadCell> */}
                 <TableHeadCell className="text-[#1660D0] text-[12px] leading-[18px] font-medium !bg-white">Name</TableHeadCell>
-                {/* <TableHeadCell className="text-[#1660D0] text-[12px] leading-[18px] font-medium !bg-white">Entry Price</TableHeadCell>
-                <TableHeadCell className="text-[#1660D0] text-[12px] leading-[18px] font-medium !bg-white">Take Profit</TableHeadCell> */}
                 <TableHeadCell className="text-[#1660D0] text-[12px] leading-[18px] font-medium !bg-white">Analysis Date</TableHeadCell>
               </TableRow>
             </TableHead>
@@ -187,18 +179,14 @@ const Page = () => {
                   return (
 
                     <TableRow className="bg-white" key={index}>
-                      {/* <TableCell className="text-[#263238] text-[12px] leading-[18px] font-medium">{hist?.id}</TableCell> */}
                       <TableCell>
                         <div className="flex items-center gap-2">
 
                           <div>
                             <p className="text-[#263238] text-[14px] leading-[18px] font-medium">{hist?.search_query}</p>
-                            {/* <p className="text-[#9D9E9E] text-[11px] leading-[18px] font-medium">BTC</p> */}
                           </div>
                         </div>
                       </TableCell>
-                      {/* <TableCell className="text-[#263238] text-[12px] leading-[18px] font-medium">$116,747</TableCell> */}
-                      {/* <TableCell className="text-[#42AE29] text-[12px] leading-[18px] font-medium">$116,747</TableCell> */}
                       <TableCell className="text-[#263238] text-[12px] leading-[18px] font-medium">{new Date(hist?.created_at).toISOString().split('T')[0]}</TableCell>
                     </TableRow>
 
@@ -225,7 +213,7 @@ const Page = () => {
             )
           }
 
-        </div>
+        </div> */}
       </div>
     </div>
   )
