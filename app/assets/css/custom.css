@@ -698,6 +698,18 @@ body {
   display: none !important;
 }
 
+.form_area button.sign_up_btn {
+  background: none !important;
+  padding: 0 !important;
+  width: auto !important;
+  margin-left: 5px !important;
+  font-weight: 500 !important;
+  color: #046d78;
+}
+.form_area button.sign_up_btn:hover {
+  color: #000000;
+}
+
 @media only screen and (max-width: 767px) {
   .menu_btn {
     display: inline-flex;

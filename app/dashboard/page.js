@@ -120,6 +120,8 @@ const Page = () => {
                   <Select required value={selectedCurrency}
                     onChange={(e) => setSelectedCurrency(e.target.value)}>
                     <option value="USD">USD</option>
+                    <option value="AUD">AUD</option>
+                    <option value="USDT">USDT</option>
                     <option value="EURO">EURO</option>
                   </Select>
                 </div>
