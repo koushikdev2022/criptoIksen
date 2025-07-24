@@ -521,7 +521,7 @@ export default function Home() {
                                                             <p className="text-[#cbced1] text-[12px] leading-[16px]">/month</p>
                                                          </div>
                                                       </div>
-                                                      <div className="mb-16">
+                                                      <div className="mb-10">
                                                          <div>
                                                             {
                                                                planDatas?.plan_features?.map((features, index) => {
@@ -538,7 +538,7 @@ export default function Home() {
                                                       </div>
                                                       {
                                                          planDatas?.price !== 0 && (
-                                                            <div className="mt-[120px]">
+                                                            <div className="mt-[50px]">
                                                                <button onClick={() => { hanleloginModal() }} className="bg-[#EBFFFC] hover:bg-[#055346] text-[#055346] hover:text-[#EBFFFC] text-[16px] leading-[40px] rounded-md w-full block cursor-pointer">Choose Plan</button>
                                                             </div>
                                                          )
