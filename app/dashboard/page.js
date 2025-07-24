@@ -185,23 +185,23 @@ const Page = () => {
               {
                 historyData?.data?.list?.map((hist, index) => {
                   return (
-                    <>
-                      <TableRow className="bg-white" key={index}>
-                        {/* <TableCell className="text-[#263238] text-[12px] leading-[18px] font-medium">{hist?.id}</TableCell> */}
-                        <TableCell>
-                          <div className="flex items-center gap-2">
 
-                            <div>
-                              <p className="text-[#263238] text-[14px] leading-[18px] font-medium">{hist?.search_query}</p>
-                              {/* <p className="text-[#9D9E9E] text-[11px] leading-[18px] font-medium">BTC</p> */}
-                            </div>
+                    <TableRow className="bg-white" key={index}>
+                      {/* <TableCell className="text-[#263238] text-[12px] leading-[18px] font-medium">{hist?.id}</TableCell> */}
+                      <TableCell>
+                        <div className="flex items-center gap-2">
+
+                          <div>
+                            <p className="text-[#263238] text-[14px] leading-[18px] font-medium">{hist?.search_query}</p>
+                            {/* <p className="text-[#9D9E9E] text-[11px] leading-[18px] font-medium">BTC</p> */}
                           </div>
-                        </TableCell>
-                        {/* <TableCell className="text-[#263238] text-[12px] leading-[18px] font-medium">$116,747</TableCell> */}
-                        {/* <TableCell className="text-[#42AE29] text-[12px] leading-[18px] font-medium">$116,747</TableCell> */}
-                        <TableCell className="text-[#263238] text-[12px] leading-[18px] font-medium">{new Date(hist?.created_at).toISOString().split('T')[0]}</TableCell>
-                      </TableRow>
-                    </>
+                        </div>
+                      </TableCell>
+                      {/* <TableCell className="text-[#263238] text-[12px] leading-[18px] font-medium">$116,747</TableCell> */}
+                      {/* <TableCell className="text-[#42AE29] text-[12px] leading-[18px] font-medium">$116,747</TableCell> */}
+                      <TableCell className="text-[#263238] text-[12px] leading-[18px] font-medium">{new Date(hist?.created_at).toISOString().split('T')[0]}</TableCell>
+                    </TableRow>
+
                   )
                 })
               }
