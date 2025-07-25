@@ -51,12 +51,12 @@ const page = () => {
 
           <div className="bg-[#222222] rounded-2xl">
             <div className="prifile_bg">&nbsp;</div>
-            <div className="w-full lg:w-full p-10 mb-4">
+            <div className="w-full lg:w-full p-5 lg:p-10 mb-4">
               <div className="account_setting_section">
                 <div className="flex justify-between items-center">
                   <div>
-                    <div className="flex items-center gap-4">
-                      <div className="relative">
+                    <div className="lg:flex items-center gap-4">
+                      <div className="relative w-[120px] h-[120px]">
                         <Image src={profileUser} alt='profileUser' className='w-[120px] h-[120px] rounded-[50px] overflow-hidden' />
                         <div className="absolute right-0 top-0">
                             <button
@@ -67,7 +67,6 @@ const page = () => {
                                     className="absolute opacity-0 h-3 w-5 border border-black"
                                     id="file"
                                     accept="image/*"
-                                    // onChange={handleFileChange}
                                 />
                                 <MdEdit className="text-xl" />
                             </button>
@@ -106,7 +105,7 @@ const page = () => {
                               className="object-cover w-full h-full rounded-lg"
                             />
                           )} */}
-                            <div className="absolute right-1 top-1">
+                            {/* <div className="absolute right-1 top-1">
                                                             <button
                                                                 type="button"
                                                                 className="bg-white p-2 rounded-full shadow-md text-[#757575] hover:bg-[#ff1a03] hover:text-white"
@@ -119,7 +118,7 @@ const page = () => {
                                                                 />
                                                                 <MdEdit className="text-xl" />
                                                             </button>
-                                                        </div>
+                                                        </div> */}
                             &nbsp;
                           </div>
                         </div>
