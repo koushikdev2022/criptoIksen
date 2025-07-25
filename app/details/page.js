@@ -86,12 +86,12 @@ const page = () => {
                                                                     <p className="text-sm text-[#0B3363] uppercase pb-1.5">Entry Price</p> 
                                                                     <span className="font-semibold text-[#06254B] text-xl">{currency == "USD" ? "$" : currency == 'EURO' ? "€" : currency === 'AUD' ? 'A$' : '₮'}{coinsDatas?.spot_recommendations?.short_term?.entry_price}</span>
                                                                 </div>
-                                                                <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#F2F6FB]">
-                                                                    <p className="text-sm text-[#0B3363]">Take Profit</p> 
+                                                                <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#F2F6FB] text-center rounded-[6px] py-4">
+                                                                    <p className="text-sm text-[#0B3363] uppercase pb-1.5">Take Profit</p> 
                                                                     <span className="font-medium">{currency == "USD" ? "$" : currency == 'EURO' ? "€" : currency === 'AUD' ? 'A$' : '₮'}{coinsDatas?.spot_recommendations?.short_term?.take_profit}</span>
                                                                 </div>
-                                                                <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#F2F6FB]"> 
-                                                                    <p className="text-sm text-[#0B3363]">Stop Loss</p> 
+                                                                <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#F2F6FB] text-center rounded-[6px] py-4"> 
+                                                                    <p className="text-sm text-[#0B3363] uppercase pb-1.5">Stop Loss</p> 
                                                                     <span className="font-medium">{currency == "USD" ? "$" : currency == 'EURO' ? "€" : currency === 'AUD' ? 'A$' : '₮'}{coinsDatas?.spot_recommendations?.short_term?.stop_loss}</span>
                                                                 </div>
                                                             </div>
