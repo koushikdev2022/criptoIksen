@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { checkSubscription } from "../reducers/ProfileSlice";
+import { getSearchHistory } from "../reducers/SearchHistroySlice";
 
 const LoginModal = ({ openLoginModal, setOpenLoginModal, setOpenRegisterModal }) => {
     const dispatch = useDispatch();
@@ -34,10 +35,12 @@ const LoginModal = ({ openLoginModal, setOpenLoginModal, setOpenRegisterModal })
 
                         setOpenLoginModal(false);
                         router.push('/dashboard');
+                        dispatch(getSearchHistory({ week: 0 }));
                     } else {
 
                         setOpenLoginModal(false);
                         router.push('/plans');
+                        dispatch(getSearchHistory({ week: 0 }));
                     }
                 })
 

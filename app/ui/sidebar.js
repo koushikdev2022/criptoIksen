@@ -19,9 +19,10 @@ import { usePathname, useRouter } from 'next/navigation';
 import { FaRectangleList } from "react-icons/fa6";
 import { RiSearch2Line } from "react-icons/ri";
 import { MdOutlineLogout } from "react-icons/md";
-import { getSearchHistory } from '../reducers/SearchHistroySlice';
+import { getSearchHistory, reset } from '../reducers/SearchHistroySlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../reducers/AuthSlice';
+
 
 
 const poppins = Poppins({
@@ -33,33 +34,35 @@ const poppins = Poppins({
 const Sidebar = () => {
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const dispatch=useDispatch()
-   const { searchHistory, pagination, loading } = useSelector(state => state.his);
+  const dispatch = useDispatch()
+  const { historyData, pagination, loading } = useSelector(state => state.his);
   const loaderRef = useRef(null);
+  const topLoaderRef = useRef(null);
   //console.log(sidebarOpen,"sidebarOpen");
-    const router = useRouter();
+  const router = useRouter();
   const handleLogout = () => {
-      // dispatch(logout())
-  
-      try {
-  
-        // Dispatch logout action
-        dispatch(logout());
-  
-        // Navigate to home page
-        router.push("/");
-  
-        // Force reload to ensure clean state
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 100);
-      } catch (error) {
-        console.error("Logout error:", error);
-        // Fallback: still navigate to home
-        router.push("/");
-      }
-  
-    };
+    // dispatch(logout())
+
+    try {
+
+      // Dispatch logout action
+      dispatch(logout());
+      dispatch(reset());
+
+      // Navigate to home page
+      router.push("/");
+
+      // Force reload to ensure clean state
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 100);
+    } catch (error) {
+      console.error("Logout error:", error);
+      // Fallback: still navigate to home
+      router.push("/");
+    }
+
+  };
 
   const openMobileMenu = () => {
     setSidebarOpen(prev => !prev);
@@ -79,31 +82,35 @@ const Sidebar = () => {
     setSidebarOpen(false);
   };
   // For mobile menu ends here
-    useEffect(() => {
+  useEffect(() => {
     dispatch(getSearchHistory({ week: 0 }));
   }, [dispatch]);
 
-    const handleObserver = useCallback(
-    (entries) => {
-      const target = entries[0];
-      if (target.isIntersecting && pagination.has_next && !loading) {
-        dispatch(getSearchHistory({ week: pagination.previous_week }));
-      }
-    },
-    [dispatch, pagination, loading]
-  );
+  // const handleObserver = useCallback(
+  //   (entries) => {
+  //     const target = entries[0];
+  //     if (target.isIntersecting && pagination.has_next && !loading) {
+  //       dispatch(getSearchHistory({ week: pagination.previous_week }));
+  //     }
+  //   },
+  //   [dispatch, pagination, loading]
+  // );
 
-   useEffect(() => {
-    const observer = new IntersectionObserver(handleObserver, {
-      root: null,
-      rootMargin: '20px',
-      threshold: 1.0
-    });
-    if (loaderRef.current) observer.observe(loaderRef.current);
-    return () => {
-      if (loaderRef.current) observer.unobserve(loaderRef.current);
-    };
-  }, [handleObserver]);
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(handleObserver, {
+  //     root: null,
+  //     rootMargin: '20px',
+  //     threshold: 1.0
+  //   });
+  //   if (loaderRef.current) observer.observe(loaderRef.current);
+  //   return () => {
+  //     if (loaderRef.current) observer.unobserve(loaderRef.current);
+  //   };
+  // }, [handleObserver]);
+
+
+
+  { console.log("searchHistory", historyData) }
 
   return (
     <aside
@@ -154,30 +161,38 @@ const Sidebar = () => {
 
             <div id='style-3' className='mb-10 ml-6 force-overflow' style={{ overflowY: 'scroll', maxHeight: '450px' }}>
               {
-                searchHistory?.map((group,idx)=>{
-                  return(
-                    <>
-                     <div className='mb-6' key={group.date + idx}>
-                <p className='text-[#42C4AD] text-sm font-medium'>{group.date}</p>
-                <ul className='mt-5'>
-                  {group?.records?.map(record => (
-                  <Link href={{
-                    pathname: '/history-details',
-                    query: { id: record.id }
-                    }} key={record.id} className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> {record?.search_query}</Link>
-                 
-                 ))}
-                </ul>
-              </div>
-                    </>
-                  )
-                })
+                historyData?.data?.search_history?.length > 0 && (
+                  historyData?.data?.search_history?.map((group, idx) => {
+                    return (
+                      <>
+                        <div className='mb-6' key={group.date + idx}>
+                          <p className='text-[#42C4AD] text-sm font-medium'>{group.date}</p>
+                          <ul className='mt-5'>
+                            {group?.records?.map(record => (
+                              <>
+
+                                {
+                                  record?.search_query !== null &&
+
+                                  <Link href={{
+                                    pathname: '/history-details',
+                                    query: { id: record.id }
+                                  }} key={record.id} className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> {(record?.search_query)}</Link>
+                                }
+                              </>
+                            ))}
+                          </ul>
+                        </div>
+                      </>
+                    )
+                  })
+                )
               }
               {loading && (
-        <div className='text-center text-[#CDCDCD] text-sm my-4'>Loading...</div>
-      )}
-       <div ref={loaderRef}></div>
-             
+                <div className='text-center text-[#CDCDCD] text-sm my-4'>Loading...</div>
+              )}
+              {/* <div ref={loaderRef}></div> */}
+
               {/* <div className='mb-6'>
                 <p className='text-[#42C4AD] text-sm font-medium'>July 24, 2025</p>
                 <ul className='mt-5'>

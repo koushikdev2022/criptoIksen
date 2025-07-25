@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import { checkSubscription } from "../reducers/ProfileSlice";
 import { useRouter } from "next/navigation";
+import { getSearchHistory } from "../reducers/SearchHistroySlice";
 
 const RegistrationModal = ({ openRegisterModal, setOpenRegisterModal, setOpenVerifyOtpModal, setOpenLoginModal, openPricModal, setOpenPriceModal }) => {
     const dispatch = useDispatch();
@@ -47,10 +48,12 @@ const RegistrationModal = ({ openRegisterModal, setOpenRegisterModal, setOpenVer
 
                         setOpenRegisterModal(false);
                         router.push('/dashboard');
+                        dispatch(getSearchHistory({ week: 0 }));
                     } else {
 
                         setOpenRegisterModal(false);
                         router.push('/plans');
+                        dispatch(getSearchHistory({ week: 0 }));
                     }
                 })
             } else if (res?.payload?.response?.data?.status_code === 422) {

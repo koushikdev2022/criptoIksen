@@ -3,7 +3,7 @@ import api from './api';
 
 export const getSearchHistory = createAsyncThunk(
     'getSearchHistory',
-    async ({week = 0 }, { rejectWithValue }) => {
+    async ({ week = 0 }, { rejectWithValue }) => {
         try {
             const response = await api.get(`user/user-search-manage/sidebar?days=7&week=${week}&limit=10`);
             if (response?.data?.status_code === 200) {
@@ -25,7 +25,7 @@ export const getSearchHistoryDetails = createAsyncThunk(
     'getSearchHistoryDetails',
     async (user_input, { rejectWithValue }) => {
         try {
-            const response = await api.post(`user/user-search-manage/details`,user_input);
+            const response = await api.post(`user/user-search-manage/details`, user_input);
             if (response?.data?.status_code === 200) {
                 return response.data;
             } else {
@@ -43,53 +43,61 @@ export const getSearchHistoryDetails = createAsyncThunk(
 const initialState = {
     loading: false,
     historyData: [],
-    singleHistory:{},
+    singleHistory: {},
     pagination: {
-    current_week: 0,
-    has_next: false,
-  },
+        current_week: 0,
+        has_next: false,
+    },
     error: false
 }
 const SearchHistroySlice = createSlice(
     {
         name: "history",
         initialState,
-        reducers: {},
+        reducers: {
+            setSearchHistory: (state, action) => {
+                state.searchHistory = action.payload;
+            },
+            reset: () => initialState,
+        },
         extraReducers: (builder) => {
             builder.addCase(getSearchHistory.pending, (state) => {
                 state.loading = true
             })
                 .addCase(getSearchHistory.fulfilled, (state, { payload }) => {
                     state.loading = false
-                    // state.historyData = payload
-                const newItems = payload.data?.search_history || [];
-  state.searchHistory = [...(state.searchHistory || []), ...newItems];
+                    state.historyData = payload
+                    // const newItems = payload.data?.search_history || [];
+                    // state.searchHistory = [...(state.searchHistory || []), ...newItems];
 
-  state.pagination = payload.data?.pagination?.navigation || {
-    has_next: false,
-    previous_week: 0,
-    next_week: 0
-  };
+                    // state.pagination = payload.data?.pagination?.navigation || {
+                    //     has_next: false,
+                    //     previous_week: 0,
+                    //     next_week: 0
+                    // };
+
+
                     state.error = false
                 })
                 .addCase(getSearchHistory.rejected, (state, { payload }) => {
                     state.loading = false
                     state.error = payload
                 })
-                .addCase(getSearchHistoryDetails.pending,(state)=>{
-                    state.loading=true
+                .addCase(getSearchHistoryDetails.pending, (state) => {
+                    state.loading = true
                 })
-                .addCase(getSearchHistoryDetails.fulfilled,(state,{payload})=>{
-                    state.loading=false
-                    state.singleHistory=payload;
-                    state.error=false
+                .addCase(getSearchHistoryDetails.fulfilled, (state, { payload }) => {
+                    state.loading = false
+                    state.singleHistory = payload;
+                    state.error = false
                 })
-                .addCase(getSearchHistoryDetails.rejected,(state,{payload})=>{
-                    state.loading=false
-                    state.error=payload
+                .addCase(getSearchHistoryDetails.rejected, (state, { payload }) => {
+                    state.loading = false
+                    state.error = payload
                 })
         }
 
     }
 )
+export const { setSearchHistory, reset } = SearchHistroySlice.actions
 export default SearchHistroySlice.reducer;
