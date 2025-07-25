@@ -55,6 +55,8 @@ const Insideheader = () => {
   useEffect(() => {
     dispatch(getProfile())
   }, [])
+  console.log("headrr", profileData);
+
 
   return (
     <div className='bg-[#2B2A2A] rounded-[0px] py-4 px-6 mb-6'>
@@ -118,9 +120,11 @@ const Insideheader = () => {
             <p className='text-base text-[#CDCDCD] ${leagueSpartan.className}'>{profileData?.data?.fullname}</p>
             <div className='user_face'>
               {profileData?.data?.avatar ? (
-                <Image src={userFace} alt="userFace" className='rounded-full w-[50px] h-[50px]' />
+                <Image src={profileData?.data?.avatar} alt="userFace" width={50} height={50} className='rounded-full w-[50px] h-[50px]' />
+
               ) : (
-                <Image src={profileData?.data?.avatar} alt="userFace" className='rounded-full w-[50px] h-[50px]' />
+                <Image src={userFace} alt="userFace" width={50}
+                  height={50} className='rounded-full w-[50px] h-[50px]' />
               )}
 
             </div>
