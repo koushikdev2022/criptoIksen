@@ -722,6 +722,25 @@ body {
   margin-right: 20px;
 }
 
+.spot_recommenda_bg {
+  background: #677ce8;
+  background: linear-gradient(
+    90deg,
+    rgba(103, 124, 232, 1) 0%,
+    rgba(116, 77, 166, 1) 72%,
+    rgba(116, 77, 166, 1) 100%
+  );
+}
+.leveraged_recommendations_bg {
+  background: #9e1ae4;
+  background: linear-gradient(
+    90deg,
+    rgba(158, 26, 228, 1) 0%,
+    rgba(201, 38, 181, 1) 72%,
+    rgba(245, 50, 132, 1) 100%
+  );
+}
+
 @media only screen and (max-width: 767px) {
   .menu_btn {
     display: inline-flex;
