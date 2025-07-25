@@ -29,7 +29,7 @@ const PaymentModal = ({
   return (
     <>
       <Modal
-        size="6xl"
+        size="xl"
         show={openPaymentModal}
         onClose={() => setOpenPaymentModal(false)}
       >
