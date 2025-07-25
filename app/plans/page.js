@@ -43,20 +43,20 @@ const page = () => {
                 <div className=''>
                     {
                         subscriptionData?.data && (
-                            <div className="bg-white rounded-4xl p-5 mb-4">
-                                <p className="text-2xl text-black mb-2">Your Active Plan</p>
+                            <div className="bg-[#222222] rounded-4xl p-5 mb-4">
+                                <p className="text-2xl text-white mb-2">Your Active Plan</p>
                                 <div>
-                                    <p className="text-[#B7B7B7] text-[15px] mb-1"><span className="text-[#000000]">Plan Name:</span> {subscriptionData?.data?.Plan?.plan_name}</p>
-                                    <p className="text-[#B7B7B7] text-[15px] mb-1"><span className="text-[#000000]">Price:</span> ${subscriptionData?.data?.Plan?.price}/{subscriptionData?.data?.Plan?.billing_cycle}</p>
-                                    <p className="text-[#B7B7B7] text-[15px] mb-1"><span className="text-[#000000]">Start Date:</span> {new Date(subscriptionData?.data?.stripe_subscription_start_date).toISOString().split('T')[0]}</p>
-                                    <p className="text-[#B7B7B7] text-[15px] mb-1"><span className="text-[#000000]">End Date:</span> {new Date(subscriptionData?.data?.stripe_subscription_end_date).toISOString().split('T')[0]}</p>
+                                    <p className="text-[#42C4AD] text-[15px] mb-1"><span className="text-[#6d6d6d]">Plan Name:</span> {subscriptionData?.data?.Plan?.plan_name}</p>
+                                    <p className="text-[#42C4AD] text-[15px] mb-1"><span className="text-[#6d6d6d]">Price:</span> ${subscriptionData?.data?.Plan?.price}/{subscriptionData?.data?.Plan?.billing_cycle}</p>
+                                    <p className="text-[#42C4AD] text-[15px] mb-1"><span className="text-[#6d6d6d]">Start Date:</span> {new Date(subscriptionData?.data?.stripe_subscription_start_date).toISOString().split('T')[0]}</p>
+                                    <p className="text-[#42C4AD] text-[15px] mb-1"><span className="text-[#6d6d6d]">End Date:</span> {new Date(subscriptionData?.data?.stripe_subscription_end_date).toISOString().split('T')[0]}</p>
                                 </div>
 
                             </div>
                         )
                     }
 
-                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 bg-white rounded-4xl p-5">
+                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 bg-[#222222] rounded-4xl p-5">
                         {
                             plans?.data?.map((plansDatas, index) => {
                                 return (
@@ -66,9 +66,9 @@ const page = () => {
                                                 <div key={index}>
                                                     <div className="pt-5" >
                                                         <div className="py-8 px-6">
-                                                            <h3 className="text-[19px] text-[#1D2127] pb-6 font-medium">{plansDatas?.plan_name}</h3>
+                                                            <h3 className="text-[19px] text-[#ffffff] pb-6 font-medium">{plansDatas?.plan_name}</h3>
                                                             <div className="flex items-center gap-2 mb-8">
-                                                                <p className="text-[#1D2127] text-[36px] leading-[36px] font-extrabold">${plansDatas?.price}</p>
+                                                                <p className="text-[#ffffff] text-[36px] leading-[36px] font-extrabold">${plansDatas?.price}</p>
                                                                 <div>
                                                                     <p className="text-[#cbced1] text-[12px] leading-[16px]">/month</p>
                                                                 </div>
@@ -79,7 +79,7 @@ const page = () => {
                                                                         plansDatas?.plan_features?.map((fets, index) => {
                                                                             return (
                                                                                 <div key={index}>
-                                                                                    <div className="flex gap-1 text-[#393d42] text-[14px] mb-2"><IoIosCheckmarkCircle className="text-[#bfc4c7] text-xl" />{fets}</div>
+                                                                                    <div className="flex gap-1 text-[#6d6d6d] text-[14px] mb-2"><IoIosCheckmarkCircle className="text-[#bfc4c7] text-xl" />{fets}</div>
                                                                                 </div>
                                                                             )
                                                                         })
