@@ -740,6 +740,17 @@ body {
     rgba(245, 50, 132, 1) 100%
   );
 }
+.prifile_bg {
+  background: #63809f;
+  background: linear-gradient(
+    90deg,
+    rgba(99, 128, 159, 1) 0%,
+    rgba(170, 163, 164, 1) 72%,
+    rgba(214, 203, 163, 1) 100%
+  );
+  border-radius: 15px 15px 0 0;
+  height: 100px;
+}
 
 .short_term_spot {
   position: relative;
@@ -793,6 +804,22 @@ body {
   height: 99%;
   content: "";
   border-radius: 16px 0 0 16px;
+}
+
+.account_setting_section label {
+  font-size: 14px;
+  line-height: 26px;
+  color: #aaaaaa !important;
+  font-weight: 400;
+}
+.account_setting_section input[type="text"] {
+  background: #404040;
+  color: #cdcdcd;
+  border: #404040 1px solid;
+  height: 45px;
+}
+.account_setting_section input[type="text"]::placeholder {
+  color: #6a6a6a;
 }
 
 @media only screen and (max-width: 767px) {

@@ -3,8 +3,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { cancelSubscription, getProfile } from "../reducers/ProfileSlice";
 import { useForm } from "react-hook-form";
-import { Button, Label, TextInput } from "flowbite-react";
+import { Button, FileInput, Label, TextInput } from "flowbite-react";
 import SubsCancelModal from "../modal/SubsCancelModal";
+import { SlEnvolope } from "react-icons/sl";
+import profileUser from "../assets/imagesource/profile_user.png";
+import Image from "next/image";
+import { MdEdit } from "react-icons/md";
 
 const page = () => {
   const dispatch = useDispatch()
@@ -45,10 +49,40 @@ const page = () => {
       <div>
         <div>
 
-          <div className="bg-white rounded-2xl p-10 mb-4 flex gap-10">
-            <div className="w-full lg:w-8/12">
+          <div className="bg-[#222222] rounded-2xl">
+            <div className="prifile_bg">&nbsp;</div>
+            <div className="w-full lg:w-full p-10 mb-4">
               <div className="account_setting_section">
-                <h2 className="text-3xl font-semibold pb-0">Account Details</h2>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <div className="flex items-center gap-4">
+                      <div className="relative">
+                        <Image src={profileUser} alt='profileUser' className='w-[120px] h-[120px] rounded-[50px] overflow-hidden' />
+                        <div className="absolute right-0 top-0">
+                            <button
+                                type="button"
+                                className="bg-white p-2 rounded-full shadow-md text-[#757575] hover:bg-[#ff1a03] hover:text-white"
+                            >
+                                <FileInput
+                                    className="absolute opacity-0 h-3 w-5 border border-black"
+                                    id="file"
+                                    accept="image/*"
+                                    // onChange={handleFileChange}
+                                />
+                                <MdEdit className="text-xl" />
+                            </button>
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-[#cdcdcd] text-xl pb-2">Alexa Rawles</p>
+                        <p className="text-[#777777] text-base pb-2">alexarawles@gmail.com</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <button className="bg-[#0E5D4F] hover:bg-black text-white text-base leading-[46px] rounded-[8px] px-8 cursor-pointer">Edit</button>
+                  </div>
+                </div>
                 <div>
                   <form >
                     <div className="pt-6">
@@ -72,7 +106,7 @@ const page = () => {
                               className="object-cover w-full h-full rounded-lg"
                             />
                           )} */}
-                            {/* <div className="absolute right-1 top-1">
+                            <div className="absolute right-1 top-1">
                                                             <button
                                                                 type="button"
                                                                 className="bg-white p-2 rounded-full shadow-md text-[#757575] hover:bg-[#ff1a03] hover:text-white"
@@ -81,37 +115,38 @@ const page = () => {
                                                                     className="absolute opacity-0 h-3 w-5 border border-black"
                                                                     id="file"
                                                                     accept="image/*"
-                                                                    onChange={handleFileChange}
+                                                                    // onChange={handleFileChange}
                                                                 />
                                                                 <MdEdit className="text-xl" />
                                                             </button>
-                                                        </div> */}
+                                                        </div>
                             &nbsp;
                           </div>
                         </div>
                         <div className="lg:flex gap-6 mb-3">
                           <div className="w-full lg:w-6/12">
                             <div className="mb-1 block">
-                              <Label className="!text-black">First Name </Label>
+                              <Label className="">First Name </Label>
                             </div>
                             <TextInput
                               id="base"
                               type="text"
                               sizing="md"
-                              className="!bg-white !text-black"
+                              className=""
                               {...register("first_name")}
                               readOnly
                             />
                           </div>
                           <div className="w-full lg:w-6/12">
                             <div className="mb-1 block">
-                              <Label className="!text-black">User Name </Label>
+                              <Label className="">Last Name </Label>
                             </div>
                             <TextInput
                               id="base"
                               type="text"
                               sizing="md"
-                              {...register("username")}
+                              className=""
+                              {...register("first_name")}
                               readOnly
                             />
                           </div>
@@ -119,7 +154,7 @@ const page = () => {
                         <div className="lg:flex gap-6 mb-3">
                           <div className="w-full lg:w-6/12">
                             <div className="mb-1 block">
-                              <Label className="!text-black">
+                              <Label className="">
                                 Email <span className="text-[#ff1a03]"></span>
                               </Label>
                             </div>
@@ -131,6 +166,34 @@ const page = () => {
                               {...register("email")}
                               readOnly
                             />
+                          </div>
+                          <div className="w-full lg:w-6/12">
+                            <div className="mb-1 block">
+                              <Label className="">User Name </Label>
+                            </div>
+                            <TextInput
+                              id="base"
+                              type="text"
+                              sizing="md"
+                              {...register("username")}
+                              readOnly
+                            />
+                          </div>
+                        </div>
+
+
+                        <div className="py-10">
+                          <p className="text-[#CDCDCD] text-[18px] pb-4">My email Address</p>
+                          <div className="flex items-center gap-2">
+                            <div>
+                              <div className="bg-[#1f2726] w-[56px] h-[56px] rounded-full flex justify-center items-center">
+                                 <SlEnvolope className="text-2xl text-[#055346]" /> 
+                              </div>
+                            </div>
+                            <div>
+                              <p className="text-[#CDCDCD] text-[16px]">alexarawles@gmail.com</p>
+                              <p className="text-[#777777] text-[16px]">1 month ago</p>
+                            </div>
                           </div>
                         </div>
 
