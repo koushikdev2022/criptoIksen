@@ -76,7 +76,7 @@ const page = () => {
                                                     </div>
 
                                                     <div className="lg:flex gap-10">
-                                                        <div className="bg-[#2C2C2C] px-8 py-10 rounded-2xl shadow-lg lg:w-6/12 mb-5 lg:mb-0">
+                                                        <div className="bg-[#2C2C2C] px-8 py-10 rounded-2xl shadow-lg lg:w-6/12 mb-5 lg:mb-0 short_term_spot">
                                                             <div className="mb-6 flex justify-between items-center">
                                                                 <h5 className="text-[#CDCDCD] text-[20px] leading-[30px] font-semibold">Short-term Spot </h5>
                                                                 <div className="border-2 border-[#E49600] bg-[#FFF3DB] rounded-[25px]"><span className="text-[#E49600] text-[16px] leading-[38px] uppercase font-semibold px-8">{coinsDatas?.spot_recommendations?.short_term?.action}</span></div>
@@ -101,7 +101,7 @@ const page = () => {
                                                             </div>
                                                         </div>
 
-                                                        <div className="bg-[#2C2C2C] px-8 py-10 rounded-2xl shadow-lg lg:w-6/12">
+                                                        <div className="bg-[#2C2C2C] px-8 py-10 rounded-2xl shadow-lg lg:w-6/12 long_term_spot">
                                                             <div className="mb-6 flex justify-between items-center">
                                                                 <h5 className="text-[#CDCDCD] text-[20px] leading-[30px] font-semibold">Long-term Spot</h5>
                                                                 <div className="border-2 border-[#02571C] bg-[#E8FFEF] rounded-[25px]"><span className="text-[#02571C] text-[16px] leading-[38px] uppercase font-semibold px-8">{coinsDatas?.spot_recommendations?.long_term?.action}</span></div>
@@ -144,7 +144,7 @@ const page = () => {
 
                                                     <div className="lg:flex gap-10">
 
-                                                        <div className="bg-[#2C2C2C] px-8 py-10 rounded-2xl shadow-lg lg:w-6/12">
+                                                        <div className="bg-[#2C2C2C] px-8 py-10 rounded-2xl shadow-lg lg:w-6/12 short_term_leveraged">
                                                             <div className="mb-6 flex justify-between items-center">
                                                                 <h5 className="text-[#CDCDCD] text-[20px] leading-[30px] font-semibold">Short-term Leveraged </h5>
                                                                 <div className="flex items-center gap-1">
@@ -177,7 +177,7 @@ const page = () => {
                                                         </div>
 
 
-                                                        <div className="bg-[#2C2C2C] px-8 py-10 rounded-2xl shadow-lg lg:w-6/12">
+                                                        <div className="bg-[#2C2C2C] px-8 py-10 rounded-2xl shadow-lg lg:w-6/12 long_term_leveraged">
                                                             <div className="mb-6 flex justify-between items-center">
                                                                 <h5 className="text-[#CDCDCD] text-[20px] leading-[30px] font-semibold">Long-term Leveraged </h5>
                                                                 <div className="flex items-center gap-1">
