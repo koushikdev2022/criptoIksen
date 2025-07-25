@@ -17,6 +17,8 @@ import { FaUser } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { usePathname } from 'next/navigation';
 import { FaRectangleList } from "react-icons/fa6";
+import { RiSearch2Line } from "react-icons/ri";
+import { MdOutlineLogout } from "react-icons/md";
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -86,14 +88,61 @@ const Sidebar = () => {
       </div>
       {/* <!-- SIDEBAR HEADER --> */}
 
-      <div className="sidebar_menu no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear overscroll-none">
+      <div className={`${poppins.className} sidebar_menu no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear overscroll-none`}>
         {/* <!-- Sidebar Menu --> */}
         <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-2">
           {/* <!-- Menu Group --> */}
           <div>
-            <h3 className="mb-2 ml-4 text-sm font-medium text-[#B7B7B7]">
-              Hitory
-            </h3>
+            <p className="mb-10 ml-6 text-sm uppercase font-medium text-[#CDCDCD]">
+              Search History
+            </p>
+
+            <div id='style-3' className='mb-10 ml-6 force-overflow' style={{ overflowY: 'scroll', maxHeight: '450px' }}>
+              <div className='mb-6'>
+                <p className='text-[#42C4AD] text-sm font-medium'>July 24, 2025</p>
+                <ul className='mt-5'>
+                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
+                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
+                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
+                </ul>
+              </div>
+              <div className='mb-6'>
+                <p className='text-[#42C4AD] text-sm font-medium'>July 24, 2025</p>
+                <ul className='mt-5'>
+                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
+                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
+                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
+                </ul>
+              </div>
+              <div className='mb-6'>
+                <p className='text-[#42C4AD] text-sm font-medium'>July 24, 2025</p>
+                <ul className='mt-5'>
+                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
+                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
+                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
+                </ul>
+              </div>
+                            <div className='mb-6'>
+                <p className='text-[#42C4AD] text-sm font-medium'>July 24, 2025</p>
+                <ul className='mt-5'>
+                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
+                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
+                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
+                </ul>
+              </div>
+              <div className='mb-6'>
+                <p className='text-[#42C4AD] text-sm font-medium'>July 24, 2025</p>
+                <ul className='mt-5'>
+                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
+                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
+                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className='flex justify-center items-center'>
+              <button className='text-base text-[#CDCDCD] font-medium flex items-center hover:text-[#42C4AD] cursor-pointer'><MdOutlineLogout className='text-xl mr-1' />Logout</button>
+            </div>
 
             {/* <ul className="mb-6 flex flex-col gap-1.5 mx-4">
               <li onClick={closeNavbar}>

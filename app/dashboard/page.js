@@ -106,9 +106,9 @@ const Page = () => {
           <div className="lg:w-full px-0 pt-0">
             <div className="relative">
               <div className="banner_search_area mb-6 flex gap-4 lg:w-full">
-                <div className="bg-white border border-[#C2C2C2] rounded-md p-0 flex gap-4 items-center w-9/12 lg:w-10/12">
-                  <IoSearchOutline className="text-xl ml-4 text-[#727272s]" />
-                  <TextInput className='w-full' placeholder="Search token or asset" id="base" type="text" sizing="md" value={searchTerm}
+                <div className="bg-[#404040] border border-[#404040] rounded-md p-0 flex gap-4 items-center w-9/12 lg:w-10/12">
+                  <IoSearchOutline className="text-xl ml-4 text-[#e0e0e0]" />
+                  <TextInput className='w-full text-[#404040]' placeholder="Search token or asset" id="base" type="text" sizing="md" value={searchTerm}
                     onChange={(e) => { setSearchTerm(e.target.value); setShowDropdown(true); }} />
                 </div>
                 <div className="w-3/12 lg:w-2/12">
@@ -126,7 +126,7 @@ const Page = () => {
                   <ul className="bg-white rounded-md shadow p-0">
                     {filteredCoins.length > 0 ? (
                       filteredCoins.map((coin) => (
-                        <li key={coin.coin_id} className="border-b border-[#dfdfdf] py-2 last:border-0 cursor-pointer px-4" onClick={() => handleCoinSelect(coin)}>
+                        <li key={coin.coin_id} className="border-b border-[#dfdfdf] py-2 last:border-0 cursor-pointer px-4 text-left" onClick={() => handleCoinSelect(coin)}>
                           <div className="text-[#046d78] text-sm leading-[30px] font-semibold">{coin.name}</div>
                           <div className="text-xs text-gray-500">Symbol: {coin.symbol}</div>
                         </li>
