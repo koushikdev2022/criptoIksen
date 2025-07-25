@@ -26,8 +26,10 @@ export const getSearchHistoryDetails = createAsyncThunk(
     async (user_input, { rejectWithValue }) => {
         try {
             const response = await api.post(`user/user-search-manage/details`, user_input);
+            console.log(response, "history Result");
+
             if (response?.data?.status_code === 200) {
-                return response.data;
+                return response.data?.data;
             } else {
                 if (response?.data?.errors) {
                     return rejectWithValue(response.data.errors);
@@ -44,10 +46,6 @@ const initialState = {
     loading: false,
     historyData: [],
     singleHistory: {},
-    pagination: {
-        current_week: 0,
-        has_next: false,
-    },
     error: false
 }
 const SearchHistroySlice = createSlice(
@@ -90,6 +88,8 @@ const SearchHistroySlice = createSlice(
                     state.loading = false
                     state.singleHistory = payload;
                     state.error = false
+                    console.log("singleHistory payload", payload);
+
                 })
                 .addCase(getSearchHistoryDetails.rejected, (state, { payload }) => {
                     state.loading = false
