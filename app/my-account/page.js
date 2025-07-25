@@ -73,7 +73,16 @@ const page = () => {
                   <div>
                     <div className="flex items-center gap-4">
                       <div className="relative">
-                        <Image src={profileUser} alt='profileUser' className='w-[120px] h-[120px] rounded-[50px] overflow-hidden' />
+                        {/* <Image src={profileUser} alt='profileUser' className='w-[120px] h-[120px] rounded-[50px] overflow-hidden' /> */}
+                        {
+                          profileData?.data?.avatar ? (
+                            <Image src={profileData?.data?.avatar} width={120}
+                              height={120} alt='profileUser' className='w-[120px] h-[120px] rounded-[50px] overflow-hidden' />
+                          ) : (
+                            <Image src={profileUser} alt='profileUser' className='w-[120px] h-[120px] rounded-[50px] overflow-hidden' />
+                          )
+                        }
+
                         <div className="absolute right-0 top-0">
                           <button
                             type="button"
@@ -83,7 +92,7 @@ const page = () => {
                               className="absolute opacity-0 h-3 w-5 border border-black"
                               id="file"
                               accept="image/*"
-                            // onChange={handleFileChange}
+                              onChange={handleFileChange}
                             />
                             <MdEdit className="text-xl" />
                           </button>
@@ -122,7 +131,7 @@ const page = () => {
                               className="object-cover w-full h-full rounded-lg"
                             />
                           )} */}
-                            <div className="absolute right-1 top-1">
+                            {/* <div className="absolute right-1 top-1">
                               <button
                                 type="button"
                                 className="bg-white p-2 rounded-full shadow-md text-[#757575] hover:bg-[#ff1a03] hover:text-white"
@@ -135,7 +144,7 @@ const page = () => {
                                 />
                                 <MdEdit className="text-xl" />
                               </button>
-                            </div>
+                            </div> */}
                             &nbsp;
                           </div>
                         </div>
