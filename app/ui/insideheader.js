@@ -63,61 +63,66 @@ const Insideheader = () => {
           <h1 className='text-2xl font-semibold text-[#313030] ${leagueSpartan.className} mb-1'>Welcome</h1>
           <p className='text-base text-[#686868] ${leagueSpartan.className}'>{profileData?.data?.fullname}</p>
         </div> */}
-        
-      <div className="sidebar_menu no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear overscroll-none">
-        {/* <!-- Sidebar Menu --> */}
-        <nav className="">
-          {/* <!-- Menu Group --> */}
-          <div className='header_menu'>
-            <ul className="">
-              {/* <!-- Menu Item Dashboard --> */}
-              <li>
-                <Link href="/dashboard"
-                  className={`group relative flex items-center gap-2 rounded-sm py-3 px-4 font-normal text-sm text-white duration-300 ease-in-out hover:bg-graydark ${pathname.includes('dashboard') &&
-                    'bg-graydark dark:bg-meta-4'
-                    }`}
-                  passHref>
-                  {/* <BiSolidDashboard className='text-xl' /> */}
-                  Dashboard
-                </Link>
-              </li>
-              {/* <!-- Menu Item Dashboard --> */}
 
-              {/* <!-- Menu Item Dashboard --> */}
-              <li>
-                <Link href="/my-account"
-                  className={`group relative flex items-center gap-2 rounded-sm py-3 px-4 font-normal text-sm text-white duration-300 ease-in-out hover:bg-graydark ${pathname.includes('my-account') &&
-                    'bg-graydark dark:bg-meta-4'
-                    }`}
-                  passHref>
-                  {/* <FaUser className='text-xl' /> */}
-                  My Account
-                </Link>
-              </li>
-              <li>
-                <Link href="/plans"
-                  className={`group relative flex items-center gap-2 rounded-sm py-3 px-4 font-normal text-sm text-white duration-300 ease-in-out hover:bg-graydark ${pathname.includes('plans') &&
-                    'bg-graydark dark:bg-meta-4'
-                    }`}
-                  passHref>
-                  {/* <FaRectangleList className='text-xl' /> */}
-                  Plans
-                </Link>
-              </li>
-              {/* <!-- Menu Item Dashboard --> */}
+        <div className="sidebar_menu no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear overscroll-none">
+          {/* <!-- Sidebar Menu --> */}
+          <nav className="">
+            {/* <!-- Menu Group --> */}
+            <div className='header_menu'>
+              <ul className="">
+                {/* <!-- Menu Item Dashboard --> */}
+                <li>
+                  <Link href="/dashboard"
+                    className={`group relative flex items-center gap-2 rounded-sm py-3 px-4 font-normal text-sm text-white duration-300 ease-in-out hover:bg-graydark ${pathname.includes('dashboard') &&
+                      'bg-graydark dark:bg-meta-4'
+                      }`}
+                    passHref>
+                    {/* <BiSolidDashboard className='text-xl' /> */}
+                    Dashboard
+                  </Link>
+                </li>
+                {/* <!-- Menu Item Dashboard --> */}
+
+                {/* <!-- Menu Item Dashboard --> */}
+                <li>
+                  <Link href="/my-account"
+                    className={`group relative flex items-center gap-2 rounded-sm py-3 px-4 font-normal text-sm text-white duration-300 ease-in-out hover:bg-graydark ${pathname.includes('my-account') &&
+                      'bg-graydark dark:bg-meta-4'
+                      }`}
+                    passHref>
+                    {/* <FaUser className='text-xl' /> */}
+                    My Account
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/plans"
+                    className={`group relative flex items-center gap-2 rounded-sm py-3 px-4 font-normal text-sm text-white duration-300 ease-in-out hover:bg-graydark ${pathname.includes('plans') &&
+                      'bg-graydark dark:bg-meta-4'
+                      }`}
+                    passHref>
+                    {/* <FaRectangleList className='text-xl' /> */}
+                    Plans
+                  </Link>
+                </li>
+                {/* <!-- Menu Item Dashboard --> */}
 
 
-            </ul>
-          </div>
-        </nav>
-        {/* <!-- Sidebar Menu --> */}
-      </div>
+              </ul>
+            </div>
+          </nav>
+          {/* <!-- Sidebar Menu --> */}
+        </div>
         <div>
           <div className='flex items-center gap-3'>
             {/* <button onClick={handleLogout} className='mr-4 text-black cursor-pointer'>Logout</button> */}
             <p className='text-base text-[#CDCDCD] ${leagueSpartan.className}'>{profileData?.data?.fullname}</p>
             <div className='user_face'>
-              <Image src={userFace} alt="userFace" className='rounded-full w-[50px] h-[50px]' />
+              {profileData?.data?.avatar ? (
+                <Image src={userFace} alt="userFace" className='rounded-full w-[50px] h-[50px]' />
+              ) : (
+                <Image src={profileData?.data?.avatar} alt="userFace" className='rounded-full w-[50px] h-[50px]' />
+              )}
+
             </div>
           </div>
         </div>

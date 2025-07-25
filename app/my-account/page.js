@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { cancelSubscription, getProfile } from "../reducers/ProfileSlice";
+import { cancelSubscription, getProfile, uploadPhoto } from "../reducers/ProfileSlice";
 import { useForm } from "react-hook-form";
 import { Button, FileInput, Label, TextInput } from "flowbite-react";
 import SubsCancelModal from "../modal/SubsCancelModal";
@@ -15,6 +15,7 @@ const page = () => {
   const { profileData } = useSelector((state) => state?.profile)
   const [subsId, setSubsId] = useState()
   const [openCancelModal, setOpenCandelModal] = useState(false)
+  const [selectedFile, setSelectedFile] = useState(null);
   const {
     register,
     handleSubmit,
@@ -29,7 +30,8 @@ const page = () => {
   console.log("profileData", profileData)
 
   useEffect(() => {
-    setValue("first_name", profileData?.data?.fullname)
+    setValue("first_name", profileData?.data?.first_name)
+    setValue("last_name", profileData?.data?.last_name)
     setValue("email", profileData?.data?.email)
     setValue("username", profileData?.data?.username)
   }, [profileData?.data])
@@ -44,6 +46,20 @@ const page = () => {
     setOpenCandelModal(true)
     setSubsId(id)
   }
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      const formData = new FormData();
+      formData.append("avatar", file);
+      dispatch(uploadPhoto(formData)).then((res) => {
+        console.log("Res: ", res);
+        if (res?.payload?.status_code === 200) {
+          dispatch(getProfile());
+        }
+      });
+    }
+  };
   return (
     <>
       <div>
@@ -57,25 +73,34 @@ const page = () => {
                   <div>
                     <div className="flex items-center gap-4">
                       <div className="relative">
-                        <Image src={profileUser} alt='profileUser' className='w-[120px] h-[120px] rounded-[50px] overflow-hidden' />
+                        {/* <Image src={profileUser} alt='profileUser' className='w-[120px] h-[120px] rounded-[50px] overflow-hidden' /> */}
+                        {
+                          profileData?.data?.avatar ? (
+                            <Image src={profileData?.data?.avatar} width={120}
+                              height={120} alt='profileUser' className='w-[120px] h-[120px] rounded-[50px] overflow-hidden' />
+                          ) : (
+                            <Image src={profileUser} alt='profileUser' className='w-[120px] h-[120px] rounded-[50px] overflow-hidden' />
+                          )
+                        }
+
                         <div className="absolute right-0 top-0">
-                            <button
-                                type="button"
-                                className="bg-white p-2 rounded-full shadow-md text-[#757575] hover:bg-[#ff1a03] hover:text-white"
-                            >
-                                <FileInput
-                                    className="absolute opacity-0 h-3 w-5 border border-black"
-                                    id="file"
-                                    accept="image/*"
-                                    // onChange={handleFileChange}
-                                />
-                                <MdEdit className="text-xl" />
-                            </button>
+                          <button
+                            type="button"
+                            className="bg-white p-2 rounded-full shadow-md text-[#757575] hover:bg-[#ff1a03] hover:text-white"
+                          >
+                            <FileInput
+                              className="absolute opacity-0 h-3 w-5 border border-black"
+                              id="file"
+                              accept="image/*"
+                              onChange={handleFileChange}
+                            />
+                            <MdEdit className="text-xl" />
+                          </button>
                         </div>
                       </div>
                       <div>
-                        <p className="text-[#cdcdcd] text-xl pb-2">Alexa Rawles</p>
-                        <p className="text-[#777777] text-base pb-2">alexarawles@gmail.com</p>
+                        <p className="text-[#cdcdcd] text-xl pb-2"> {profileData?.data?.fullname}</p>
+                        <p className="text-[#777777] text-base pb-2">{profileData?.data?.email}</p>
                       </div>
                     </div>
                   </div>
@@ -107,19 +132,19 @@ const page = () => {
                             />
                           )} */}
                             <div className="absolute right-1 top-1">
-                                                            <button
-                                                                type="button"
-                                                                className="bg-white p-2 rounded-full shadow-md text-[#757575] hover:bg-[#ff1a03] hover:text-white"
-                                                            >
-                                                                <FileInput
-                                                                    className="absolute opacity-0 h-3 w-5 border border-black"
-                                                                    id="file"
-                                                                    accept="image/*"
-                                                                    // onChange={handleFileChange}
-                                                                />
-                                                                <MdEdit className="text-xl" />
-                                                            </button>
-                                                        </div>
+                              <button
+                                type="button"
+                                className="bg-white p-2 rounded-full shadow-md text-[#757575] hover:bg-[#ff1a03] hover:text-white"
+                              >
+                                <FileInput
+                                  className="absolute opacity-0 h-3 w-5 border border-black"
+                                  id="file"
+                                  accept="image/*"
+                                // onChange={handleFileChange}
+                                />
+                                <MdEdit className="text-xl" />
+                              </button>
+                            </div>
                             &nbsp;
                           </div>
                         </div>
@@ -146,7 +171,7 @@ const page = () => {
                               type="text"
                               sizing="md"
                               className=""
-                              {...register("first_name")}
+                              {...register("last_name")}
                               readOnly
                             />
                           </div>
@@ -187,11 +212,11 @@ const page = () => {
                           <div className="flex items-center gap-2">
                             <div>
                               <div className="bg-[#1f2726] w-[56px] h-[56px] rounded-full flex justify-center items-center">
-                                 <SlEnvolope className="text-2xl text-[#055346]" /> 
+                                <SlEnvolope className="text-2xl text-[#055346]" />
                               </div>
                             </div>
                             <div>
-                              <p className="text-[#CDCDCD] text-[16px]">alexarawles@gmail.com</p>
+                              <p className="text-[#CDCDCD] text-[16px]">{profileData?.data?.email}</p>
                               <p className="text-[#777777] text-[16px]">1 month ago</p>
                             </div>
                           </div>

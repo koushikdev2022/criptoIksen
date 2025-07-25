@@ -61,12 +61,34 @@ export const cancelSubscription = createAsyncThunk(
         }
     }
 )
+
+export const uploadPhoto = createAsyncThunk(
+    'uploadPhoto',
+    async (user_input, { rejectWithValue }) => {
+        try {
+            const response = await api.post('user/user-profile/change-avatar', user_input);
+            if (response?.data?.status_code === 200) {
+                return response.data;
+            } else {
+                if (response?.data?.errors) {
+                    return rejectWithValue(response.data.errors);
+                } else {
+                    return rejectWithValue('Something went wrong.');
+                }
+            }
+        } catch (err) {
+            return rejectWithValue(err);
+        }
+    }
+
+)
 const initialState = {
     loading: false,
     profileData: [],
     subscriptionData: {},
     cancelSubsData: {},
-    error: false
+    error: false,
+    uploadpic: {}
 }
 const ProfileSlice = createSlice(
     {
@@ -108,6 +130,18 @@ const ProfileSlice = createSlice(
                     state.error = false
                 })
                 .addCase(cancelSubscription.rejected, (state, { payload }) => {
+                    state.loading = false
+                    state.error = payload
+                })
+                .addCase(uploadPhoto.pending, (state) => {
+                    state.loading = true
+                })
+                .addCase(uploadPhoto.fulfilled, (state, { payload }) => {
+                    state.loading = false
+                    state.uploadpic = payload
+                    state.error = false
+                })
+                .addCase(uploadPhoto.rejected, (state, { payload }) => {
                     state.loading = false
                     state.error = payload
                 })

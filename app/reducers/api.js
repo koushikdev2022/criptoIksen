@@ -4,7 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 const api = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_BASE_URL });
 
-const formDataURL = [''];
+const formDataURL = ['user/user-profile/change-avatar'];
 api.interceptors.request.use((req) => {
     let userTokenData;
     try {
