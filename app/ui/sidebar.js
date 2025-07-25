@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link'
-import React from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 
 import logo from '../assets/imagesource/logo.png';
 import footer_logo from "../assets/imagesource/footer_logo.png";
@@ -15,10 +15,14 @@ import { Poppins } from 'next/font/google';
 import { BiSolidDashboard } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { FaRectangleList } from "react-icons/fa6";
 import { RiSearch2Line } from "react-icons/ri";
 import { MdOutlineLogout } from "react-icons/md";
+import { getSearchHistory } from '../reducers/SearchHistroySlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../reducers/AuthSlice';
+
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -29,7 +33,33 @@ const poppins = Poppins({
 const Sidebar = () => {
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const dispatch=useDispatch()
+   const { searchHistory, pagination, loading } = useSelector(state => state.his);
+  const loaderRef = useRef(null);
   //console.log(sidebarOpen,"sidebarOpen");
+    const router = useRouter();
+  const handleLogout = () => {
+      // dispatch(logout())
+  
+      try {
+  
+        // Dispatch logout action
+        dispatch(logout());
+  
+        // Navigate to home page
+        router.push("/");
+  
+        // Force reload to ensure clean state
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 100);
+      } catch (error) {
+        console.error("Logout error:", error);
+        // Fallback: still navigate to home
+        router.push("/");
+      }
+  
+    };
 
   const openMobileMenu = () => {
     setSidebarOpen(prev => !prev);
@@ -49,6 +79,31 @@ const Sidebar = () => {
     setSidebarOpen(false);
   };
   // For mobile menu ends here
+    useEffect(() => {
+    dispatch(getSearchHistory({ week: 0 }));
+  }, [dispatch]);
+
+    const handleObserver = useCallback(
+    (entries) => {
+      const target = entries[0];
+      if (target.isIntersecting && pagination.has_next && !loading) {
+        dispatch(getSearchHistory({ week: pagination.previous_week }));
+      }
+    },
+    [dispatch, pagination, loading]
+  );
+
+   useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, {
+      root: null,
+      rootMargin: '20px',
+      threshold: 1.0
+    });
+    if (loaderRef.current) observer.observe(loaderRef.current);
+    return () => {
+      if (loaderRef.current) observer.unobserve(loaderRef.current);
+    };
+  }, [handleObserver]);
 
   return (
     <aside
@@ -98,15 +153,32 @@ const Sidebar = () => {
             </p>
 
             <div id='style-3' className='mb-10 ml-6 force-overflow' style={{ overflowY: 'scroll', maxHeight: '450px' }}>
-              <div className='mb-6'>
-                <p className='text-[#42C4AD] text-sm font-medium'>July 24, 2025</p>
+              {
+                searchHistory?.map((group,idx)=>{
+                  return(
+                    <>
+                     <div className='mb-6' key={group.date + idx}>
+                <p className='text-[#42C4AD] text-sm font-medium'>{group.date}</p>
                 <ul className='mt-5'>
-                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
-                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
-                  <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
+                  {group?.records?.map(record => (
+                  <Link href={{
+                    pathname: '/history-details',
+                    query: { id: record.id }
+                    }} key={record.id} className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> {record?.search_query}</Link>
+                 
+                 ))}
                 </ul>
               </div>
-              <div className='mb-6'>
+                    </>
+                  )
+                })
+              }
+              {loading && (
+        <div className='text-center text-[#CDCDCD] text-sm my-4'>Loading...</div>
+      )}
+       <div ref={loaderRef}></div>
+             
+              {/* <div className='mb-6'>
                 <p className='text-[#42C4AD] text-sm font-medium'>July 24, 2025</p>
                 <ul className='mt-5'>
                   <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
@@ -137,11 +209,11 @@ const Sidebar = () => {
                   <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
                   <li className='text-[#CDCDCD] text-sm font-normal mb-4 flex'><RiSearch2Line className='mr-1 text-[18px]' /> Bitcoin</li>
                 </ul>
-              </div>
+              </div> */}
             </div>
 
             <div className='flex justify-center items-center'>
-              <button className='text-base text-[#CDCDCD] font-medium flex items-center hover:text-[#42C4AD] cursor-pointer'><MdOutlineLogout className='text-xl mr-1' />Logout</button>
+              <button onClick={handleLogout} className='text-base text-[#CDCDCD] font-medium flex items-center hover:text-[#42C4AD] cursor-pointer'><MdOutlineLogout className='text-xl mr-1' />Logout</button>
             </div>
 
             {/* <ul className="mb-6 flex flex-col gap-1.5 mx-4">

@@ -13,6 +13,7 @@ import TradingViewCandle from "./TradingView";
 import { BiDollarCircle } from "react-icons/bi";
 import { PiTargetBold } from "react-icons/pi";
 import { GrMoney } from "react-icons/gr";
+import { getSearchHistory } from "../reducers/SearchHistroySlice";
 const poppins = Poppins({
     subsets: ['latin'],
     weight: ['400', '500', '600', '700'], // specify desired weights
@@ -31,6 +32,7 @@ const page = () => {
         dispatch(getCoinsDetails({ crypto_name: symbol, currency: currency })).then((res) => {
             if (res?.payload?.status !== '400') {
                 dispatch(toSearchData({ search_query: res?.payload?.symbol, json_response: res?.payload }))
+                dispatch( dispatch(getSearchHistory({ week: 0 })))
             }
 
         })
