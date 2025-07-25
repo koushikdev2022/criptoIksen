@@ -462,7 +462,7 @@ body {
   z-index: 99999;
   cursor: pointer;
   position: absolute;
-  top: 40px;
+  top: 72px;
   background: #097883;
   width: 50px;
   height: 50px;
@@ -471,6 +471,10 @@ body {
   justify-content: center;
   align-items: center;
   display: none;
+}
+
+.user_face {
+  position: relative;
 }
 
 .price_box {
@@ -1006,6 +1010,16 @@ body {
   }
   .subscription_tab_section .react-tabs ul {
     margin: 0 auto 30px;
+  }
+
+  .header_menu ul {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .header_menu ul li {
+    float: left;
+    margin-right: 0;
   }
 }
 

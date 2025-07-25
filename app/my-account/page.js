@@ -67,22 +67,13 @@ const page = () => {
 
           <div className="bg-[#222222] rounded-2xl">
             <div className="prifile_bg">&nbsp;</div>
-            <div className="w-full lg:w-full p-10 mb-4">
+            <div className="w-full lg:w-full p-5 lg:p-10 mb-4">
               <div className="account_setting_section">
                 <div className="flex justify-between items-center">
                   <div>
                     <div className="flex items-center gap-4">
                       <div className="relative">
-                        {/* <Image src={profileUser} alt='profileUser' className='w-[120px] h-[120px] rounded-[50px] overflow-hidden' /> */}
-                        {
-                          profileData?.data?.avatar ? (
-                            <Image src={profileData?.data?.avatar} width={120}
-                              height={120} alt='profileUser' className='w-[120px] h-[120px] rounded-[50px] overflow-hidden' />
-                          ) : (
-                            <Image src={profileUser} alt='profileUser' className='w-[120px] h-[120px] rounded-[50px] overflow-hidden' />
-                          )
-                        }
-
+                        <Image src={profileUser} alt='profileUser' className='w-[120px] h-[120px] rounded-[50px] overflow-hidden' />
                         <div className="absolute right-0 top-0">
                           <button
                             type="button"
@@ -92,7 +83,7 @@ const page = () => {
                               className="absolute opacity-0 h-3 w-5 border border-black"
                               id="file"
                               accept="image/*"
-                              onChange={handleFileChange}
+                            // onChange={handleFileChange}
                             />
                             <MdEdit className="text-xl" />
                           </button>

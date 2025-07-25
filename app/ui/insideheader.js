@@ -58,7 +58,7 @@ const Insideheader = () => {
 
   return (
     <div className='bg-[#2B2A2A] rounded-[0px] py-4 px-6 mb-6'>
-      <div className='flex justify-between items-center'>
+      <div className='lg:flex justify-between items-center'>
         {/* <div className='pl-[50px] lg:pl-0'>
           <h1 className='text-2xl font-semibold text-[#313030] ${leagueSpartan.className} mb-1'>Welcome</h1>
           <p className='text-base text-[#686868] ${leagueSpartan.className}'>{profileData?.data?.fullname}</p>
@@ -113,7 +113,7 @@ const Insideheader = () => {
           {/* <!-- Sidebar Menu --> */}
         </div>
         <div>
-          <div className='flex items-center gap-3'>
+          <div className='flex justify-end items-center gap-3'>
             {/* <button onClick={handleLogout} className='mr-4 text-black cursor-pointer'>Logout</button> */}
             <p className='text-base text-[#CDCDCD] ${leagueSpartan.className}'>{profileData?.data?.fullname}</p>
             <div className='user_face'>

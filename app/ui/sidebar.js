@@ -115,7 +115,7 @@ const Sidebar = () => {
   return (
     <aside
       style={{ zIndex: 1 }}
-      className={`absolute left-0 top-0 lg:top-[50px] z-9999 flex h-screen w-72.5 flex-col lg:rounded-[0px] bg-[#2B2A2A] duration-300 ease-linear lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+      className={`absolute left-0 top-0 lg:top-[50px] z-9999 flex h-screen flex-col lg:rounded-[0px] bg-[#2B2A2A] duration-300 ease-linear lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
     >
       <button onClick={openMobileMenu} className={`menu_btn ${sidebarOpen ? 'right-[-24px]' : 'right-[-84px]'}`}>

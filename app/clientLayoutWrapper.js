@@ -92,10 +92,10 @@ export default function ClientLayoutWrapper({ children }) {
         return (
             <main>
                 <div className="dashboard_wrapper lg:flex bg-[#1E1E1E] p-0">
-                    <div className="sidebar_area w-2/12">
+                    <div className="sidebar_area w-[300px] lg:w-[20%]">
                         <Sidebar />
                     </div>
-                    <div className="content_area w-full lg:w-10/12">
+                    <div className="content_area w-full lg:w-[80%]">
                         <Insideheader />
                         <div className="px-5 lg:px-10 lg:py-2">
                           {children}
