@@ -123,7 +123,7 @@ const Sidebar = () => {
       </button>
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="px-6 py-5 lg:py-6">
-        <Link className='flex justify-center items-center' href="/" passHref>
+        <Link className='flex justify-center items-center' href="/dashboard" passHref>
           <Image src={logoAdmin} alt="logoAdmin" className='w-6/12' />
         </Link>
 
