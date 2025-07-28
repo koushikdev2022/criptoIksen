@@ -42,7 +42,7 @@ const page = () => {
             <div className="key_benefits_section pt-10 lg:pt-0 pb-10">
                 <div className=''>
                     {
-                        subscriptionData?.data && (
+                        (subscriptionData?.data && new Date(subscriptionData.data.stripe_subscription_end_date) > new Date()) && (
                             <div className="bg-[#222222] rounded-4xl p-5 mb-4">
                                 <p className="text-2xl text-white mb-2">Your Active Plan</p>
                                 <div>
@@ -89,7 +89,7 @@ const page = () => {
                                                                 </div>
                                                             </div>
                                                             {
-                                                                subscriptionData?.data ? (
+                                                                (subscriptionData?.data && new Date(subscriptionData?.data?.stripe_subscription_end_date) > new Date()) || subscriptionData?.data?.subscription_status === "active" ? (
                                                                     <>
 
                                                                     </>
@@ -145,7 +145,7 @@ const page = () => {
                                                                  <div className="flex gap-1 text-[#F3F3F3] text-[14px] mb-2"><IoIosCheckmarkCircle className="text-[#52A8CD] text-xl" /> 10 searches</div> */}
                                                                     </div>
                                                                 </div>
-                                                                {subscriptionData?.data ? (
+                                                                {(subscriptionData?.data && new Date(subscriptionData?.data?.stripe_subscription_end_date) > new Date()) || subscriptionData?.data?.subscription_status === "active" ? (
                                                                     <></>
                                                                 ) : (
                                                                     <div>

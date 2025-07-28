@@ -248,9 +248,19 @@ const page = () => {
                                     }
                                   </strong>
                                 </p>
-                                <Button onClick={() => { handleCancelSubs(profileData?.data?.Subscription?.[0]?.stripe_subscription_type) }} className="!bg-red-600 mt-2 cursor-pointer">
-                                  Cancel Plan
-                                </Button>
+                                {
+                                  profileData?.data?.Subscription?.[0]?.subscription_status === "active" ? (
+                                    <>
+                                      <Button onClick={() => { handleCancelSubs(profileData?.data?.Subscription?.[0]?.stripe_subscription_type) }} className="!bg-red-600 mt-2 cursor-pointer">
+                                        Cancel Plan
+                                      </Button>
+                                    </>
+                                  ) : (
+                                    <>
+                                    </>
+                                  )
+                                }
+
                               </div>
                             ) : (
                               <p className="text-red-600 mt-3">*No Active Plan</p>
