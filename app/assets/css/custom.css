@@ -639,10 +639,17 @@ body {
 }
 
 .banner_search_area input[type="text"] {
-  background: none;
+  background: #ffffff;
   border: none;
   color: #c2c2c2;
   height: 45px;
+}
+.banner_search_area.dashboard_search input[type="text"] {
+  background: #404040;
+  border: none;
+  color: #e0e0e0;
+  height: 45px;
+  border: #404040 1px solid;
 }
 .banner_search_area input[type="text"]::placeholder {
   color: #c2c2c2;
@@ -652,6 +659,12 @@ body {
   color: #c2c2c2;
   height: 45px;
   border: #c2c2c2 1px solid;
+}
+.banner_search_area.dashboard_search select {
+  background-color: #404040;
+  color: #e0e0e0;
+  height: 45px;
+  border: #404040 1px solid;
 }
 .banner_search_area input[type="text"]:focus {
   border: none;

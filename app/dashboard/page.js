@@ -105,7 +105,7 @@ const Page = () => {
           <p className='text-[25px] leading-[35px] text-[#ffffff] font-medium mb-4'>Type a coin, Tap predict</p>
           <div className="lg:w-full px-0 pt-0">
             <div className="relative">
-              <div className="banner_search_area mb-6 flex gap-4 lg:w-full">
+              <div className="banner_search_area dashboard_search mb-6 flex gap-4 lg:w-full">
                 <div className="bg-[#404040] border border-[#404040] rounded-md p-0 flex gap-4 items-center w-9/12 lg:w-10/12">
                   <IoSearchOutline className="text-xl ml-4 text-[#e0e0e0]" />
                   <TextInput className='w-full text-[#404040]' placeholder="Search token or asset" id="base" type="text" sizing="md" value={searchTerm}
