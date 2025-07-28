@@ -641,17 +641,17 @@ body {
 .banner_search_area input[type="text"] {
   background: none;
   border: none;
-  color: #e0e0e0;
+  color: #c2c2c2;
   height: 45px;
 }
 .banner_search_area input[type="text"]::placeholder {
-  color: #e0e0e0;
+  color: #c2c2c2;
 }
 .banner_search_area select {
-  background-color: #404040;
-  color: #e0e0e0;
+  background-color: #ffffff;
+  color: #c2c2c2;
   height: 45px;
-  border: #404040 1px solid;
+  border: #c2c2c2 1px solid;
 }
 .banner_search_area input[type="text"]:focus {
   border: none;
