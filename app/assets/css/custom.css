@@ -826,6 +826,33 @@ body {
   color: #6a6a6a;
 }
 
+.accordian_section button {
+  background: #f3f4f6;
+  cursor: pointer;
+  color: #000000;
+  border: #e5e7eb 1px solid;
+  font-size: 17px;
+}
+.accordian_section > div {
+  border: #e5e7eb 1px solid;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.accodian_cont {
+  background: #f8fafc;
+  color: #9a9a9a;
+  border: none;
+}
+.accordian_section button:focus {
+  background: none !important;
+  box-shadow: none !important;
+}
+.accodian_cont {
+  background: #f8fafc;
+  color: #9a9a9a;
+  border: none;
+}
+
 @media only screen and (max-width: 767px) {
   .menu_btn {
     display: inline-flex;

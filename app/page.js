@@ -293,7 +293,7 @@ export default function Home() {
                <h2 className="text-2xl lg:text-[60px] lg:leading-[70px] text-white font-bold mb-2 lg:mb-6">Cryptocurrency Price Predictions</h2>
                <p className="text-[#ffffff] text-sm lg:text-[18px] lg:leading-[30px] font-normal mb-8 lg:mb-12">At <strong>CryptoIntiuit</strong> we provide daily, monthly and yearly predictions for over 8 000 cryptocurrencies. All predictions on the website represent a possible price development of cryptocurrencies, but they are just predictions, not trading signals or any recommendations. Always do your due diligence before investing.</p>
                <div className="bg-white shadow-xl rounded-[20px] lg:px-15 lg:py-10 px-5 py-5">
-                  <h3 className="text-[#023F9B] text-xl leading-[30px] font-medium mb-5">Cryptointiuit Predictions</h3>
+                  <h3 className="text-[#023F9B] text-xl leading-[30px] font-medium mb-5">Cryptocurrency Price Predictions</h3>
                   <div>
                      <div className="overflow-x-auto">
                         {/* <Table>
@@ -772,7 +772,7 @@ export default function Home() {
          <div className="testimonials_section lg:pt-20 lg:pb-15 pt-10 pb-5 px-4 lg:px-0">
             <div className='max-w-[1400px] mx-auto'>
                <div className="text-center mb-4">
-                  <h2 className="text-2xl lg:text-[60px] lg:leading-[70px] text-black font-bold mb-2 lg:mb-10">What the people Say <span>about us</span></h2>
+                  <h2 className="text-2xl lg:text-[60px] lg:leading-[70px] text-black font-bold mb-2 lg:mb-10">What people Say <span>about us</span></h2>
                   <Testimonial />
                </div>
             </div>
