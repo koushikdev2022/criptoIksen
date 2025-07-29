@@ -53,7 +53,7 @@ export const toSearchData = createAsyncThunk(
             const response = await api.post('user/user-search-manage/add', user_input);
             console.log(response, "response Coins");
 
-            if (response?.data?.status_code === 200) {
+            if (response?.data?.status_code === 201) {
                 return response.data;
             } else {
                 if (response?.data?.errors) {
@@ -95,13 +95,18 @@ const initialState = {
     coins: [],
     coinsDatas: [],
     forSearch: [],
-    avilableData: []
+    avilableData: [],
+    isclick: false,
 }
 const CoinSlice = createSlice(
     {
         name: 'coin',
         initialState,
-        reducers: {},
+        reducers: {
+            setIsClick: (state, action) => {
+                state.isclick = action.payload;
+            }
+        },
         extraReducers: (builder) => {
             builder.addCase(getCoins.pending, (state) => {
                 state.loading = true
@@ -154,4 +159,5 @@ const CoinSlice = createSlice(
         }
     }
 )
+export const { setIsClick } = CoinSlice.actions
 export default CoinSlice.reducer

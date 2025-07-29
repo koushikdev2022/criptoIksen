@@ -10,7 +10,7 @@ import { IoSearchOutline } from 'react-icons/io5';
 import { Select, Table, TextInput, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Pagination } from 'flowbite-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
-import { checkAvilableSearch, getCoins } from '../reducers/CoinSlice';
+import { checkAvilableSearch, getCoins, setIsClick } from '../reducers/CoinSlice';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { getSearchHistory } from '../reducers/SearchHistroySlice';
 import { toast, ToastContainer } from 'react-toastify';
@@ -45,6 +45,7 @@ const Page = () => {
   const { coins, avilableData } = useSelector((state) => state?.coinData)
   const { historyData } = useSelector((state) => state?.his)
   const dispatch = useDispatch()
+  const [isclick, setIsclick] = useState(false)
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCurrency, setSelectedCurrency] = useState('USD');
   const [selectedCoin, setSelectedCoin] = useState('');
@@ -95,7 +96,10 @@ const Page = () => {
   }, [])
   console.log("Avil", avilableData);
 
-
+  const handlePredictClick = () => {
+    // Set isclick to true in Redux before navigation
+    dispatch(setIsClick(true));
+  };
 
   return (
     <div className={`${poppins.className} antialiased`}>
@@ -148,6 +152,7 @@ const Page = () => {
                 <Link
                   className="text-white hover:text-[#04cf6b] bg-[#0E5D4F] items-center cursor-pointer inline-flex gap-2 font-semibold text-xs lg:text-sm rounded-[5px] px-5 py-2 lg:px-10 lg:py-2.5 shadow-md"
                   href={{ pathname: 'details', query: { currency: selectedCurrency, symbol: selectedCoinSymbol, name: selectedCoin } }}
+                  onClick={handlePredictClick}
                 >
                   Predict
                 </Link>

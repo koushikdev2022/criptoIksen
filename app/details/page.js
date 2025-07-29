@@ -5,7 +5,7 @@ import bannerImg from "../assets/imagesource/banner_img.png";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCoinsDetails, toSearchData } from "../reducers/CoinSlice";
+import { getCoinsDetails, setIsClick, toSearchData } from "../reducers/CoinSlice";
 import { Poppins } from 'next/font/google';
 import Image from 'next/image';
 import { Spinner } from "flowbite-react";
@@ -20,19 +20,30 @@ const poppins = Poppins({
     display: 'swap',
 });
 const page = () => {
-    const { coinsDatas, loading } = useSelector((state) => state?.coinData)
+    const { coinsDatas, loading, isclick } = useSelector((state) => state?.coinData)
     const searchParams = useSearchParams()
     console.log("searchParams", searchParams);
     const currency = searchParams.get("currency")
     const symbol = searchParams.get("symbol")
     const name = searchParams.get("name")
-    console.log("currency", currency, symbol);
+    useEffect(() => {
+        console.log("click", isclick);
+    }, [isclick])
+
+
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getCoinsDetails({ crypto_name: symbol, currency: currency })).then((res) => {
-            if (res?.payload?.status !== '400') {
-                dispatch(toSearchData({ search_query: res?.payload?.symbol, json_response: res?.payload }))
-                dispatch( dispatch(getSearchHistory({ week: 0 })))
+            if (res?.payload?.status !== '400' && isclick === true) {
+                dispatch(toSearchData({ search_query: res?.payload?.symbol, json_response: res?.payload })).then((res) => {
+                    console.log(res, "tosearch");
+
+                })
+                dispatch(dispatch(getSearchHistory({ week: 0 })))
+                dispatch(setIsClick(false))
+            }
+            else {
+                dispatch(setIsClick(false))
             }
 
         })
@@ -82,16 +93,16 @@ const page = () => {
                                                                 <div className="border-2 border-[#E49600] bg-[#FFF3DB] rounded-[25px] inline-block"><span className="text-[#E49600] text-[16px] leading-[38px] uppercase font-semibold px-8">{coinsDatas?.spot_recommendations?.short_term?.action}</span></div>
                                                             </div>
                                                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5">
-                                                                <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#F2F6FB] text-center rounded-[6px] py-4"> 
-                                                                    <p className="text-sm text-[#0B3363] uppercase pb-1.5">Entry Price</p> 
+                                                                <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#F2F6FB] text-center rounded-[6px] py-4">
+                                                                    <p className="text-sm text-[#0B3363] uppercase pb-1.5">Entry Price</p>
                                                                     <span className="font-semibold text-[#06254B] text-xl">{currency == "USD" ? "$" : currency == 'EURO' ? "€" : currency === 'AUD' ? 'A$' : '₮'}{coinsDatas?.spot_recommendations?.short_term?.entry_price}</span>
                                                                 </div>
                                                                 <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#FEF2F2] text-center rounded-[6px] py-4">
-                                                                    <p className="text-sm text-[#BC0508] uppercase pb-1.5">Take Profit</p> 
+                                                                    <p className="text-sm text-[#BC0508] uppercase pb-1.5">Take Profit</p>
                                                                     <span className="font-semibold text-[#D91316] text-xl">{currency == "USD" ? "$" : currency == 'EURO' ? "€" : currency === 'AUD' ? 'A$' : '₮'}{coinsDatas?.spot_recommendations?.short_term?.take_profit}</span>
                                                                 </div>
-                                                                <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#F0FDF4] text-center rounded-[6px] py-4"> 
-                                                                    <p className="text-sm text-[#16A34A] uppercase pb-1.5">Stop Loss</p> 
+                                                                <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#F0FDF4] text-center rounded-[6px] py-4">
+                                                                    <p className="text-sm text-[#16A34A] uppercase pb-1.5">Stop Loss</p>
                                                                     <span className="font-semibold text-[#139E46] text-xl">{currency == "USD" ? "$" : currency == 'EURO' ? "€" : currency === 'AUD' ? 'A$' : '₮'}{coinsDatas?.spot_recommendations?.short_term?.stop_loss}</span>
                                                                 </div>
                                                             </div>
@@ -108,16 +119,16 @@ const page = () => {
                                                             </div>
                                                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5">
                                                                 <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#F2F6FB] text-center rounded-[6px] py-4">
-                                                                     <p className="text-sm text-[#0B3363] uppercase pb-1.5">Entry Price</p> 
-                                                                     <span className="font-semibold text-[#06254B] text-xl">{currency == "USD" ? "$" : currency == 'EURO' ? "€" : currency === 'AUD' ? 'A$' : '₮'}{coinsDatas?.spot_recommendations?.long_term?.entry_price}</span>
+                                                                    <p className="text-sm text-[#0B3363] uppercase pb-1.5">Entry Price</p>
+                                                                    <span className="font-semibold text-[#06254B] text-xl">{currency == "USD" ? "$" : currency == 'EURO' ? "€" : currency === 'AUD' ? 'A$' : '₮'}{coinsDatas?.spot_recommendations?.long_term?.entry_price}</span>
                                                                 </div>
-                                                                <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#FEF2F2] text-center rounded-[6px] py-4"> 
-                                                                    <p className="text-sm text-[#BC0508] uppercase pb-1.5">Take Profit</p> 
+                                                                <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#FEF2F2] text-center rounded-[6px] py-4">
+                                                                    <p className="text-sm text-[#BC0508] uppercase pb-1.5">Take Profit</p>
                                                                     <span className="font-semibold text-[#D91316] text-xl">{currency == "USD" ? "$" : currency == 'EURO' ? "€" : currency === 'AUD' ? 'A$' : '₮'}{coinsDatas?.spot_recommendations?.long_term?.take_profit}</span>
                                                                 </div>
 
-                                                                <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#F0FDF4] text-center rounded-[6px] py-4"> 
-                                                                    <p className="text-sm text-[#16A34A] uppercase pb-1.5">Stop Loss</p> 
+                                                                <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#F0FDF4] text-center rounded-[6px] py-4">
+                                                                    <p className="text-sm text-[#16A34A] uppercase pb-1.5">Stop Loss</p>
                                                                     <span className="font-semibold text-[#139E46] text-xl">{currency == "USD" ? "$" : currency == 'EURO' ? "€" : currency === 'AUD' ? 'A$' : '₮'}{coinsDatas?.spot_recommendations?.long_term?.stop_loss}</span>
                                                                 </div>
                                                             </div>
@@ -149,10 +160,10 @@ const page = () => {
                                                                 <h5 className="text-[#CDCDCD] text-[20px] leading-[30px] font-semibold mb-2 lg:mb-0">Short-term Leveraged </h5>
                                                                 <div className="flex items-center gap-1">
                                                                     <div className="border-2 border-[#02571C] bg-[#E8FFEF] rounded-[25px]">
-                                                                       <span className="text-[#02571C] text-[16px] leading-[38px] uppercase font-semibold px-8">{coinsDatas?.leveraged_recommendations?.short_term?.position}</span>
+                                                                        <span className="text-[#02571C] text-[16px] leading-[38px] uppercase font-semibold px-8">{coinsDatas?.leveraged_recommendations?.short_term?.position}</span>
                                                                     </div>
                                                                     <div className="border-2 border-[#E49600] bg-[#FFF3DB] rounded-[25px]">
-                                                                       <span className="text-[#E49600] text-[16px] leading-[38px] uppercase font-semibold px-4">{coinsDatas?.leveraged_recommendations?.short_term?.leverage}</span>
+                                                                        <span className="text-[#E49600] text-[16px] leading-[38px] uppercase font-semibold px-4">{coinsDatas?.leveraged_recommendations?.short_term?.leverage}</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -185,21 +196,21 @@ const page = () => {
                                                                         <span className="text-[#02571C] text-[16px] leading-[38px] capitalize px-8 inline-block">{coinsDatas?.leveraged_recommendations?.long_term?.position}</span>
                                                                     </div>
                                                                     <div className="border-2 border-[#E72051] bg-[#FFDDE5] rounded-[25px]">
-                                                                       <span className="text-[#E72051] text-[16px] leading-[38px] uppercase font-semibold px-4 inline-block">{coinsDatas?.leveraged_recommendations?.long_term?.leverage}</span>
+                                                                        <span className="text-[#E72051] text-[16px] leading-[38px] uppercase font-semibold px-4 inline-block">{coinsDatas?.leveraged_recommendations?.long_term?.leverage}</span>
                                                                     </div>
                                                                 </div>
 
                                                             </div>
                                                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5">
                                                                 <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#F2F6FB] text-center rounded-[6px] py-4">
-                                                                     <p className="text-sm text-[#0B3363] uppercase pb-1.5">Entry Price</p>
-                                                                     <span className="font-semibold text-[#06254] text-xl">{currency == "USD" ? "$" : currency == 'EURO' ? "€" : currency === 'AUD' ? 'A$' : '₮'}{coinsDatas?.leveraged_recommendations?.long_term?.entry_price}</span>
+                                                                    <p className="text-sm text-[#0B3363] uppercase pb-1.5">Entry Price</p>
+                                                                    <span className="font-semibold text-[#06254] text-xl">{currency == "USD" ? "$" : currency == 'EURO' ? "€" : currency === 'AUD' ? 'A$' : '₮'}{coinsDatas?.leveraged_recommendations?.long_term?.entry_price}</span>
                                                                 </div>
                                                                 <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#FEF2F2] text-center rounded-[6px] py-4">
-                                                                    <p className="text-sm text-[#BC0508] uppercase pb-1.5">Take Profit</p> 
+                                                                    <p className="text-sm text-[#BC0508] uppercase pb-1.5">Take Profit</p>
                                                                     <span className="font-semibold text-[#D91316] text-xl">{currency == "USD" ? "$" : currency == 'EURO' ? "€" : currency === 'AUD' ? 'A$' : '₮'}{coinsDatas?.leveraged_recommendations?.long_term?.take_profit}</span>
                                                                 </div>
-                                                                <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#F0FDF4] text-center rounded-[6px] py-4"> 
+                                                                <div className="text-[#2D2D2D] text-[15px] font-normal bg-[#F0FDF4] text-center rounded-[6px] py-4">
                                                                     <p className="text-sm text-[#16A34A] uppercase pb-1.5">Stop Loss</p>
                                                                     <span className="font-semibold text-[#139E46] text-xl">{currency == "USD" ? "$" : currency == 'EURO' ? "€" : currency === 'AUD' ? 'A$' : '₮'}{coinsDatas?.leveraged_recommendations?.long_term?.stop_loss}</span>
                                                                 </div>
