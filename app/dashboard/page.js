@@ -70,8 +70,8 @@ const Page = () => {
   console.log("coinsd", coins)
 
 
-  const coinItems = Array.isArray(coins?.coins)
-    ? coins.coins.map((coin) => coin.item).filter(Boolean)
+  const coinItems = Array.isArray(coins)
+    ? coins?.map((coin) => coin).filter(Boolean)
     : [];
 
   // Filter coins based on search term
