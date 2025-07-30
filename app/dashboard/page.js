@@ -67,7 +67,7 @@ const Page = () => {
   useEffect(() => {
     dispatch(getCoins())
   }, [])
-  console.log("coinsd", coins)
+  // console.log("coinsd", coins)
 
 
   const coinItems = Array.isArray(coins)
@@ -127,7 +127,7 @@ const Page = () => {
               </div>
               <div className="absolute left-0 top-[48px] w-[245px] lg:w-[365px]">
                 {(showDropdown && searchTerm.trim() !== "") && (
-                  <ul className="bg-white rounded-md shadow p-0">
+                  <ul className="bg-white rounded-md shadow p-0 h-[300px] overflow-y-scroll overflow-x-hidden">
                     {filteredCoins.length > 0 ? (
                       filteredCoins.map((coin) => (
                         <li key={coin.coin_id} className="border-b border-[#dfdfdf] py-2 last:border-0 cursor-pointer px-4 text-left" onClick={() => handleCoinSelect(coin)}>
