@@ -6,7 +6,8 @@ export const getCoins = createAsyncThunk(
     'getCoins',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get('https://api.coingecko.com/api/v3/search/trending');
+            // const response = await axios.get('https://api.coingecko.com/api/v3/search/trending');
+            const response = await axios.get('https://api.coinpaprika.com/v1/coins');
             console.log(response, "response Coins");
 
             if (response?.status === 200) {
