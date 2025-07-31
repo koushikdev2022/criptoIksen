@@ -91,6 +91,7 @@ const Header = () => {
                           Contact
                         </Link>
                       </li>
+                      <li onClick={closeNavbar}><Link href="/faqs" passHref>FAQs</Link></li>
                     </NavbarCollapse>
                   </Navbar>
                 </div>

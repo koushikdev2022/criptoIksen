@@ -120,7 +120,7 @@ const LoginModal = ({ openLoginModal, setOpenLoginModal, setOpenRegisterModal })
                                                 <div className="text-center text-sm text-red-600 mt-3">{error}</div>
                                             )
                                         }
-                                        <p className="text-center mt-2 flex justify-center items-center">Already Have an account? <button className="sign_up_btn" onClick={handleSignup}>Sign Up</button> </p>
+                                        {/* <p className="text-center mt-2 flex justify-center items-center">Already Have an account? <button className="sign_up_btn" onClick={handleSignup}>Sign Up</button> </p> */}
                                     </form>
                                 </div>
                             </div>
