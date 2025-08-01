@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { cancelSubscription, getProfile, uploadPhoto } from "../reducers/ProfileSlice";
+import { cancelSubscription, changePassword, getProfile, uploadPhoto } from "../reducers/ProfileSlice";
 import { useForm } from "react-hook-form";
 import { Button, FileInput, Label, TextInput } from "flowbite-react";
 import SubsCancelModal from "../modal/SubsCancelModal";
@@ -9,6 +9,7 @@ import { SlEnvolope } from "react-icons/sl";
 import profileUser from "../assets/imagesource/profile_user.png";
 import Image from "next/image";
 import { MdEdit } from "react-icons/md";
+import { toast, ToastContainer } from "react-toastify";
 
 const page = () => {
   const dispatch = useDispatch()
@@ -24,6 +25,7 @@ const page = () => {
     setValue,
     formState: { errors },
   } = useForm();
+  const password = watch("newPassword");
   useEffect(() => {
     dispatch(getProfile())
   }, [])
@@ -60,24 +62,41 @@ const page = () => {
       });
     }
   };
+
+  const onSubmit = (data) => {
+    console.log("data:", data);
+    const payload = {
+      user_id: profileData?.data?.id,
+      oldPassword: data?.oldPassword,
+      newPassword: data?.newPassword,
+      confirmPassword: data?.confirmPassword
+    }
+
+    dispatch(changePassword(payload)).then((res) => {
+      console.log("res", res);
+      if (res?.payload?.status_code === 200) {
+        toast.success(res?.payload?.message)
+      }
+    })
+  }
   return (
     <>
       <div>
         <div>
-
+          <ToastContainer />
           <div className="bg-[#222222] rounded-2xl">
             <div className="prifile_bg">&nbsp;</div>
             <div className="w-full lg:w-full p-5 lg:p-10 mb-4">
               <div className="account_setting_section">
-                <div className="flex justify-between items-center">
+                <div className="lg:flex justify-between items-center">
                   <div>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 mb-3">
                       <div className="relative">
                         {/* <Image src={profileUser} alt='profileUser' className='w-[120px] h-[120px] rounded-[50px] overflow-hidden' /> */}
                         {
                           profileData?.data?.avatar ? (
                             <Image src={profileData?.data?.avatar} width={120}
-                              height={120} alt='profileUser' className='w-[120px] h-[120px] rounded-[50px] overflow-hidden' />
+                              height={120} alt='profileUser' className='w-[80px] h-[80px] lg:w-[120px] lg:h-[120px] rounded-[50px] overflow-hidden' />
                           ) : (
                             <Image src={profileUser} alt='profileUser' className='w-[120px] h-[120px] rounded-[50px] overflow-hidden' />
                           )
@@ -104,13 +123,13 @@ const page = () => {
                       </div>
                     </div>
                   </div>
-                  <div>
+                  {/* <div>
                     <button className="bg-[#0E5D4F] hover:bg-black text-white text-base leading-[46px] rounded-[8px] px-8 cursor-pointer">Edit</button>
-                  </div>
+                  </div> */}
                 </div>
                 <div>
-                  <form >
-                    <div className="pt-6">
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="lg:pt-6">
                       <div className="common-section-box-content">
                         <div className="lg:flex gap-8 mb-4">
                           <div className="account_user_section w-8/12 lg:w-4/12 mb-2 lg:mb-0">
@@ -206,20 +225,84 @@ const page = () => {
                           </div>
                         </div>
 
-
-                        <div className="py-10">
-                          <p className="text-[#CDCDCD] text-[18px] pb-4">My email Address</p>
-                          <div className="flex items-center gap-2">
-                            <div>
-                              <div className="bg-[#1f2726] w-[56px] h-[56px] rounded-full flex justify-center items-center">
-                                <SlEnvolope className="text-2xl text-[#055346]" />
+                        <div className="lg:flex justify-between mt-3">
+                          <div className="py-10 w-full mt-5">
+                            <p className="text-[#CDCDCD] text-[18px] pb-4">My email Address</p>
+                            <div className="flex items-center gap-2">
+                              <div>
+                                <div className="bg-[#1f2726] w-[56px] h-[56px] rounded-full flex justify-center items-center">
+                                  <SlEnvolope className="text-2xl text-[#055346]" />
+                                </div>
+                              </div>
+                              <div>
+                                <p className="text-[#CDCDCD] text-[16px]">{profileData?.data?.email}</p>
+                                <p className="text-[#777777] text-[16px]">1 month ago</p>
                               </div>
                             </div>
-                            <div>
-                              <p className="text-[#CDCDCD] text-[16px]">{profileData?.data?.email}</p>
-                              <p className="text-[#777777] text-[16px]">1 month ago</p>
-                            </div>
                           </div>
+                          <div className="w-full mt-10">
+                            <p className="text-[#CDCDCD] text-[18px] pb-4">Change Paasowrd</p>
+
+                            <div className="w-full lg:w-12/12">
+                              <div className="mb-1 block">
+                                <Label className="">Old Password </Label>
+                              </div>
+                              <TextInput
+                                id="base"
+                                type="password"
+                                sizing="md"
+                                {...register("oldPassword", { required: "Old Password is Required" })}
+                              />
+                              {errors?.oldPassword && (
+                                <span className="text-red-500">
+                                  {errors?.oldPassword?.message}
+                                </span>
+                              )}
+                            </div>
+                            <div className="w-full lg:w-12/12">
+                              <div className="mb-1 block">
+                                <Label className="">New Passowrd </Label>
+                              </div>
+                              <TextInput
+                                id="base"
+                                type="password"
+                                sizing="md"
+                                {...register("newPassword", { required: "New Password is Required" })}
+                              />
+                              {errors?.newPassword && (
+                                <span className="text-red-500">
+                                  {errors?.newPassword?.message}
+                                </span>
+                              )}
+                            </div>
+                            <div className="w-full lg:w-12/12">
+                              <div className="mb-1 block">
+                                <Label className="">Confirm Passowrd </Label>
+                              </div>
+                              <TextInput
+                                id="base"
+                                type="password"
+                                sizing="md"
+                                {...register("confirmPassword", {
+                                  required: "Confirm Password is required",
+
+                                  validate: (value) =>
+                                    value === password || "Password do not Match",
+                                })}
+
+                              />
+                              {errors.confirmPassword && (
+                                <span className="text-red-500">
+                                  {errors.confirmPassword.message}
+                                </span>
+                              )}
+                            </div>
+                            <div>
+                              <button className="bg-[#0E5D4F] hover:bg-black text-white text-base leading-[46px] rounded-[8px] px-8 cursor-pointer mt-3">Update</button>
+                            </div>
+
+                          </div>
+
                         </div>
 
                         <div className="lg:flex gap-6 mb-3">
@@ -306,6 +389,7 @@ const page = () => {
                           Save
                         </button>
                       </div> */}
+
                       </div>
                     </div>
                   </form>
