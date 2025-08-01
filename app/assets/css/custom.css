@@ -838,7 +838,15 @@ body {
 .account_setting_section input[type="text"]::placeholder {
   color: #6a6a6a;
 }
-
+.account_setting_section input[type="password"] {
+  background: #404040;
+  color: #cdcdcd;
+  border: #404040 1px solid;
+  height: 45px;
+}
+.account_setting_section input[type="password"]::placeholder {
+  color: #6a6a6a;
+}
 .accordian_section button {
   background: #f3f4f6;
   cursor: pointer;
