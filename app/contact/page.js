@@ -11,24 +11,24 @@ import { FaEnvelope } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 
 const page = () => {
-  return (
-    <div>
-      <div className='banner_area p-4 lg:p-0'>
-        {/* home banner section start here */}
-        <div className="home_banner_area relative">
-          <Image src={aboutBanner} alt='aboutBanner' className="hidden lg:block" />
-          <Image src={bannerImg} alt='bannerImg' className="block lg:hidden" />
-          <div className="banner_content_area absolute w-full h-full left-0 top-0">
-           <div className='max-w-6xl mx-auto flex justify-center items-center h-full'>
-               <div className="w-full px-4 pt-14 lg:pt-24 text-center">
-                  <h1 className="text-xl leading-[24px] lg:text-[60px] lg:leading-[60px] text-black font-bold mb-2 lg:mb-4">Contact <span>Us</span></h1>
-               </div>
-           </div>
-        </div>
-        </div>
-      </div>
-      {/* Why Choose Us section start here */}
-      <div className="certificate_completion_sec">
+    return (
+        <div>
+            <div className='banner_area p-4 lg:p-0'>
+                {/* home banner section start here */}
+                <div className="home_banner_area relative">
+                    <Image src={aboutBanner} alt='aboutBanner' className="hidden lg:block" />
+                    <Image src={bannerImg} alt='bannerImg' className="block lg:hidden" />
+                    <div className="banner_content_area absolute w-full h-full left-0 top-0">
+                        <div className='max-w-6xl mx-auto flex justify-center items-center h-full'>
+                            <div className="w-full px-4 pt-14 lg:pt-24 text-center">
+                                <h1 className="text-xl leading-[24px] lg:text-[60px] lg:leading-[60px] text-black font-bold mb-2 lg:mb-4">Contact <span>Us</span></h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* Why Choose Us section start here */}
+            <div className="certificate_completion_sec">
                 <div className="max-w-6xl mx-auto lg:py-4 px-4 lg:px-0">
                     <div className="lg:flex">
                         <div className="lg:w-6/12 mb-6 lg:mb-0">
@@ -36,7 +36,7 @@ const page = () => {
                                 <div>
                                     <FaPhoneAlt className='text-[#52b69a]' />
                                 </div>
-                                <div className='text-base text-black'>1234567890</div>
+                                <div className='text-base text-black'>+61 416 206 144</div>
                             </div>
                             <div className='flex items-center gap-2 mb-4'>
                                 <div>
@@ -96,9 +96,9 @@ const page = () => {
                     </div>
                 </div>
             </div>
-      {/* Why Choose Us section ends here */}
-    </div>
-  )
+            {/* Why Choose Us section ends here */}
+        </div>
+    )
 }
 
 export default page
