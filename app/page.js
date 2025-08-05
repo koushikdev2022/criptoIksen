@@ -514,7 +514,7 @@ export default function Home() {
                                                    <div className="py-8 px-1">
                                                       <h3 className="text-[19px] text-[#1D2127] pb-6 font-medium">{planDatas?.plan_name}</h3>
                                                       <div className="flex items-center gap-2 mb-8">
-                                                         <p className="text-[#1D2127] text-[36px] leading-[36px] font-extrabold">${planDatas?.price}</p>
+                                                         <p className="text-[#1D2127] text-[36px] leading-[36px] font-extrabold">{planDatas?.currency} {planDatas?.price}</p>
                                                          <div>
                                                             <p className="text-[#cbced1] text-[12px] leading-[16px]">/month</p>
                                                          </div>
@@ -557,7 +557,7 @@ export default function Home() {
                                                             </div>
                                                          </div>
                                                          <div className="flex items-center gap-2 mb-8">
-                                                            <p className="text-[#ffffff] text-[36px] leading-[36px] font-extrabold">${planDatas?.price}</p>
+                                                            <p className="text-[#ffffff] text-[36px] leading-[36px] font-extrabold">{planDatas?.currency} {planDatas?.price}</p>
                                                             <div>
                                                                <p className="text-[#F3F3F3] text-[12px] leading-[16px]">/month</p>
                                                             </div>

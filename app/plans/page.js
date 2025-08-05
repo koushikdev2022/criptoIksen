@@ -68,7 +68,7 @@ const page = () => {
                                                         <div className="py-8 px-6">
                                                             <h3 className="text-[19px] text-[#ffffff] pb-6 font-medium">{plansDatas?.plan_name}</h3>
                                                             <div className="flex items-center gap-2 mb-8">
-                                                                <p className="text-[#ffffff] text-[36px] leading-[36px] font-extrabold">${plansDatas?.price}</p>
+                                                                <p className="text-[#ffffff] text-[36px] leading-[36px] font-extrabold">{plansDatas?.currency} {plansDatas?.price}</p>
                                                                 <div>
                                                                     <p className="text-[#cbced1] text-[12px] leading-[16px]">/month</p>
                                                                 </div>
@@ -123,7 +123,7 @@ const page = () => {
                                                                     </div>
                                                                 </div>
                                                                 <div className="flex items-center gap-2 mb-8">
-                                                                    <p className="text-[#ffffff] text-[36px] leading-[36px] font-extrabold">${plansDatas?.price}</p>
+                                                                    <p className="text-[#ffffff] text-[36px] leading-[36px] font-extrabold">{plansDatas?.currency} {plansDatas?.price}</p>
                                                                     <div>
                                                                         <p className="text-[#F3F3F3] text-[12px] leading-[16px]">/month</p>
                                                                     </div>
