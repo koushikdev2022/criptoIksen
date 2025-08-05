@@ -4,6 +4,7 @@ import {
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
+import { toast, ToastContainer } from "react-toastify";
 
 const CheckoutForm = ({
   setErrorMessage,
@@ -12,6 +13,7 @@ const CheckoutForm = ({
   subsId,
   customerId,
   planId,
+  errorMessage,
 }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -41,13 +43,17 @@ const CheckoutForm = ({
         },
       })
       .then(function (error) {
+        console.log("error", error);
+
         if (error.error) {
-          setErrorMessage(error.error.message);
+          // setErrorMessage(error.error.message);
+          toast.error(error.error.message);
         }
       });
   };
   return (
     <>
+      <ToastContainer />
       <form onSubmit={handleSubmit}>
         <PaymentElement />
         <button

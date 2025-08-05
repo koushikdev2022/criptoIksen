@@ -43,6 +43,7 @@ const PaymentModal = ({
               subsId={subsId}
               customerId={customerId}
               planId={planId}
+              errorMessage={errorMessage}
             />
           </Elements>
         </ModalBody>
