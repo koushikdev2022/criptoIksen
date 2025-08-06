@@ -16,7 +16,7 @@ const page = () => {
           <div className="banner_content_area absolute w-full h-full left-0 top-0">
            <div className='max-w-6xl mx-auto flex justify-center items-center h-full'>
                <div className="w-full px-4 pt-14 lg:pt-24 text-center">
-                  <h1 className="text-xl leading-[24px] lg:text-[60px] lg:leading-[60px] text-black font-bold mb-2 lg:mb-4">Privacy</h1>
+                  <h1 className="text-xl leading-[24px] lg:text-[60px] lg:leading-[60px] text-black font-bold mb-2 lg:mb-4">Privacy Policy</h1>
                </div>
            </div>
         </div>
