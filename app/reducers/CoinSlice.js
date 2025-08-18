@@ -29,7 +29,7 @@ export const getCoinsDetails = createAsyncThunk(
     'getCoinsDetails',
     async (user_input, { rejectWithValue }) => {
         try {
-            const response = await axios.post('https://n8nnode.bestworks.cloud/webhook/crypto', user_input);
+            const response = await axios.post('https://neightn.cryptointuit.org/webhook/crypto', user_input);
             console.log(response, "response Coins");
 
             if (response?.status === 200) {
