@@ -15,12 +15,10 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    allowedDevOrigins: [
-      "https://cryptointuit.org",   // your custom domain
-      "http://localhost:3000",     // keep localhost for dev
-    ],
-  },
+   allowedDevOrigins: [
+    "https://cryptointuit.org",
+    "http://localhost:3000",
+  ],
 };
 
 export default withFlowbiteReact(nextConfig);
